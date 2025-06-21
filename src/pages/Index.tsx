@@ -1,8 +1,7 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Zap, Users, Star, Trophy, Briefcase, Search, Sparkles, Code } from "lucide-react";
+import { ArrowRight, Zap, Users, Star, Trophy, Briefcase, Search, Sparkles, Code, MapPin, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import ToolLogo from "@/components/ToolLogo";
 
@@ -189,6 +188,124 @@ const Index = () => {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Vibe Coders Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white/50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              Meet Our <span className="gradient-text">Featured Vibe Coders</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Discover talented developers who are ready to bring your ideas to life with cutting-edge tools and lightning-fast delivery.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                name: "Alex Chen",
+                title: "Full-Stack AI Developer",
+                avatar: "AC",
+                rating: 4.9,
+                reviews: 127,
+                location: "San Francisco, CA",
+                hourlyRate: "$85",
+                skills: ["Cursor", "Claude", "Next.js", "Supabase"],
+                completedProjects: 89,
+                responseTime: "< 1 hour",
+                description: "Specialized in AI-powered web apps with rapid prototyping using Cursor and Claude."
+              },
+              {
+                name: "Sarah Rodriguez",
+                title: "UI/UX & Frontend Specialist",
+                avatar: "SR",
+                rating: 5.0,
+                reviews: 203,
+                location: "Austin, TX",
+                hourlyRate: "$75",
+                skills: ["v0", "Lovable", "React", "Tailwind"],
+                completedProjects: 156,
+                responseTime: "< 30 min",
+                description: "Expert in creating beautiful, responsive interfaces using v0 and modern design tools."
+              },
+              {
+                name: "Marcus Thompson",
+                title: "Automation & Integration Expert",
+                avatar: "MT",
+                rating: 4.8,
+                reviews: 94,
+                location: "Remote",
+                hourlyRate: "$90",
+                skills: ["n8n", "Make", "Zapier", "Supabase"],
+                completedProjects: 67,
+                responseTime: "< 2 hours",
+                description: "Building seamless workflows and automations that save businesses time and money."
+              }
+            ].map((coder, index) => (
+              <Card key={coder.name} className="vibe-card p-6 hover:scale-105 transition-transform">
+                <CardContent className="p-0">
+                  <div className="flex items-start space-x-4 mb-4">
+                    <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
+                      {coder.avatar}
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-bold text-xl mb-1">{coder.name}</h3>
+                      <p className="text-purple-600 font-semibold mb-2">{coder.title}</p>
+                      <div className="flex items-center space-x-2 mb-2">
+                        <div className="flex items-center">
+                          <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                          <span className="text-sm font-semibold ml-1">{coder.rating}</span>
+                          <span className="text-sm text-gray-500 ml-1">({coder.reviews} reviews)</span>
+                        </div>
+                      </div>
+                      <div className="flex items-center space-x-4 text-sm text-gray-600 mb-3">
+                        <div className="flex items-center">
+                          <MapPin className="w-3 h-3 mr-1" />
+                          {coder.location}
+                        </div>
+                        <div className="flex items-center">
+                          <Clock className="w-3 h-3 mr-1" />
+                          {coder.responseTime}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <p className="text-gray-600 mb-4">{coder.description}</p>
+                  
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {coder.skills.map((skill) => (
+                      <Badge key={skill} variant="secondary" className="bg-purple-100 text-purple-700">
+                        {skill}
+                      </Badge>
+                    ))}
+                  </div>
+                  
+                  <div className="flex justify-between items-center mb-4 text-sm">
+                    <span className="text-gray-600">{coder.completedProjects} projects completed</span>
+                    <span className="font-bold text-lg text-purple-600">{coder.hourlyRate}/hr</span>
+                  </div>
+                  
+                  <Button className="w-full vibe-button">
+                    View Profile
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          
+          <div className="text-center mt-12">
+            <Link to="/coders">
+              <Button size="lg" variant="outline" className="vibe-button-outline">
+                <Users className="mr-2 w-5 h-5" />
+                Browse All Vibe Coders
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

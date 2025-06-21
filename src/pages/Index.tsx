@@ -1,7 +1,8 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Zap, Users, Star, Trophy, Briefcase, Search, Sparkles } from "lucide-react";
+import { ArrowRight, Zap, Users, Star, Trophy, Briefcase, Search, Sparkles, Code } from "lucide-react";
 import { Link } from "react-router-dom";
 import ToolLogo from "@/components/ToolLogo";
 

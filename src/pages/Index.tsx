@@ -1,9 +1,11 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Zap, Users, Star, Trophy, Briefcase, Search, Sparkles, Code, MapPin, Clock, DollarSign, ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
 import ToolLogo from "@/components/ToolLogo";
+import { SparklesCore } from "@/components/ui/sparkles";
 
 const Index = () => {
   return (
@@ -50,10 +52,27 @@ const Index = () => {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto text-center">
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div className="max-w-6xl mx-auto text-center relative z-20">
+          {/* Background Sparkles */}
+          <div className="absolute inset-0 w-full h-full">
+            <SparklesCore
+              id="tsparticleshero"
+              background="transparent"
+              minSize={0.4}
+              maxSize={1.2}
+              particleDensity={80}
+              className="w-full h-full"
+              particleColor="#9333ea"
+              speed={0.5}
+            />
+          </div>
+          
+          {/* Gradient overlay to blend with existing design */}
           <div className="absolute inset-0 bg-gradient-to-r from-purple-600/5 via-pink-500/5 to-orange-500/5 rounded-3xl"></div>
-          <div className="relative">
+          
+          {/* Content */}
+          <div className="relative z-30">
             <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
               Where Vibe Coders Meet{" "}
               <span className="hero-gradient-text">

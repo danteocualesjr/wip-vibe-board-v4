@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -52,7 +51,7 @@ const Index = () => {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-br from-gray-50 via-purple-50 to-pink-50">
         <div className="max-w-6xl mx-auto text-center relative z-20">
           {/* Background Sparkles */}
           <div className="absolute inset-0 w-full h-full">
@@ -67,9 +66,6 @@ const Index = () => {
               speed={0.5}
             />
           </div>
-          
-          {/* Gradient overlay to blend with existing design */}
-          <div className="absolute inset-0 bg-gradient-to-r from-purple-600/5 via-pink-500/5 to-orange-500/5 rounded-3xl"></div>
           
           {/* Content */}
           <div className="relative z-30">

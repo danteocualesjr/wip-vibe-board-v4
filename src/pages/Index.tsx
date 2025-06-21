@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Zap, Users, Star, Trophy, Briefcase, Search, Sparkles, Code, MapPin, Clock } from "lucide-react";
+import { ArrowRight, Zap, Users, Star, Trophy, Briefcase, Search, Sparkles, Code, MapPin, Clock, DollarSign, ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
 import ToolLogo from "@/components/ToolLogo";
 
@@ -347,6 +347,154 @@ const Index = () => {
               <Button size="lg" variant="outline" className="vibe-button-outline">
                 <Users className="mr-2 w-5 h-5" />
                 Browse All Vibe Coders
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Products Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              <span className="gradient-text">Featured Products</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Ready-to-use apps and tools built by our talented vibe coders. Get started instantly with these high-quality solutions.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                name: "AI Chat Dashboard",
+                description: "Complete chat interface with AI integration, real-time messaging, and beautiful UI components.",
+                image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop",
+                price: "$149",
+                originalPrice: "$299",
+                rating: 4.9,
+                reviews: 87,
+                tags: ["AI", "Chat", "React"],
+                author: "Alex Chen"
+              },
+              {
+                name: "E-commerce Starter Kit",
+                description: "Full-featured online store with payment integration, inventory management, and admin dashboard.",
+                image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
+                price: "$199",
+                originalPrice: "$399",
+                rating: 5.0,
+                reviews: 134,
+                tags: ["E-commerce", "Payments", "Admin"],
+                author: "Sarah Rodriguez"
+              },
+              {
+                name: "SaaS Landing Page Template",
+                description: "Modern, conversion-optimized landing page template with animations and responsive design.",
+                image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
+                price: "$79",
+                originalPrice: "$149",
+                rating: 4.8,
+                reviews: 156,
+                tags: ["Landing Page", "SaaS", "Conversion"],
+                author: "Emma Wilson"
+              },
+              {
+                name: "Task Management App",
+                description: "Complete project management solution with team collaboration, time tracking, and reporting.",
+                image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop",
+                price: "$129",
+                originalPrice: "$249",
+                rating: 4.7,
+                reviews: 92,
+                tags: ["Productivity", "Teams", "Management"],
+                author: "Marcus Thompson"
+              },
+              {
+                name: "Crypto Portfolio Tracker",
+                description: "Real-time cryptocurrency portfolio tracking with charts, alerts, and market analysis tools.",
+                image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=600&h=400&fit=crop",
+                price: "$89",
+                originalPrice: "$179",
+                rating: 4.6,
+                reviews: 73,
+                tags: ["Crypto", "Finance", "Charts"],
+                author: "David Kim"
+              },
+              {
+                name: "Social Media Scheduler",
+                description: "Automated social media posting tool with content calendar, analytics, and multi-platform support.",
+                image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&h=400&fit=crop",
+                price: "$99",
+                originalPrice: "$199",
+                rating: 4.9,
+                reviews: 108,
+                tags: ["Social Media", "Automation", "Analytics"],
+                author: "Lisa Chang"
+              }
+            ].map((product, index) => (
+              <Card key={product.name} className="vibe-card overflow-hidden hover:scale-105 transition-transform">
+                <div className="relative">
+                  <img 
+                    src={product.image} 
+                    alt={product.name}
+                    className="w-full h-48 object-cover"
+                  />
+                  <div className="absolute top-4 right-4">
+                    <Badge className="bg-green-500 text-white">
+                      50% OFF
+                    </Badge>
+                  </div>
+                </div>
+                
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className="font-bold text-xl">{product.name}</h3>
+                    <div className="flex items-center">
+                      <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                      <span className="text-sm font-semibold ml-1">{product.rating}</span>
+                      <span className="text-sm text-gray-500 ml-1">({product.reviews})</span>
+                    </div>
+                  </div>
+                  
+                  <p className="text-gray-600 mb-4 text-sm leading-relaxed">{product.description}</p>
+                  
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {product.tags.map((tag) => (
+                      <Badge key={tag} variant="secondary" className="bg-purple-100 text-purple-700 text-xs">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                  
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center space-x-2">
+                      <span className="text-2xl font-bold text-purple-600">{product.price}</span>
+                      <span className="text-lg text-gray-400 line-through">{product.originalPrice}</span>
+                    </div>
+                    <span className="text-sm text-gray-500">by {product.author}</span>
+                  </div>
+                  
+                  <div className="flex space-x-2">
+                    <Button className="flex-1 vibe-button text-sm">
+                      <ShoppingCart className="mr-2 w-4 h-4" />
+                      Buy Now
+                    </Button>
+                    <Button variant="outline" size="sm" className="px-3">
+                      Preview
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          
+          <div className="text-center mt-12">
+            <Link to="/marketplace">
+              <Button size="lg" variant="outline" className="vibe-button-outline">
+                <Search className="mr-2 w-5 h-5" />
+                Browse All Products
               </Button>
             </Link>
           </div>

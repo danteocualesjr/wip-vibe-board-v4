@@ -5,163 +5,179 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Search, MapPin, Star, Code, MessageCircle, ExternalLink } from "lucide-react";
+import { ArrowRight, Zap, Search, Filter, Grid, List, Star, MapPin, Clock, Users, Code, Trophy } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const VibeCoders = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+  const [selectedSkill, setSelectedSkill] = useState("all");
+  const [selectedLocation, setSelectedLocation] = useState("all");
+  const [selectedRate, setSelectedRate] = useState("all");
 
   const coders = [
     {
-      id: 1,
       name: "Alex Chen",
-      title: "AI Agent Specialist",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+      title: "Full-Stack AI Developer",
+      avatar: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=400&fit=crop&crop=face",
       rating: 4.9,
-      reviews: 23,
-      tools: ["Cursor", "Claude", "n8n", "Replit"],
-      status: "Available",
-      projects: 12,
+      reviews: 127,
       location: "San Francisco, CA",
-      hourlyRate: "$85/hr",
-      description: "Specialized in building AI-driven CRMs and workflow automation tools. 5+ years experience with machine learning and natural language processing.",
-      skills: ["AI/ML", "CRM Development", "Automation", "API Integration"],
-      portfolio: ["AI Customer Support Bot", "Smart Lead Qualifier", "Automated Report Generator"],
-      featured: true
+      hourlyRate: "$85",
+      skills: ["Cursor", "Claude", "Next.js", "Supabase"],
+      completedProjects: 89,
+      responseTime: "< 1 hour",
+      description: "Specialized in AI-powered web apps with rapid prototyping using Cursor and Claude.",
+      featured: true,
+      available: true
     },
     {
-      id: 2,
-      name: "Sarah Kim",
-      title: "Micro-SaaS Builder",
-      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b586?w=150&h=150&fit=crop&crop=face",
-      rating: 4.8,
-      reviews: 31,
-      tools: ["Lovable", "v0", "Windsurf", "React"],
-      status: "Freelance Only",
-      projects: 18,
+      name: "Sarah Rodriguez",
+      title: "UI/UX & Frontend Specialist",
+      avatar: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=400&h=400&fit=crop&crop=face",
+      rating: 5.0,
+      reviews: 203,
       location: "Austin, TX",
-      hourlyRate: "$75/hr",
-      description: "Expert in rapid prototyping and beautiful web applications. Focused on creating delightful user experiences and scalable architectures.",
-      skills: ["React/Next.js", "UI/UX", "Rapid Prototyping", "SaaS Development"],
-      portfolio: ["Social Media Scheduler", "E-commerce Dashboard", "Analytics Platform"],
-      featured: false
+      hourlyRate: "$75",
+      skills: ["v0", "Lovable", "React", "Tailwind"],
+      completedProjects: 156,
+      responseTime: "< 30 min",
+      description: "Expert in creating beautiful, responsive interfaces using v0 and modern design tools.",
+      featured: true,
+      available: true
     },
     {
-      id: 3,
-      name: "Marcus Rodriguez",
-      title: "Internal Tools Expert",
-      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
-      rating: 4.9,
-      reviews: 18,
-      tools: ["Bolt", "Make", "Gumloop", "Python"],
-      status: "Available",
-      projects: 25,
-      location: "New York, NY",
-      hourlyRate: "$90/hr",
-      description: "Building dashboard and automation systems for enterprises. Strong background in data visualization and workflow optimization.",
-      skills: ["Dashboard Development", "Data Visualization", "Enterprise Tools", "Automation"],
-      portfolio: ["Inventory Management System", "HR Dashboard", "Analytics Suite"],
-      featured: true
-    },
-    {
-      id: 4,
-      name: "Jennifer Walsh",
-      title: "Full-Stack Developer",
-      avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
-      rating: 4.7,
-      reviews: 42,
-      tools: ["Cursor", "Windsurf", "React", "Node.js"],
-      status: "Available",
-      projects: 33,
-      location: "Seattle, WA",
-      hourlyRate: "$80/hr",
-      description: "Full-stack developer with expertise in modern web technologies. Passionate about creating scalable and maintainable applications.",
-      skills: ["Full-Stack Development", "API Design", "Database Architecture", "DevOps"],
-      portfolio: ["E-commerce Platform", "Project Management Tool", "Real-time Chat App"],
-      featured: false
-    },
-    {
-      id: 5,
-      name: "David Park",
-      title: "Automation Specialist",
-      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
-      rating: 4.6,
-      reviews: 28,
-      tools: ["Make", "Gumloop", "n8n", "Zapier"],
-      status: "Selling Projects",
-      projects: 19,
-      location: "Los Angeles, CA",
-      hourlyRate: "$70/hr",
-      description: "Automation expert helping businesses streamline their workflows. Specialized in no-code/low-code solutions and process optimization.",
-      skills: ["Workflow Automation", "No-Code Solutions", "Process Optimization", "Integration"],
-      portfolio: ["Lead Generation Bot", "Email Automation System", "Data Sync Tool"],
-      featured: true
-    },
-    {
-      id: 6,
-      name: "Emma Thompson",
-      title: "AI/ML Developer",
-      avatar: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=150&h=150&fit=crop&crop=face",
+      name: "Marcus Thompson",
+      title: "Automation & Integration Expert",
+      avatar: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=400&fit=crop&crop=face",
       rating: 4.8,
-      reviews: 35,
-      tools: ["Claude", "Replit", "Python", "TensorFlow"],
-      status: "Available",
-      projects: 22,
-      location: "Boston, MA",
-      hourlyRate: "$95/hr",
-      description: "AI/ML specialist with a focus on practical business applications. Expert in natural language processing and predictive analytics.",
-      skills: ["Machine Learning", "NLP", "Predictive Analytics", "AI Integration"],
-      portfolio: ["Sentiment Analysis Tool", "Predictive Model", "Chatbot Framework"],
-      featured: false
+      reviews: 94,
+      location: "Remote",
+      hourlyRate: "$90",
+      skills: ["n8n", "Make", "Zapier", "Supabase"],
+      completedProjects: 67,
+      responseTime: "< 2 hours",
+      description: "Building seamless workflows and automations that save businesses time and money.",
+      featured: false,
+      available: true
+    },
+    {
+      name: "Emma Wilson",
+      title: "Full-Stack Developer",
+      avatar: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=400&h=400&fit=crop&crop=face",
+      rating: 4.9,
+      reviews: 156,
+      location: "New York, NY",
+      hourlyRate: "$80",
+      skills: ["Bolt", "Windsurf", "React", "Node.js"],
+      completedProjects: 112,
+      responseTime: "< 1 hour",
+      description: "End-to-end application development with modern AI tools and frameworks.",
+      featured: false,
+      available: false
+    },
+    {
+      name: "David Kim",
+      title: "AI & Backend Specialist",
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
+      rating: 4.7,
+      reviews: 89,
+      location: "Seattle, WA",
+      hourlyRate: "$95",
+      skills: ["Claude", "Replit", "Python", "FastAPI"],
+      completedProjects: 73,
+      responseTime: "< 3 hours",
+      description: "Building intelligent backends and AI integrations for modern applications.",
+      featured: true,
+      available: true
+    },
+    {
+      name: "Lisa Chang",
+      title: "No-Code Solutions Expert",
+      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b586?w=400&h=400&fit=crop&crop=face",
+      rating: 5.0,
+      reviews: 134,
+      location: "Los Angeles, CA",
+      hourlyRate: "$70",
+      skills: ["Gumloop", "Make", "Bubble", "Webflow"],
+      completedProjects: 98,
+      responseTime: "< 45 min",
+      description: "Rapid prototyping and MVP development using cutting-edge no-code platforms.",
+      featured: false,
+      available: true
     }
   ];
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case "Available":
-        return "bg-green-500/20 text-green-400 border-green-500/30";
-      case "Freelance Only":
-        return "bg-yellow-500/20 text-yellow-400 border-yellow-500/30";
-      case "Selling Projects":
-        return "bg-blue-500/20 text-blue-400 border-blue-500/30";
-      default:
-        return "bg-gray-500/20 text-gray-400 border-gray-500/30";
-    }
-  };
+  const skills = [
+    "All Skills",
+    "Cursor",
+    "Claude",
+    "v0",
+    "Lovable",
+    "Bolt",
+    "Windsurf",
+    "n8n",
+    "Make",
+    "Gumloop",
+    "React",
+    "Next.js",
+    "Python"
+  ];
+
+  const locations = [
+    "All Locations",
+    "Remote",
+    "San Francisco, CA",
+    "New York, NY",
+    "Austin, TX",
+    "Seattle, WA",
+    "Los Angeles, CA"
+  ];
+
+  const rates = [
+    "All Rates",
+    "$50-$75/hr",
+    "$75-$100/hr",
+    "$100+/hr"
+  ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-purple-50 to-pink-50">
       {/* Navigation */}
-      <nav className="border-b border-purple-800/30 bg-slate-900/50 backdrop-blur-sm sticky top-0 z-50">
+      <nav className="border-b border-purple-200/50 bg-white/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link to="/" className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold">VB</span>
+              <div className="w-8 h-8 bg-gradient-to-r from-purple-600 to-pink-500 rounded-lg flex items-center justify-center">
+                <Zap className="w-4 h-4 text-white" />
               </div>
-              <span className="text-xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              <span className="text-xl font-bold gradient-text">
                 Vibe Board
               </span>
             </Link>
             
             <div className="hidden md:flex items-center space-x-6">
-              <Link to="/marketplace" className="text-gray-300 hover:text-purple-400 transition-colors">
+              <Link to="/coders" className="text-purple-600 font-semibold">
+                Browse Vibe Coders
+              </Link>
+              <Link to="/marketplace" className="text-gray-600 hover:text-purple-600 transition-colors">
                 Marketplace
               </Link>
-              <Link to="/coders" className="text-purple-400 font-medium">
-                Vibe Coders
+              <Link to="/jobs" className="text-gray-600 hover:text-purple-600 transition-colors">
+                Post a Gig
               </Link>
-              <Link to="/jobs" className="text-gray-300 hover:text-purple-400 transition-colors">
-                Jobs
+              <Link to="/waitlist" className="text-gray-600 hover:text-purple-600 transition-colors">
+                Waitlist
               </Link>
             </div>
 
             <div className="flex items-center space-x-3">
-              <Button variant="ghost" className="text-gray-300 hover:text-purple-400">
+              <Button variant="ghost" className="text-purple-600 hover:text-purple-700">
                 Sign In
               </Button>
-              <Button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white">
-                Join
+              <Button className="vibe-button">
+                Join as Vibe Coder
+                <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </div>
           </div>
@@ -170,80 +186,135 @@ const VibeCoders = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-white mb-4">Vibe Coders</h1>
-          <p className="text-gray-400 text-lg">Discover talented developers who build with cutting-edge AI tools</p>
+        <div className="mb-8 text-center">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+            Browse <span className="hero-gradient-text">Vibe Coders</span>
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
+            Connect with elite developers who specialize in rapid prototyping, AI-driven development, and cutting-edge tools.
+          </p>
         </div>
+
+        {/* Stats Section */}
+        <section className="py-12 px-4 sm:px-6 lg:px-8 bg-white/50 rounded-3xl mb-12">
+          <div className="max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mb-4">
+                  <Users className="w-8 h-8 text-white" />
+                </div>
+                <div className="text-4xl md:text-5xl font-bold text-purple-600 mb-2">500+</div>
+                <div className="text-gray-600 text-lg">Active Vibe Coders</div>
+              </div>
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 bg-gradient-to-r from-pink-500 to-orange-500 rounded-2xl flex items-center justify-center mb-4">
+                  <Code className="w-8 h-8 text-white" />
+                </div>
+                <div className="text-4xl md:text-5xl font-bold text-pink-500 mb-2">1,200+</div>
+                <div className="text-gray-600 text-lg">Projects Completed</div>
+              </div>
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl flex items-center justify-center mb-4">
+                  <Trophy className="w-8 h-8 text-white" />
+                </div>
+                <div className="text-4xl md:text-5xl font-bold text-orange-500 mb-2">4.8</div>
+                <div className="text-gray-600 text-lg">Average Rating</div>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* Search and Filters */}
         <div className="mb-8">
-          <div className="flex flex-col lg:flex-row gap-4 mb-6">
-            <div className="flex-1 relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-              <Input
-                type="text"
-                placeholder="Search by name, skills, or tools..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-12 bg-slate-800/50 border-purple-500/30 text-white placeholder-gray-400 focus:border-purple-400"
-              />
-            </div>
-            
-            <div className="flex gap-3">
-              <Select defaultValue="all-status">
-                <SelectTrigger className="w-48 bg-slate-800/50 border-purple-500/30 text-white">
-                  <SelectValue placeholder="Status" />
-                </SelectTrigger>
-                <SelectContent className="bg-slate-800 border-purple-500/30">
-                  <SelectItem value="all-status">All Status</SelectItem>
-                  <SelectItem value="available">Available</SelectItem>
-                  <SelectItem value="freelance-only">Freelance Only</SelectItem>
-                  <SelectItem value="selling-projects">Selling Projects</SelectItem>
-                </SelectContent>
-              </Select>
+          <Card className="vibe-card p-6 mb-6">
+            <div className="flex flex-col lg:flex-row gap-4">
+              <div className="flex-1 relative">
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <Input
+                  type="text"
+                  placeholder="Search by name, skills, or expertise..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-12 h-12 text-lg"
+                />
+              </div>
+              
+              <div className="flex gap-3">
+                <Select value={selectedSkill} onValueChange={setSelectedSkill}>
+                  <SelectTrigger className="w-48 h-12">
+                    <SelectValue placeholder="Skills" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {skills.map((skill) => (
+                      <SelectItem key={skill} value={skill.toLowerCase().replace(' ', '-')}>
+                        {skill}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
 
-              <Select defaultValue="all-tools">
-                <SelectTrigger className="w-48 bg-slate-800/50 border-purple-500/30 text-white">
-                  <SelectValue placeholder="Tools" />
-                </SelectTrigger>
-                <SelectContent className="bg-slate-800 border-purple-500/30">
-                  <SelectItem value="all-tools">All Tools</SelectItem>
-                  <SelectItem value="cursor">Cursor</SelectItem>
-                  <SelectItem value="claude">Claude</SelectItem>
-                  <SelectItem value="lovable">Lovable</SelectItem>
-                  <SelectItem value="windsurf">Windsurf</SelectItem>
-                  <SelectItem value="bolt">Bolt</SelectItem>
-                </SelectContent>
-              </Select>
+                <Select value={selectedLocation} onValueChange={setSelectedLocation}>
+                  <SelectTrigger className="w-48 h-12">
+                    <SelectValue placeholder="Location" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {locations.map((location) => (
+                      <SelectItem key={location} value={location.toLowerCase().replace(' ', '-')}>
+                        {location}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
 
-              <Select defaultValue="all-skills">
-                <SelectTrigger className="w-48 bg-slate-800/50 border-purple-500/30 text-white">
-                  <SelectValue placeholder="Skills" />
-                </SelectTrigger>
-                <SelectContent className="bg-slate-800 border-purple-500/30">
-                  <SelectItem value="all-skills">All Skills</SelectItem>
-                  <SelectItem value="ai-ml">AI/ML</SelectItem>
-                  <SelectItem value="full-stack">Full-Stack</SelectItem>
-                  <SelectItem value="automation">Automation</SelectItem>
-                  <SelectItem value="ui-ux">UI/UX</SelectItem>
-                </SelectContent>
-              </Select>
+                <Select value={selectedRate} onValueChange={setSelectedRate}>
+                  <SelectTrigger className="w-48 h-12">
+                    <SelectValue placeholder="Rate" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {rates.map((rate) => (
+                      <SelectItem key={rate} value={rate.toLowerCase().replace(' ', '-')}>
+                        {rate}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+
+                <div className="flex bg-white border border-gray-200 rounded-lg p-1">
+                  <Button
+                    variant={viewMode === "grid" ? "default" : "ghost"}
+                    size="sm"
+                    onClick={() => setViewMode("grid")}
+                    className={viewMode === "grid" ? "vibe-button" : ""}
+                  >
+                    <Grid className="w-4 h-4" />
+                  </Button>
+                  <Button
+                    variant={viewMode === "list" ? "default" : "ghost"}
+                    size="sm"
+                    onClick={() => setViewMode("list")}
+                    className={viewMode === "list" ? "vibe-button" : ""}
+                  >
+                    <List className="w-4 h-4" />
+                  </Button>
+                </div>
+              </div>
             </div>
-          </div>
+          </Card>
 
           <div className="flex items-center justify-between">
-            <p className="text-gray-400">{coders.length} vibe coders found</p>
+            <p className="text-gray-600">{coders.length} vibe coders found</p>
             <div className="flex items-center space-x-4">
-              <span className="text-gray-400 text-sm">Sort by:</span>
+              <span className="text-gray-600 text-sm">Sort by:</span>
               <Select defaultValue="featured">
-                <SelectTrigger className="w-40 bg-slate-800/50 border-purple-500/30 text-white">
+                <SelectTrigger className="w-40">
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent className="bg-slate-800 border-purple-500/30">
+                <SelectContent>
                   <SelectItem value="featured">Featured</SelectItem>
                   <SelectItem value="rating">Highest Rated</SelectItem>
-                  <SelectItem value="projects">Most Projects</SelectItem>
                   <SelectItem value="newest">Newest</SelectItem>
+                  <SelectItem value="price-low">Rate: Low to High</SelectItem>
+                  <SelectItem value="price-high">Rate: High to Low</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -251,120 +322,147 @@ const VibeCoders = () => {
         </div>
 
         {/* Coders Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {coders.map((coder) => (
+        <div className={viewMode === "grid" 
+          ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          : "space-y-6"
+        }>
+          {coders.map((coder, index) => (
             <Card 
-              key={coder.id} 
-              className={`bg-slate-800/50 border-purple-500/20 hover:border-purple-400/40 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/10 ${
-                coder.featured ? "ring-1 ring-purple-400/20" : ""
-              }`}
+              key={coder.name} 
+              className={`vibe-card hover:scale-105 transition-transform ${
+                viewMode === "list" ? "flex" : ""
+              } ${coder.featured ? "ring-2 ring-purple-200" : ""}`}
             >
               {coder.featured && (
                 <div className="absolute top-4 left-4 z-10">
-                  <Badge className="bg-purple-500/20 text-purple-400 border-purple-500/30">
+                  <Badge className="bg-purple-500 text-white">
                     Featured
                   </Badge>
                 </div>
               )}
               
-              <CardHeader className="pb-4">
-                <div className="flex items-start justify-between">
-                  <div className="flex items-center space-x-4">
-                    <img
-                      src={coder.avatar}
+              <div className={`${viewMode === "list" ? "w-80" : ""} p-6`}>
+                <div className="flex items-start space-x-4 mb-4">
+                  <div className="relative">
+                    <img 
+                      src={coder.avatar} 
                       alt={coder.name}
                       className="w-16 h-16 rounded-full object-cover"
                     />
-                    <div>
-                      <CardTitle className="text-white text-xl">{coder.name}</CardTitle>
-                      <p className="text-purple-400 font-medium">{coder.title}</p>
-                      <div className="flex items-center space-x-2 mt-1">
-                        <MapPin className="w-4 h-4 text-gray-400" />
-                        <span className="text-gray-400 text-sm">{coder.location}</span>
+                    <div className={`absolute -bottom-1 -right-1 w-5 h-5 rounded-full border-2 border-white ${
+                      coder.available ? "bg-green-400" : "bg-gray-400"
+                    }`}></div>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-bold text-xl mb-1">{coder.name}</h3>
+                    <p className="text-purple-600 font-semibold mb-2">{coder.title}</p>
+                    <div className="flex items-center space-x-2 mb-2">
+                      <div className="flex items-center">
+                        <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                        <span className="text-sm font-semibold ml-1">{coder.rating}</span>
+                        <span className="text-sm text-gray-500 ml-1">({coder.reviews} reviews)</span>
                       </div>
                     </div>
                   </div>
                   <div className="text-right">
-                    <Badge className={getStatusColor(coder.status)}>
-                      {coder.status}
-                    </Badge>
-                    <p className="text-purple-400 font-bold mt-2">{coder.hourlyRate}</p>
+                    <div className="font-bold text-lg text-purple-600">{coder.hourlyRate}/hr</div>
+                    <div className={`text-sm font-medium ${
+                      coder.available ? "text-green-600" : "text-gray-500"
+                    }`}>
+                      {coder.available ? "Available" : "Busy"}
+                    </div>
                   </div>
                 </div>
-              </CardHeader>
-              
-              <CardContent>
-                <p className="text-gray-300 mb-4">{coder.description}</p>
                 
-                <div className="grid grid-cols-2 gap-4 mb-4 text-sm">
-                  <div className="flex items-center space-x-2">
-                    <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                    <span className="text-white">{coder.rating}</span>
-                    <span className="text-gray-400">({coder.reviews} reviews)</span>
+                <div className="flex items-center space-x-4 text-sm text-gray-600 mb-3">
+                  <div className="flex items-center">
+                    <MapPin className="w-3 h-3 mr-1" />
+                    {coder.location}
                   </div>
-                  <div className="flex items-center space-x-2">
-                    <Code className="w-4 h-4 text-purple-400" />
-                    <span className="text-white">{coder.projects} projects</span>
-                  </div>
-                </div>
-
-                <div className="mb-4">
-                  <h4 className="text-white font-medium mb-2">Skills</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {coder.skills.map((skill) => (
-                      <Badge key={skill} variant="outline" className="text-pink-300 border-pink-500/30">
-                        {skill}
-                      </Badge>
-                    ))}
+                  <div className="flex items-center">
+                    <Clock className="w-3 h-3 mr-1" />
+                    {coder.responseTime}
                   </div>
                 </div>
-
-                <div className="mb-4">
-                  <h4 className="text-white font-medium mb-2">Tools</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {coder.tools.map((tool) => (
-                      <Badge key={tool} variant="secondary" className="text-gray-300 bg-slate-700/50">
-                        {tool}
-                      </Badge>
-                    ))}
-                  </div>
+                
+                <p className="text-gray-600 mb-4">{coder.description}</p>
+                
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {coder.skills.map((skill) => (
+                    <Badge key={skill} variant="secondary" className="bg-purple-100 text-purple-700">
+                      {skill}
+                    </Badge>
+                  ))}
                 </div>
-
-                <div className="mb-6">
-                  <h4 className="text-white font-medium mb-2">Recent Projects</h4>
-                  <div className="space-y-1">
-                    {coder.portfolio.slice(0, 3).map((project) => (
-                      <div key={project} className="flex items-center space-x-2">
-                        <ExternalLink className="w-3 h-3 text-purple-400" />
-                        <span className="text-gray-300 text-sm hover:text-purple-400 cursor-pointer">
-                          {project}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
+                
+                <div className="flex justify-between items-center mb-4 text-sm">
+                  <span className="text-gray-600">{coder.completedProjects} projects completed</span>
                 </div>
-
-                <div className="flex gap-3">
-                  <Button className="flex-1 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600">
-                    View Profile
-                  </Button>
-                  <Button variant="outline" className="text-purple-400 border-purple-400 hover:bg-purple-400/10">
-                    <MessageCircle className="w-4 h-4 mr-2" />
-                    Message
-                  </Button>
-                </div>
-              </CardContent>
+                
+                <Button className="w-full vibe-button">
+                  View Profile
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </Button>
+              </div>
             </Card>
           ))}
         </div>
 
         {/* Load More */}
         <div className="text-center mt-12">
-          <Button variant="outline" className="text-purple-400 border-purple-400 hover:bg-purple-400/10 px-8">
+          <Button variant="outline" className="vibe-button-outline px-8">
             Load More Coders
           </Button>
         </div>
       </div>
+
+      {/* Footer */}
+      <footer className="bg-white border-t border-gray-200 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="col-span-1 md:col-span-2">
+              <Link to="/" className="flex items-center space-x-2 mb-4">
+                <div className="w-8 h-8 bg-gradient-to-r from-purple-600 to-pink-500 rounded-lg flex items-center justify-center">
+                  <Zap className="w-4 h-4 text-white" />
+                </div>
+                <span className="text-xl font-bold gradient-text">Vibe Board</span>
+              </Link>
+              <p className="text-gray-600 mb-4 max-w-md">
+                The marketplace for fast, high-quality app development. Connect with talented vibe coders or find ready-made solutions for your business.
+              </p>
+            </div>
+            
+            <div>
+              <h3 className="font-semibold text-gray-900 mb-4">For Clients</h3>
+              <ul className="space-y-2 text-gray-600">
+                <li><Link to="/coders" className="hover:text-purple-600 transition-colors">Browse Developers</Link></li>
+                <li><Link to="/marketplace" className="hover:text-purple-600 transition-colors">App Marketplace</Link></li>
+                <li><Link to="/jobs" className="hover:text-purple-600 transition-colors">Post a Project</Link></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 className="font-semibold text-gray-900 mb-4">For Developers</h3>
+              <ul className="space-y-2 text-gray-600">
+                <li><a href="#" className="hover:text-purple-600 transition-colors">Join as Coder</a></li>
+                <li><a href="#" className="hover:text-purple-600 transition-colors">Sell Your Apps</a></li>
+                <li><a href="#" className="hover:text-purple-600 transition-colors">Success Stories</a></li>
+              </ul>
+            </div>
+          </div>
+          
+          <div className="border-t border-gray-200 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+            <p className="text-gray-600 text-sm">
+              © 2024 Vibe Board. All rights reserved.
+            </p>
+            <div className="flex space-x-6 mt-4 md:mt-0">
+              <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors text-sm">Privacy Policy</a>
+              <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors text-sm">Terms of Service</a>
+              <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors text-sm">Contact</a>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };

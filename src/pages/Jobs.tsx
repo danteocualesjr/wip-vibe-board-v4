@@ -4,164 +4,138 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Search, MapPin, Clock, DollarSign, Building, Users, Star } from "lucide-react";
+import { Label } from "@/components/ui/label";
+import { ArrowRight, Zap, Briefcase, DollarSign, Calendar, Users, Clock, Star, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Jobs = () => {
-  const [searchQuery, setSearchQuery] = useState("");
+  const [formData, setFormData] = useState({
+    title: "",
+    description: "",
+    budget: "",
+    timeline: "",
+    category: "",
+    skills: [],
+    experience: ""
+  });
 
-  const jobs = [
+  const recentJobs = [
     {
       id: 1,
-      title: "Senior AI Agent Developer",
-      company: "TechFlow Solutions",
-      location: "San Francisco, CA",
-      type: "Full-time",
-      remote: true,
-      salary: "$120k - $180k",
-      posted: "2 days ago",
-      description: "Build and deploy AI agents for customer service automation. Work with Claude, GPT-4, and custom training pipelines.",
-      requirements: ["3+ years AI/ML experience", "Python expertise", "Experience with Claude/GPT APIs", "Docker/Kubernetes"],
-      tools: ["Claude", "Python", "Docker", "n8n"],
-      urgency: "Urgent",
-      company_logo: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=80&h=80&fit=crop",
-      applicants: 23,
+      title: "AI-Powered E-commerce Dashboard",
+      budget: "$2,500 - $5,000",
+      timeline: "2-3 weeks",
+      category: "Dashboard",
+      skills: ["Cursor", "React", "AI Integration"],
+      postedBy: "TechCorp Inc.",
+      postedDate: "2 hours ago",
+      proposals: 12,
+      description: "Need a modern dashboard for our e-commerce platform with AI-powered analytics and recommendations.",
       featured: true
     },
     {
       id: 2,
-      title: "Micro-SaaS Developer (Lovable/v0)",
-      company: "StartupBuilder Inc",
-      location: "Austin, TX",
-      type: "Contract",
-      remote: true,
-      salary: "$80 - $120/hr",
-      posted: "1 day ago",
-      description: "Rapid prototyping specialist needed for multiple micro-SaaS projects. Must be proficient with Lovable and v0.",
-      requirements: ["Lovable expertise", "React/Next.js", "Rapid prototyping", "UI/UX sensibilities"],
-      tools: ["Lovable", "v0", "React", "Tailwind"],
-      urgency: null,
-      company_logo: "https://images.unsplash.com/photo-1549923746-c502d488b3ea?w=80&h=80&fit=crop",
-      applicants: 15,
+      title: "Mobile-First SaaS Landing Page",
+      budget: "$800 - $1,500",
+      timeline: "1 week",
+      category: "Frontend",
+      skills: ["v0", "Lovable", "Responsive Design"],
+      postedBy: "StartupXYZ",
+      postedDate: "5 hours ago",
+      proposals: 8,
+      description: "Create a converting landing page for our new SaaS product with modern design and animations.",
       featured: false
     },
     {
       id: 3,
-      title: "Internal Tools Specialist",
-      company: "Enterprise Corp",
-      location: "New York, NY",
-      type: "Full-time",
-      remote: false,
-      salary: "$100k - $140k",
-      posted: "3 days ago",
-      description: "Lead the development of internal dashboards and automation tools for our 500+ person company.",
-      requirements: ["5+ years experience", "Dashboard development", "Enterprise software", "Team leadership"],
-      tools: ["Bolt", "Make", "React", "Python"],
-      urgency: null,
-      company_logo: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=80&h=80&fit=crop",
-      applicants: 31,
+      title: "Workflow Automation System",
+      budget: "$3,000 - $7,000",
+      timeline: "3-4 weeks",
+      category: "Automation",
+      skills: ["n8n", "Make", "API Integration"],
+      postedBy: "BusinessFlow Co.",
+      postedDate: "1 day ago",
+      proposals: 15,
+      description: "Build a comprehensive workflow automation system to streamline our business processes.",
       featured: true
     },
     {
       id: 4,
-      title: "Automation Engineer (No-Code)",
-      company: "FlowTech",
-      location: "Remote",
-      type: "Contract",
-      remote: true,
-      salary: "$60 - $90/hr",
-      posted: "5 days ago",
-      description: "Build complex automation workflows using no-code tools. Help businesses streamline their operations.",
-      requirements: ["No-code expertise", "Workflow design", "API integrations", "Client communication"],
-      tools: ["Make", "Gumloop", "Zapier", "n8n"],
-      urgency: null,
-      company_logo: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=80&h=80&fit=crop",
-      applicants: 18,
+      title: "AI Chatbot for Customer Support",
+      budget: "$1,500 - $3,000",
+      timeline: "2 weeks",
+      category: "AI Agent",
+      skills: ["Claude", "Chatbot Development"],
+      postedBy: "SupportTech",
+      postedDate: "2 days ago",
+      proposals: 6,
+      description: "Develop an intelligent chatbot for handling customer inquiries and support tickets.",
       featured: false
-    },
-    {
-      id: 5,
-      title: "Full-Stack Vibe Coder",
-      company: "InnovateLab",
-      location: "Seattle, WA",
-      type: "Full-time",
-      remote: true,
-      salary: "$110k - $160k",
-      posted: "1 week ago",
-      description: "Join our team building next-gen productivity tools. Experience with modern AI coding tools required.",
-      requirements: ["Full-stack development", "Modern AI tools", "React/Node.js", "Startup experience"],
-      tools: ["Cursor", "Windsurf", "React", "Node.js"],
-      urgency: "Urgent",
-      company_logo: "https://images.unsplash.com/photo-1504384764586-bb4cdc1707b0?w=80&h=80&fit=crop",
-      applicants: 42,
-      featured: false
-    },
-    {
-      id: 6,
-      title: "AI-First Developer",
-      company: "FutureAI Systems",
-      location: "Boston, MA",
-      type: "Full-time",
-      remote: true,
-      salary: "$130k - $200k",
-      posted: "4 days ago",
-      description: "Lead AI integration projects using cutting-edge tools. Build the future of human-AI collaboration.",
-      requirements: ["AI tool expertise", "Python/JavaScript", "ML background", "Innovation mindset"],
-      tools: ["Claude", "Cursor", "Python", "TensorFlow"],
-      urgency: null,
-      company_logo: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=80&h=80&fit=crop",
-      applicants: 67,
-      featured: true
     }
   ];
 
-  const getJobTypeColor = (type: string) => {
-    switch (type) {
-      case "Full-time":
-        return "bg-green-500/20 text-green-400 border-green-500/30";
-      case "Contract":
-        return "bg-blue-500/20 text-blue-400 border-blue-500/30";
-      case "Part-time":
-        return "bg-yellow-500/20 text-yellow-400 border-yellow-500/30";
-      default:
-        return "bg-gray-500/20 text-gray-400 border-gray-500/30";
-    }
+  const categories = [
+    "Web Application",
+    "Mobile App",
+    "Dashboard",
+    "AI Agent",
+    "Automation",
+    "Frontend",
+    "Backend",
+    "Full-Stack",
+    "No-Code Solution"
+  ];
+
+  const skillOptions = [
+    "Cursor", "Claude", "v0", "Lovable", "Bolt", "Windsurf", "n8n", "Make", 
+    "Gumloop", "React", "Next.js", "Python", "Node.js", "AI Integration"
+  ];
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Job posted:", formData);
+    // Here you would typically send the data to your backend
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-purple-50 to-pink-50">
       {/* Navigation */}
-      <nav className="border-b border-purple-800/30 bg-slate-900/50 backdrop-blur-sm sticky top-0 z-50">
+      <nav className="border-b border-purple-200/50 bg-white/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link to="/" className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold">VB</span>
+              <div className="w-8 h-8 bg-gradient-to-r from-purple-600 to-pink-500 rounded-lg flex items-center justify-center">
+                <Zap className="w-4 h-4 text-white" />
               </div>
-              <span className="text-xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              <span className="text-xl font-bold gradient-text">
                 Vibe Board
               </span>
             </Link>
             
             <div className="hidden md:flex items-center space-x-6">
-              <Link to="/marketplace" className="text-gray-300 hover:text-purple-400 transition-colors">
+              <Link to="/coders" className="text-gray-600 hover:text-purple-600 transition-colors">
+                Browse Vibe Coders
+              </Link>
+              <Link to="/marketplace" className="text-gray-600 hover:text-purple-600 transition-colors">
                 Marketplace
               </Link>
-              <Link to="/coders" className="text-gray-300 hover:text-purple-400 transition-colors">
-                Vibe Coders
+              <Link to="/jobs" className="text-purple-600 font-semibold">
+                Post a Gig
               </Link>
-              <Link to="/jobs" className="text-purple-400 font-medium">
-                Jobs
+              <Link to="/waitlist" className="text-gray-600 hover:text-purple-600 transition-colors">
+                Waitlist
               </Link>
             </div>
 
             <div className="flex items-center space-x-3">
-              <Button variant="ghost" className="text-gray-300 hover:text-purple-400">
+              <Button variant="ghost" className="text-purple-600 hover:text-purple-700">
                 Sign In
               </Button>
-              <Button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white">
-                Post Job
+              <Button className="vibe-button">
+                Join as Vibe Coder
+                <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </div>
           </div>
@@ -169,211 +143,337 @@ const Jobs = () => {
       </nav>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-white mb-4">Jobs & Gigs</h1>
-          <p className="text-gray-400 text-lg">Find opportunities with companies looking for vibe coders</p>
-        </div>
-
-        {/* Search and Filters */}
-        <div className="mb-8">
-          <div className="flex flex-col lg:flex-row gap-4 mb-6">
-            <div className="flex-1 relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-              <Input
-                type="text"
-                placeholder="Search jobs, companies, or skills..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-12 bg-slate-800/50 border-purple-500/30 text-white placeholder-gray-400 focus:border-purple-400"
-              />
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Main Content - Post Job Form */}
+          <div className="lg:col-span-2">
+            {/* Header */}
+            <div className="mb-8 text-center lg:text-left">
+              <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+                Post a <span className="hero-gradient-text">Gig</span>
+              </h1>
+              <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl leading-relaxed">
+                Get your project built by talented vibe coders who specialize in rapid development with cutting-edge AI tools.
+              </p>
             </div>
-            
-            <div className="flex gap-3">
-              <Select defaultValue="all-types">
-                <SelectTrigger className="w-48 bg-slate-800/50 border-purple-500/30 text-white">
-                  <SelectValue placeholder="Job Type" />
-                </SelectTrigger>
-                <SelectContent className="bg-slate-800 border-purple-500/30">
-                  <SelectItem value="all-types">All Types</SelectItem>
-                  <SelectItem value="full-time">Full-time</SelectItem>
-                  <SelectItem value="contract">Contract</SelectItem>
-                  <SelectItem value="part-time">Part-time</SelectItem>
-                </SelectContent>
-              </Select>
 
-              <Select defaultValue="all-locations">
-                <SelectTrigger className="w-48 bg-slate-800/50 border-purple-500/30 text-white">
-                  <SelectValue placeholder="Location" />
-                </SelectTrigger>
-                <SelectContent className="bg-slate-800 border-purple-500/30">
-                  <SelectItem value="all-locations">All Locations</SelectItem>
-                  <SelectItem value="remote">Remote</SelectItem>
-                  <SelectItem value="san-francisco">San Francisco</SelectItem>
-                  <SelectItem value="new-york">New York</SelectItem>
-                  <SelectItem value="austin">Austin</SelectItem>
-                </SelectContent>
-              </Select>
-
-              <Select defaultValue="all-tools">
-                <SelectTrigger className="w-48 bg-slate-800/50 border-purple-500/30 text-white">
-                  <SelectValue placeholder="Tools" />
-                </SelectTrigger>
-                <SelectContent className="bg-slate-800 border-purple-500/30">
-                  <SelectItem value="all-tools">All Tools</SelectItem>
-                  <SelectItem value="cursor">Cursor</SelectItem>
-                  <SelectItem value="claude">Claude</SelectItem>
-                  <SelectItem value="lovable">Lovable</SelectItem>
-                  <SelectItem value="windsurf">Windsurf</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
-
-          <div className="flex items-center justify-between">
-            <p className="text-gray-400">{jobs.length} jobs found</p>
-            <div className="flex items-center space-x-4">
-              <span className="text-gray-400 text-sm">Sort by:</span>
-              <Select defaultValue="newest">
-                <SelectTrigger className="w-40 bg-slate-800/50 border-purple-500/30 text-white">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent className="bg-slate-800 border-purple-500/30">
-                  <SelectItem value="newest">Newest</SelectItem>
-                  <SelectItem value="salary-high">Salary: High to Low</SelectItem>
-                  <SelectItem value="salary-low">Salary: Low to High</SelectItem>
-                  <SelectItem value="most-applicants">Most Applicants</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
-        </div>
-
-        {/* Jobs List */}
-        <div className="space-y-6">
-          {jobs.map((job) => (
-            <Card 
-              key={job.id} 
-              className={`bg-slate-800/50 border-purple-500/20 hover:border-purple-400/40 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/10 ${
-                job.featured ? "ring-1 ring-purple-400/20" : ""
-              }`}
-            >
-              <CardHeader className="pb-4">
-                <div className="flex items-start justify-between">
-                  <div className="flex items-start space-x-4">
-                    <img
-                      src={job.company_logo}
-                      alt={job.company}
-                      className="w-12 h-12 rounded-lg object-cover"
-                    />
-                    <div className="flex-1">
-                      <div className="flex items-center space-x-3 mb-2">
-                        {job.featured && (
-                          <Badge className="bg-purple-500/20 text-purple-400 border-purple-500/30">
-                            Featured
-                          </Badge>
-                        )}
-                        {job.urgency && (
-                          <Badge className="bg-red-500/20 text-red-400 border-red-500/30">
-                            {job.urgency}
-                          </Badge>
-                        )}
-                      </div>
-                      <CardTitle className="text-white text-xl mb-1">{job.title}</CardTitle>
-                      <p className="text-purple-400 font-medium">{job.company}</p>
-                      
-                      <div className="flex flex-wrap items-center gap-4 mt-2 text-sm text-gray-400">
-                        <div className="flex items-center space-x-1">
-                          <MapPin className="w-4 h-4" />
-                          <span>{job.location}</span>
-                          {job.remote && <span className="text-green-400">(Remote)</span>}
-                        </div>
-                        <div className="flex items-center space-x-1">
-                          <Clock className="w-4 h-4" />
-                          <span>{job.posted}</span>
-                        </div>
-                        <div className="flex items-center space-x-1">
-                          <DollarSign className="w-4 h-4" />
-                          <span className="text-purple-400 font-medium">{job.salary}</span>
-                        </div>
-                        <div className="flex items-center space-x-1">
-                          <Users className="w-4 h-4" />
-                          <span>{job.applicants} applicants</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="flex flex-col items-end space-y-2">
-                    <Badge className={getJobTypeColor(job.type)}>
-                      {job.type}
-                    </Badge>
-                  </div>
-                </div>
+            {/* Post Job Form */}
+            <Card className="vibe-card p-8">
+              <CardHeader>
+                <CardTitle className="text-2xl text-gray-900 flex items-center">
+                  <Briefcase className="w-6 h-6 mr-2 text-purple-600" />
+                  Project Details
+                </CardTitle>
               </CardHeader>
-              
               <CardContent>
-                <p className="text-gray-300 mb-4">{job.description}</p>
-                
-                <div className="grid md:grid-cols-2 gap-4 mb-4">
+                <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <h4 className="text-white font-medium mb-2">Requirements</h4>
-                    <ul className="space-y-1">
-                      {job.requirements.map((req, index) => (
-                        <li key={index} className="text-gray-300 text-sm flex items-center space-x-2">
-                          <div className="w-1.5 h-1.5 bg-purple-400 rounded-full flex-shrink-0" />
-                          <span>{req}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    <Label htmlFor="title" className="text-lg font-semibold text-gray-700">
+                      Project Title
+                    </Label>
+                    <Input
+                      id="title"
+                      placeholder="e.g., AI-powered dashboard for analytics"
+                      value={formData.title}
+                      onChange={(e) => setFormData({...formData, title: e.target.value})}
+                      className="mt-2 h-12 text-lg"
+                      required
+                    />
                   </div>
-                  
+
                   <div>
-                    <h4 className="text-white font-medium mb-2">Tools & Technologies</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {job.tools.map((tool) => (
-                        <Badge key={tool} variant="secondary" className="text-gray-300 bg-slate-700/50">
-                          {tool}
-                        </Badge>
+                    <Label htmlFor="description" className="text-lg font-semibold text-gray-700">
+                      Project Description
+                    </Label>
+                    <Textarea
+                      id="description"
+                      placeholder="Describe your project requirements, goals, and any specific features you need..."
+                      value={formData.description}
+                      onChange={(e) => setFormData({...formData, description: e.target.value})}
+                      className="mt-2 min-h-32"
+                      required
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <Label htmlFor="budget" className="text-lg font-semibold text-gray-700">
+                        Budget Range
+                      </Label>
+                      <Select value={formData.budget} onValueChange={(value) => setFormData({...formData, budget: value})}>
+                        <SelectTrigger className="mt-2 h-12">
+                          <SelectValue placeholder="Select budget range" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="500-1000">$500 - $1,000</SelectItem>
+                          <SelectItem value="1000-2500">$1,000 - $2,500</SelectItem>
+                          <SelectItem value="2500-5000">$2,500 - $5,000</SelectItem>
+                          <SelectItem value="5000-10000">$5,000 - $10,000</SelectItem>
+                          <SelectItem value="10000+">$10,000+</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div>
+                      <Label htmlFor="timeline" className="text-lg font-semibold text-gray-700">
+                        Timeline
+                      </Label>
+                      <Select value={formData.timeline} onValueChange={(value) => setFormData({...formData, timeline: value})}>
+                        <SelectTrigger className="mt-2 h-12">
+                          <SelectValue placeholder="Select timeline" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="1-week">1 week</SelectItem>
+                          <SelectItem value="2-weeks">2 weeks</SelectItem>
+                          <SelectItem value="1-month">1 month</SelectItem>
+                          <SelectItem value="2-months">2 months</SelectItem>
+                          <SelectItem value="3-months+">3+ months</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+
+                  <div>
+                    <Label htmlFor="category" className="text-lg font-semibold text-gray-700">
+                      Project Category
+                    </Label>
+                    <Select value={formData.category} onValueChange={(value) => setFormData({...formData, category: value})}>
+                      <SelectTrigger className="mt-2 h-12">
+                        <SelectValue placeholder="Select project category" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {categories.map((category) => (
+                          <SelectItem key={category} value={category.toLowerCase().replace(' ', '-')}>
+                            {category}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div>
+                    <Label className="text-lg font-semibold text-gray-700">
+                      Required Skills/Tools
+                    </Label>
+                    <div className="mt-2 grid grid-cols-2 md:grid-cols-3 gap-2">
+                      {skillOptions.map((skill) => (
+                        <div key={skill} className="flex items-center space-x-2">
+                          <input
+                            type="checkbox"
+                            id={skill}
+                            className="rounded border-gray-300 text-purple-600 focus:ring-purple-500"
+                          />
+                          <label htmlFor={skill} className="text-sm text-gray-700">
+                            {skill}
+                          </label>
+                        </div>
                       ))}
                     </div>
                   </div>
-                </div>
 
-                <div className="flex gap-3 pt-4 border-t border-purple-500/20">
-                  <Button className="flex-1 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600">
-                    Apply Now
+                  <div>
+                    <Label htmlFor="experience" className="text-lg font-semibold text-gray-700">
+                      Experience Level Required
+                    </Label>
+                    <Select value={formData.experience} onValueChange={(value) => setFormData({...formData, experience: value})}>
+                      <SelectTrigger className="mt-2 h-12">
+                        <SelectValue placeholder="Select experience level" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="beginner">Beginner (0-1 years)</SelectItem>
+                        <SelectItem value="intermediate">Intermediate (2-4 years)</SelectItem>
+                        <SelectItem value="expert">Expert (5+ years)</SelectItem>
+                        <SelectItem value="any">Any level</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <Button type="submit" size="lg" className="w-full vibe-button text-lg py-4">
+                    <Briefcase className="mr-2 w-5 h-5" />
+                    Post Project
+                    <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
-                  <Button variant="outline" className="text-purple-400 border-purple-400 hover:bg-purple-400/10">
-                    Save Job
-                  </Button>
-                  <Button variant="outline" className="text-gray-400 border-gray-400/30 hover:bg-gray-400/10">
-                    View Company
-                  </Button>
-                </div>
+                </form>
               </CardContent>
             </Card>
-          ))}
+          </div>
+
+          {/* Sidebar - Recent Jobs */}
+          <div className="lg:col-span-1">
+            <div className="sticky top-24">
+              <Card className="vibe-card p-6 mb-6">
+                <CardHeader>
+                  <CardTitle className="text-xl text-gray-900">Why Post on Vibe Board?</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="flex items-start space-x-3">
+                    <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Zap className="w-4 h-4 text-purple-600" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900">Lightning Fast</h4>
+                      <p className="text-sm text-gray-600">Get your project completed 10x faster with AI-powered development</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-8 h-8 bg-pink-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Users className="w-4 h-4 text-pink-600" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900">Elite Talent</h4>
+                      <p className="text-sm text-gray-600">Access vetted developers who master cutting-edge tools</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <DollarSign className="w-4 h-4 text-orange-600" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900">Great Value</h4>
+                      <p className="text-sm text-gray-600">Competitive pricing with guaranteed quality results</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="vibe-card p-6">
+                <CardHeader>
+                  <CardTitle className="text-xl text-gray-900">Recent Jobs</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  {recentJobs.slice(0, 3).map((job) => (
+                    <div key={job.id} className="border-b border-gray-100 last:border-b-0 pb-4 last:pb-0">
+                      {job.featured && (
+                        <Badge className="bg-purple-500 text-white mb-2">Featured</Badge>
+                      )}
+                      <h4 className="font-semibold text-gray-900 mb-1">{job.title}</h4>
+                      <p className="text-sm text-gray-600 mb-2">{job.description.substring(0, 80)}...</p>
+                      <div className="flex items-center justify-between text-xs text-gray-500">
+                        <span className="font-medium text-purple-600">{job.budget}</span>
+                        <span>{job.proposals} proposals</span>
+                      </div>
+                    </div>
+                  ))}
+                  <Button variant="outline" className="w-full vibe-button-outline mt-4">
+                    View All Jobs
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
         </div>
 
-        {/* Load More */}
-        <div className="text-center mt-12">
-          <Button variant="outline" className="text-purple-400 border-purple-400 hover:bg-purple-400/10 px-8">
-            Load More Jobs
-          </Button>
-        </div>
+        {/* Recent Jobs Section */}
+        <section className="py-16">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              Recent <span className="gradient-text">Job Posts</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              See what other companies are building with our talented vibe coders.
+            </p>
+          </div>
 
-        {/* Post Job CTA */}
-        <div className="mt-16 bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-2xl p-8 text-center">
-          <h2 className="text-2xl font-bold text-white mb-4">Looking to hire vibe coders?</h2>
-          <p className="text-gray-300 mb-6">
-            Post your job and connect with talented developers who build with cutting-edge AI tools
-          </p>
-          <Button size="lg" className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-8">
-            Post a Job
-          </Button>
-        </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {recentJobs.map((job) => (
+              <Card key={job.id} className="vibe-card hover:scale-105 transition-transform">
+                {job.featured && (
+                  <div className="absolute top-4 right-4 z-10">
+                    <Badge className="bg-purple-500 text-white">Featured</Badge>
+                  </div>
+                )}
+                <CardContent className="p-6">
+                  <h3 className="font-bold text-xl mb-2 text-gray-900">{job.title}</h3>
+                  <p className="text-gray-600 mb-4">{job.description}</p>
+                  
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {job.skills.map((skill) => (
+                      <Badge key={skill} variant="secondary" className="bg-purple-100 text-purple-700">
+                        {skill}
+                      </Badge>
+                    ))}
+                  </div>
+                  
+                  <div className="flex items-center justify-between text-sm text-gray-600 mb-4">
+                    <div className="flex items-center space-x-4">
+                      <div className="flex items-center">
+                        <DollarSign className="w-4 h-4 mr-1" />
+                        {job.budget}
+                      </div>
+                      <div className="flex items-center">
+                        <Calendar className="w-4 h-4 mr-1" />
+                        {job.timeline}
+                      </div>
+                    </div>
+                    <div className="flex items-center">
+                      <Users className="w-4 h-4 mr-1" />
+                      {job.proposals} proposals
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm text-gray-500">Posted by {job.postedBy}</p>
+                      <p className="text-xs text-gray-400">{job.postedDate}</p>
+                    </div>
+                    <Button className="vibe-button">
+                      View Details
+                      <ArrowRight className="ml-2 w-4 h-4" />
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
       </div>
+
+      {/* Footer */}
+      <footer className="bg-white border-t border-gray-200 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="col-span-1 md:col-span-2">
+              <Link to="/" className="flex items-center space-x-2 mb-4">
+                <div className="w-8 h-8 bg-gradient-to-r from-purple-600 to-pink-500 rounded-lg flex items-center justify-center">
+                  <Zap className="w-4 h-4 text-white" />
+                </div>
+                <span className="text-xl font-bold gradient-text">Vibe Board</span>
+              </Link>
+              <p className="text-gray-600 mb-4 max-w-md">
+                The marketplace for fast, high-quality app development. Connect with talented vibe coders or find ready-made solutions for your business.
+              </p>
+            </div>
+            
+            <div>
+              <h3 className="font-semibold text-gray-900 mb-4">For Clients</h3>
+              <ul className="space-y-2 text-gray-600">
+                <li><Link to="/coders" className="hover:text-purple-600 transition-colors">Browse Developers</Link></li>
+                <li><Link to="/marketplace" className="hover:text-purple-600 transition-colors">App Marketplace</Link></li>
+                <li><Link to="/jobs" className="hover:text-purple-600 transition-colors">Post a Project</Link></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 className="font-semibold text-gray-900 mb-4">For Developers</h3>
+              <ul className="space-y-2 text-gray-600">
+                <li><a href="#" className="hover:text-purple-600 transition-colors">Join as Coder</a></li>
+                <li><a href="#" className="hover:text-purple-600 transition-colors">Sell Your Apps</a></li>
+                <li><a href="#" className="hover:text-purple-600 transition-colors">Success Stories</a></li>
+              </ul>
+            </div>
+          </div>
+          
+          <div className="border-t border-gray-200 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+            <p className="text-gray-600 text-sm">
+              © 2024 Vibe Board. All rights reserved.
+            </p>
+            <div className="flex space-x-6 mt-4 md:mt-0">
+              <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors text-sm">Privacy Policy</a>
+              <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors text-sm">Terms of Service</a>
+              <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors text-sm">Contact</a>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };

@@ -1,119 +1,46 @@
 
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
-import { Search, Code, Zap, Users, Star, ArrowRight, Sparkles, Monitor, Bot, Database } from "lucide-react";
+import { ArrowRight, Code, Zap, Users, Star, Trophy, Briefcase, Search, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Index = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-
-  const featuredCoders = [
-    {
-      id: 1,
-      name: "Alex Chen",
-      title: "AI Agent Specialist",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
-      rating: 4.9,
-      tools: ["Cursor", "Claude", "n8n", "Replit"],
-      status: "Available",
-      projects: 12,
-      description: "Building AI-driven CRMs and workflow automation tools"
-    },
-    {
-      id: 2,
-      name: "Sarah Kim",
-      title: "Micro-SaaS Builder",
-      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b586?w=150&h=150&fit=crop&crop=face",
-      rating: 4.8,
-      tools: ["Lovable", "v0", "Windsurf"],
-      status: "Freelance Only",
-      projects: 8,
-      description: "Rapid prototyping and beautiful web applications"
-    },
-    {
-      id: 3,
-      name: "Marcus Rodriguez",
-      title: "Internal Tools Expert",
-      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
-      rating: 4.9,
-      tools: ["Bolt", "Make", "Gumloop"],
-      status: "Available",
-      projects: 15,
-      description: "Dashboard and automation systems for enterprises"
-    }
-  ];
-
-  const featuredApps = [
-    {
-      id: 1,
-      title: "AI Customer Support Bot",
-      price: "$299",
-      creator: "Alex Chen",
-      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=250&fit=crop",
-      tags: ["AI Agent", "Customer Service"],
-      tools: ["Claude", "n8n"]
-    },
-    {
-      id: 2,
-      title: "Inventory Management Dashboard",
-      price: "$199",
-      creator: "Marcus Rodriguez",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop",
-      tags: ["Dashboard", "Internal Tool"],
-      tools: ["Bolt", "React"]
-    },
-    {
-      id: 3,
-      title: "Social Media Scheduler",
-      price: "$149",
-      creator: "Sarah Kim",
-      image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=400&h=250&fit=crop",
-      tags: ["Micro-SaaS", "Marketing"],
-      tools: ["Lovable", "v0"]
-    }
-  ];
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-purple-50 to-pink-50">
       {/* Navigation */}
-      <nav className="border-b border-purple-800/30 bg-slate-900/50 backdrop-blur-sm sticky top-0 z-50">
+      <nav className="border-b border-purple-200/50 bg-white/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-2">
-                <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
-                  <Sparkles className="w-5 h-5 text-white" />
-                </div>
-                <span className="text-xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  Vibe Board
-                </span>
+            <Link to="/" className="flex items-center space-x-2">
+              <div className="w-8 h-8 bg-gradient-to-r from-purple-600 to-pink-500 rounded-lg flex items-center justify-center">
+                <Zap className="w-4 h-4 text-white" />
               </div>
-            </div>
+              <span className="text-xl font-bold gradient-text">
+                Vibe Board
+              </span>
+            </Link>
             
             <div className="hidden md:flex items-center space-x-6">
-              <Link to="/marketplace" className="text-gray-300 hover:text-purple-400 transition-colors">
+              <Link to="/coders" className="text-gray-600 hover:text-purple-600 transition-colors">
+                Browse Vibe Coders
+              </Link>
+              <Link to="/marketplace" className="text-gray-600 hover:text-purple-600 transition-colors">
                 Marketplace
               </Link>
-              <Link to="/coders" className="text-gray-300 hover:text-purple-400 transition-colors">
-                Vibe Coders
+              <Link to="/jobs" className="text-gray-600 hover:text-purple-600 transition-colors">
+                Post a Gig
               </Link>
-              <Link to="/jobs" className="text-gray-300 hover:text-purple-400 transition-colors">
-                Jobs
-              </Link>
-              <Link to="/post-gig" className="text-gray-300 hover:text-purple-400 transition-colors">
-                Post Gig
-              </Link>
+              <span className="text-gray-600">Waitlist</span>
             </div>
 
             <div className="flex items-center space-x-3">
-              <Button variant="ghost" className="text-gray-300 hover:text-purple-400">
+              <Button variant="ghost" className="text-purple-600 hover:text-purple-700">
                 Sign In
               </Button>
-              <Button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white">
+              <Button className="vibe-button">
                 Join as Vibe Coder
+                <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </div>
           </div>
@@ -121,338 +48,219 @@ const Index = () => {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative px-4 py-20 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto text-center">
-          <div className="mb-8">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
-                Vibe Coders
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto text-center">
+          <div className="absolute inset-0 bg-gradient-to-r from-purple-600/5 via-pink-500/5 to-orange-500/5 rounded-3xl"></div>
+          <div className="relative">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+              Where Vibe Coders Meet{" "}
+              <span className="hero-gradient-text">
+                Amazing Opportunities
               </span>
-              <br />
-              <span className="text-white">Meet Companies</span>
             </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              The marketplace for fast, high-quality app development. Connect with talented developers 
-              who build with AI tools, or find ready-made solutions for your business.
+            <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed">
+              Connect with elite developers who specialize in rapid prototyping, AI-driven development, and cutting-edge tools. Build your next app, hire top talent, or showcase your skills.
             </p>
-          </div>
-
-          {/* Search Bar */}
-          <div className="max-w-2xl mx-auto mb-12">
-            <div className="relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-              <Input
-                type="text"
-                placeholder="Search for vibe coders, apps, or tools..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-12 pr-4 py-4 text-lg bg-slate-800/50 border-purple-500/30 text-white placeholder-gray-400 focus:border-purple-400"
-              />
-              <Button className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-purple-500 to-pink-500">
-                Search
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
+              <Button size="lg" className="vibe-button text-lg px-8 py-4">
+                <Users className="mr-2 w-5 h-5" />
+                Find Vibe Coders
+                <Sparkles className="ml-2 w-4 h-4" />
+              </Button>
+              <Button size="lg" variant="outline" className="vibe-button-outline text-lg px-8 py-4">
+                <Briefcase className="mr-2 w-5 h-5" />
+                Post a Project
               </Button>
             </div>
-          </div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-16">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-purple-400 mb-2">500+</div>
-              <div className="text-gray-300">Vibe Coders</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-pink-400 mb-2">1,200+</div>
-              <div className="text-gray-300">Apps Built</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-purple-400 mb-2">50+</div>
-              <div className="text-gray-300">Companies Hiring</div>
+            {/* Stats */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+              <div className="text-center">
+                <div className="text-4xl md:text-5xl font-bold text-purple-600 mb-2">500+</div>
+                <div className="text-gray-600 text-lg">Vibe Coders</div>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl md:text-5xl font-bold text-pink-500 mb-2">1,200+</div>
+                <div className="text-gray-600 text-lg">Projects Delivered</div>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl md:text-5xl font-bold text-orange-500 mb-2">$2M+</div>
+                <div className="text-gray-600 text-lg">Transactions</div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Featured Vibe Coders */}
-      <section className="px-4 py-16 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center justify-between mb-12">
-            <div>
-              <h2 className="text-3xl font-bold text-white mb-2">Featured Vibe Coders</h2>
-              <p className="text-gray-400">Top-rated developers ready to build your next project</p>
-            </div>
-            <Button variant="outline" className="text-purple-400 border-purple-400 hover:bg-purple-400/10">
-              View All <ArrowRight className="ml-2 w-4 h-4" />
-            </Button>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featuredCoders.map((coder) => (
-              <Card key={coder.id} className="bg-slate-800/50 border-purple-500/20 hover:border-purple-400/40 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/10">
-                <CardHeader className="pb-4">
-                  <div className="flex items-start justify-between">
-                    <div className="flex items-center space-x-3">
-                      <img
-                        src={coder.avatar}
-                        alt={coder.name}
-                        className="w-12 h-12 rounded-full object-cover"
-                      />
-                      <div>
-                        <CardTitle className="text-white text-lg">{coder.name}</CardTitle>
-                        <p className="text-purple-400 text-sm">{coder.title}</p>
-                      </div>
-                    </div>
-                    <Badge 
-                      variant={coder.status === "Available" ? "default" : "secondary"}
-                      className={coder.status === "Available" 
-                        ? "bg-green-500/20 text-green-400 border-green-500/30" 
-                        : "bg-yellow-500/20 text-yellow-400 border-yellow-500/30"
-                      }
-                    >
-                      {coder.status}
-                    </Badge>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-300 text-sm mb-4">{coder.description}</p>
-                  
-                  <div className="flex items-center space-x-4 mb-4 text-sm text-gray-400">
-                    <div className="flex items-center space-x-1">
-                      <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                      <span>{coder.rating}</span>
-                    </div>
-                    <div>{coder.projects} projects</div>
-                  </div>
-
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {coder.tools.map((tool) => (
-                      <Badge key={tool} variant="outline" className="text-purple-300 border-purple-500/30">
-                        {tool}
-                      </Badge>
-                    ))}
-                  </div>
-
-                  <Button className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600">
-                    View Profile
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Apps Marketplace */}
-      <section className="px-4 py-16 sm:px-6 lg:px-8 bg-slate-800/30">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center justify-between mb-12">
-            <div>
-              <h2 className="text-3xl font-bold text-white mb-2">Featured Apps & Tools</h2>
-              <p className="text-gray-400">Ready-made solutions you can purchase and deploy today</p>
-            </div>
-            <Button variant="outline" className="text-purple-400 border-purple-400 hover:bg-purple-400/10">
-              Browse Marketplace <ArrowRight className="ml-2 w-4 h-4" />
-            </Button>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featuredApps.map((app) => (
-              <Card key={app.id} className="bg-slate-800/50 border-purple-500/20 hover:border-purple-400/40 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/10 overflow-hidden">
-                <div className="aspect-video relative overflow-hidden">
-                  <img
-                    src={app.image}
-                    alt={app.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute top-4 right-4">
-                    <Badge className="bg-purple-500/20 text-purple-400 border-purple-500/30">
-                      {app.price}
-                    </Badge>
-                  </div>
-                </div>
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-white text-lg">{app.title}</CardTitle>
-                  <p className="text-purple-400 text-sm">by {app.creator}</p>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {app.tags.map((tag) => (
-                      <Badge key={tag} variant="outline" className="text-pink-300 border-pink-500/30">
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                  
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {app.tools.map((tool) => (
-                      <Badge key={tool} variant="secondary" className="text-gray-300 bg-slate-700/50">
-                        {tool}
-                      </Badge>
-                    ))}
-                  </div>
-
-                  <Button className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600">
-                    View Details
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works */}
-      <section className="px-4 py-16 sm:px-6 lg:px-8">
+      {/* Features Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white/50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-white mb-4">How Vibe Board Works</h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
-              Whether you're a developer or a company, getting started is simple
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              Why Choose <span className="gradient-text">Vibe Board</span>?
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              We connect you with developers who live and breathe modern tools like Cursor, Claude, v0, and more.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* For Vibe Coders */}
-            <div>
-              <h3 className="text-2xl font-bold text-purple-400 mb-8 flex items-center">
-                <Code className="mr-3" />
-                For Vibe Coders
-              </h3>
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-purple-500/20 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-purple-400 font-bold">1</span>
-                  </div>
-                  <div>
-                    <h4 className="text-white font-semibold mb-1">Create Your Profile</h4>
-                    <p className="text-gray-400">Showcase your skills, tools, and previous projects</p>
-                  </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <Card className="vibe-card p-8 text-center">
+              <CardHeader>
+                <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <Zap className="w-8 h-8 text-white" />
                 </div>
-                <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-purple-500/20 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-purple-400 font-bold">2</span>
-                  </div>
-                  <div>
-                    <h4 className="text-white font-semibold mb-1">List Your Apps</h4>
-                    <p className="text-gray-400">Upload demos and sell ready-made solutions</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-purple-500/20 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-purple-400 font-bold">3</span>
-                  </div>
-                  <div>
-                    <h4 className="text-white font-semibold mb-1">Get Hired</h4>
-                    <p className="text-gray-400">Companies will reach out for projects and full-time roles</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+                <CardTitle className="text-2xl mb-4">Lightning Fast Development</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 text-lg">
+                  Our vibe coders use AI-powered tools and modern frameworks to deliver projects 10x faster than traditional development.
+                </p>
+              </CardContent>
+            </Card>
 
-            {/* For Companies */}
-            <div>
-              <h3 className="text-2xl font-bold text-pink-400 mb-8 flex items-center">
-                <Users className="mr-3" />
-                For Companies
-              </h3>
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-pink-500/20 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-pink-400 font-bold">1</span>
-                  </div>
-                  <div>
-                    <h4 className="text-white font-semibold mb-1">Browse Talent</h4>
-                    <p className="text-gray-400">Discover vibe coders with the exact skills you need</p>
-                  </div>
+            <Card className="vibe-card p-8 text-center">
+              <CardHeader>
+                <div className="w-16 h-16 bg-gradient-to-r from-pink-500 to-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <Code className="w-8 h-8 text-white" />
                 </div>
-                <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-pink-500/20 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-pink-400 font-bold">2</span>
-                  </div>
-                  <div>
-                    <h4 className="text-white font-semibold mb-1">Buy or Hire</h4>
-                    <p className="text-gray-400">Purchase ready apps or hire for custom projects</p>
-                  </div>
+                <CardTitle className="text-2xl mb-4">Cutting-Edge Tools</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 text-lg">
+                  From Cursor and Claude to v0 and Bolt, our developers are experts in the latest AI-driven development tools.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="vibe-card p-8 text-center">
+              <CardHeader>
+                <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <Trophy className="w-8 h-8 text-white" />
                 </div>
-                <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-pink-500/20 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-pink-400 font-bold">3</span>
+                <CardTitle className="text-2xl mb-4">Proven Results</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 text-lg">
+                  Join thousands of satisfied clients who've built successful products with our talented vibe coders.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Popular Tools Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              <span className="gradient-text">Popular Tools</span> Our Coders Use
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Stay ahead of the curve with developers who master the latest AI-powered development tools.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+            {[
+              { name: "Cursor", category: "AI Editor" },
+              { name: "Claude", category: "AI Assistant" },
+              { name: "v0", category: "UI Generator" },
+              { name: "Bolt", category: "Full-Stack" },
+              { name: "Lovable", category: "Web Apps" },
+              { name: "Windsurf", category: "AI IDE" },
+              { name: "Replit", category: "Cloud IDE" },
+              { name: "n8n", category: "Automation" },
+              { name: "Make", category: "Workflows" },
+              { name: "Gumloop", category: "No-Code" },
+              { name: "Supabase", category: "Backend" },
+              { name: "Vercel", category: "Deployment" }
+            ].map((tool, index) => (
+              <Card key={tool.name} className="vibe-card p-6 text-center hover:scale-105 transition-transform">
+                <CardContent className="p-0">
+                  <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mx-auto mb-3">
+                    <Code className="w-6 h-6 text-white" />
                   </div>
-                  <div>
-                    <h4 className="text-white font-semibold mb-1">Deploy Fast</h4>
-                    <p className="text-gray-400">Get your solution deployed quickly with expert support</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+                  <h3 className="font-semibold text-lg mb-1">{tool.name}</h3>
+                  <Badge variant="secondary" className="text-xs bg-purple-100 text-purple-700">
+                    {tool.category}
+                  </Badge>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="px-4 py-16 sm:px-6 lg:px-8 bg-gradient-to-r from-purple-600/20 to-pink-600/20">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">Ready to Join the Vibe?</h2>
-          <p className="text-gray-300 text-lg mb-8">
-            Whether you're looking to build, buy, or hire — Vibe Board has you covered
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            Ready to Build Something Amazing?
+          </h2>
+          <p className="text-xl text-purple-100 mb-12 max-w-2xl mx-auto">
+            Join the community of vibe coders and companies building the future with AI-powered development.
           </p>
+          
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-8">
-              Join as Vibe Coder
+            <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100 text-lg px-8 py-4">
+              <Search className="mr-2 w-5 h-5" />
+              Find Developers
             </Button>
-            <Button size="lg" variant="outline" className="text-purple-400 border-purple-400 hover:bg-purple-400/10 px-8">
-              Post a Gig
+            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-purple-600 text-lg px-8 py-4">
+              <Users className="mr-2 w-5 h-5" />
+              Join as Coder
             </Button>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-purple-800/30 bg-slate-900/50 px-4 py-12 sm:px-6 lg:px-8">
+      <footer className="bg-white border-t border-gray-200 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div>
-              <h3 className="text-white font-semibold mb-4">Platform</h3>
-              <ul className="space-y-2 text-gray-400">
-                <li><Link to="/marketplace" className="hover:text-purple-400">Marketplace</Link></li>
-                <li><Link to="/coders" className="hover:text-purple-400">Vibe Coders</Link></li>
-                <li><Link to="/jobs" className="hover:text-purple-400">Jobs</Link></li>
-                <li><Link to="/post-gig" className="hover:text-purple-400">Post Gig</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-white font-semibold mb-4">Tools</h3>
-              <ul className="space-y-2 text-gray-400">
-                <li>Cursor</li>
-                <li>Windsurf</li>
-                <li>Claude Code</li>
-                <li>Lovable</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-white font-semibold mb-4">Support</h3>
-              <ul className="space-y-2 text-gray-400">
-                <li><Link to="/help" className="hover:text-purple-400">Help Center</Link></li>
-                <li><Link to="/contact" className="hover:text-purple-400">Contact</Link></li>
-                <li><Link to="/terms" className="hover:text-purple-400">Terms</Link></li>
-                <li><Link to="/privacy" className="hover:text-purple-400">Privacy</Link></li>
-              </ul>
-            </div>
-            <div>
-              <div className="flex items-center space-x-2 mb-4">
-                <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
-                  <Sparkles className="w-5 h-5 text-white" />
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="col-span-1 md:col-span-2">
+              <Link to="/" className="flex items-center space-x-2 mb-4">
+                <div className="w-8 h-8 bg-gradient-to-r from-purple-600 to-pink-500 rounded-lg flex items-center justify-center">
+                  <Zap className="w-4 h-4 text-white" />
                 </div>
-                <span className="text-xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  Vibe Board
-                </span>
-              </div>
-              <p className="text-gray-400 text-sm">
-                Connecting vibe coders with companies for fast, high-quality development.
+                <span className="text-xl font-bold gradient-text">Vibe Board</span>
+              </Link>
+              <p className="text-gray-600 mb-4 max-w-md">
+                The marketplace for fast, high-quality app development. Connect with talented vibe coders or find ready-made solutions for your business.
               </p>
             </div>
+            
+            <div>
+              <h3 className="font-semibold text-gray-900 mb-4">For Clients</h3>
+              <ul className="space-y-2 text-gray-600">
+                <li><Link to="/coders" className="hover:text-purple-600 transition-colors">Browse Developers</Link></li>
+                <li><Link to="/marketplace" className="hover:text-purple-600 transition-colors">App Marketplace</Link></li>
+                <li><Link to="/jobs" className="hover:text-purple-600 transition-colors">Post a Project</Link></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 className="font-semibold text-gray-900 mb-4">For Developers</h3>
+              <ul className="space-y-2 text-gray-600">
+                <li><a href="#" className="hover:text-purple-600 transition-colors">Join as Coder</a></li>
+                <li><a href="#" className="hover:text-purple-600 transition-colors">Sell Your Apps</a></li>
+                <li><a href="#" className="hover:text-purple-600 transition-colors">Success Stories</a></li>
+              </ul>
+            </div>
           </div>
-          <div className="border-t border-purple-800/30 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 Vibe Board. All rights reserved.</p>
+          
+          <div className="border-t border-gray-200 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+            <p className="text-gray-600 text-sm">
+              © 2024 Vibe Board. All rights reserved.
+            </p>
+            <div className="flex space-x-6 mt-4 md:mt-0">
+              <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors text-sm">Privacy Policy</a>
+              <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors text-sm">Terms of Service</a>
+              <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors text-sm">Contact</a>
+            </div>
           </div>
         </div>
       </footer>

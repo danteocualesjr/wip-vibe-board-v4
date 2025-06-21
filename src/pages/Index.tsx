@@ -5,6 +5,7 @@ import { ArrowRight, Zap, Users, Star, Trophy, Briefcase, Search, Sparkles, Code
 import { Link } from "react-router-dom";
 import ToolLogo from "@/components/ToolLogo";
 import { SparklesCore } from "@/components/ui/sparkles";
+import { Hero } from "@/components/ui/animated-hero";
 
 const Index = () => {
   return (
@@ -51,47 +52,27 @@ const Index = () => {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-br from-gray-50 via-purple-50 to-pink-50">
-        <div className="max-w-6xl mx-auto text-center relative z-20">
-          {/* Background Sparkles */}
-          <div className="absolute inset-0 w-full h-full">
-            <SparklesCore
-              id="tsparticleshero"
-              background="transparent"
-              minSize={0.4}
-              maxSize={1.2}
-              particleDensity={80}
-              className="w-full h-full"
-              particleColor="#9333ea"
-              speed={0.5}
-            />
-          </div>
+      <section className="relative overflow-hidden bg-gradient-to-br from-gray-50 via-purple-50 to-pink-50">
+        {/* Background Sparkles */}
+        <div className="absolute inset-0 w-full h-full">
+          <SparklesCore
+            id="tsparticleshero"
+            background="transparent"
+            minSize={0.4}
+            maxSize={1.2}
+            particleDensity={80}
+            className="w-full h-full"
+            particleColor="#9333ea"
+            speed={0.5}
+          />
+        </div>
+        
+        {/* Animated Hero Content */}
+        <div className="relative z-30">
+          <Hero />
           
-          {/* Content */}
-          <div className="relative z-30">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-              Where Vibe Coders Meet{" "}
-              <span className="hero-gradient-text">
-                Amazing Opportunities
-              </span>
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed">
-              Connect with elite developers who specialize in rapid prototyping, AI-driven development, and cutting-edge tools. Build your next app, hire top talent, or showcase your skills.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-              <Button size="lg" className="vibe-button text-lg px-8 py-4">
-                <Users className="mr-2 w-5 h-5" />
-                Find Vibe Coders
-                <Sparkles className="ml-2 w-4 h-4" />
-              </Button>
-              <Button size="lg" variant="outline" className="vibe-button-outline text-lg px-8 py-4">
-                <Briefcase className="mr-2 w-5 h-5" />
-                Post a Project
-              </Button>
-            </div>
-
-            {/* Stats */}
+          {/* Stats */}
+          <div className="pb-20 px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
               <div className="text-center">
                 <div className="text-4xl md:text-5xl font-bold text-purple-600 mb-2">500+</div>

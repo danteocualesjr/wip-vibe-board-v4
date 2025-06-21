@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -32,7 +31,9 @@ const Index = () => {
               <Link to="/jobs" className="text-gray-600 hover:text-purple-600 transition-colors">
                 Post a Gig
               </Link>
-              <span className="text-gray-600">Waitlist</span>
+              <Link to="/waitlist" className="text-gray-600 hover:text-purple-600 transition-colors">
+                Waitlist
+              </Link>
             </div>
 
             <div className="flex items-center space-x-3">

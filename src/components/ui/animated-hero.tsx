@@ -1,4 +1,3 @@
-
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { MoveRight, PhoneCall } from "lucide-react";
@@ -7,7 +6,7 @@ import { Button } from "@/components/ui/button";
 function Hero() {
   const [titleNumber, setTitleNumber] = useState(0);
   const titles = useMemo(
-    () => ["Amazing Opportunities", "Elite Developers", "Rapid Prototyping", "AI-Driven Development", "Cutting-Edge Tools"],
+    () => ["Amazing Opportunities", "Monetize Their Apps", "Get Hired by Companies", "Showcase Their Work"],
     []
   );
 
@@ -28,7 +27,7 @@ function Hero() {
         <div className="flex gap-8 py-20 lg:py-40 items-center justify-center flex-col">
           <div className="flex gap-4 flex-col">
             <h1 className="text-5xl md:text-7xl max-w-4xl tracking-tighter text-center font-bold leading-tight">
-              <span>Where Vibe Coders Meet</span>
+              <span>Where Vibe Coders</span>
               <span className="relative flex w-full justify-center overflow-hidden text-center md:pb-4 md:pt-1">
                 &nbsp;
                 {titles.map((title, index) => (

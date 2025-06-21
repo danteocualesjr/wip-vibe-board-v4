@@ -1,3 +1,4 @@
+
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { MoveRight, PhoneCall } from "lucide-react";
@@ -6,7 +7,7 @@ import { Button } from "@/components/ui/button";
 function Hero() {
   const [titleNumber, setTitleNumber] = useState(0);
   const titles = useMemo(
-    () => ["Meet Amazing Opportunities", "Monetize Their Apps", "Get Hired by Companies", "Showcase Their Work"],
+    () => ["Meet Amazing", "Monetize Apps", "Get Hired", "Showcase Work"],
     []
   );
 

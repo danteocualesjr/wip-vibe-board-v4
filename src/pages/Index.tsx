@@ -1,9 +1,9 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Code, Zap, Users, Star, Trophy, Briefcase, Search, Sparkles } from "lucide-react";
+import { ArrowRight, Zap, Users, Star, Trophy, Briefcase, Search, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
+import ToolLogo from "@/components/ToolLogo";
 
 const Index = () => {
   return (
@@ -180,9 +180,7 @@ const Index = () => {
             ].map((tool, index) => (
               <Card key={tool.name} className="vibe-card p-6 text-center hover:scale-105 transition-transform">
                 <CardContent className="p-0">
-                  <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mx-auto mb-3">
-                    <Code className="w-6 h-6 text-white" />
-                  </div>
+                  <ToolLogo name={tool.name} category={tool.category} />
                   <h3 className="font-semibold text-lg mb-1">{tool.name}</h3>
                   <Badge variant="secondary" className="text-xs bg-purple-100 text-purple-700">
                     {tool.category}

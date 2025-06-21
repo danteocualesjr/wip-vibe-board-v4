@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -209,7 +210,7 @@ const Index = () => {
               {
                 name: "Alex Chen",
                 title: "Full-Stack AI Developer",
-                avatar: "AC",
+                avatar: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=400&fit=crop&crop=face",
                 rating: 4.9,
                 reviews: 127,
                 location: "San Francisco, CA",
@@ -222,7 +223,7 @@ const Index = () => {
               {
                 name: "Sarah Rodriguez",
                 title: "UI/UX & Frontend Specialist",
-                avatar: "SR",
+                avatar: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=400&h=400&fit=crop&crop=face",
                 rating: 5.0,
                 reviews: 203,
                 location: "Austin, TX",
@@ -235,7 +236,7 @@ const Index = () => {
               {
                 name: "Marcus Thompson",
                 title: "Automation & Integration Expert",
-                avatar: "MT",
+                avatar: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=400&fit=crop&crop=face",
                 rating: 4.8,
                 reviews: 94,
                 location: "Remote",
@@ -244,14 +245,55 @@ const Index = () => {
                 completedProjects: 67,
                 responseTime: "< 2 hours",
                 description: "Building seamless workflows and automations that save businesses time and money."
+              },
+              {
+                name: "Emma Wilson",
+                title: "Full-Stack Developer",
+                avatar: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=400&h=400&fit=crop&crop=face",
+                rating: 4.9,
+                reviews: 156,
+                location: "New York, NY",
+                hourlyRate: "$80",
+                skills: ["Bolt", "Windsurf", "React", "Node.js"],
+                completedProjects: 112,
+                responseTime: "< 1 hour",
+                description: "End-to-end application development with modern AI tools and frameworks."
+              },
+              {
+                name: "David Kim",
+                title: "AI & Backend Specialist",
+                avatar: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=400&fit=crop&crop=face",
+                rating: 4.7,
+                reviews: 89,
+                location: "Seattle, WA",
+                hourlyRate: "$95",
+                skills: ["Claude", "Replit", "Python", "FastAPI"],
+                completedProjects: 73,
+                responseTime: "< 3 hours",
+                description: "Building intelligent backends and AI integrations for modern applications."
+              },
+              {
+                name: "Lisa Chang",
+                title: "No-Code Solutions Expert",
+                avatar: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=400&h=400&fit=crop&crop=face",
+                rating: 5.0,
+                reviews: 134,
+                location: "Los Angeles, CA",
+                hourlyRate: "$70",
+                skills: ["Gumloop", "Make", "Bubble", "Webflow"],
+                completedProjects: 98,
+                responseTime: "< 45 min",
+                description: "Rapid prototyping and MVP development using cutting-edge no-code platforms."
               }
             ].map((coder, index) => (
               <Card key={coder.name} className="vibe-card p-6 hover:scale-105 transition-transform">
                 <CardContent className="p-0">
                   <div className="flex items-start space-x-4 mb-4">
-                    <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
-                      {coder.avatar}
-                    </div>
+                    <img 
+                      src={coder.avatar} 
+                      alt={coder.name}
+                      className="w-16 h-16 rounded-full object-cover"
+                    />
                     <div className="flex-1">
                       <h3 className="font-bold text-xl mb-1">{coder.name}</h3>
                       <p className="text-purple-600 font-semibold mb-2">{coder.title}</p>

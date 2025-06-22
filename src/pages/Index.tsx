@@ -1,4 +1,5 @@
 
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -588,9 +589,9 @@ const Index = () => {
             <div>
               <h3 className="font-semibold text-gray-900 mb-4">For Developers</h3>
               <ul className="space-y-2 text-gray-600">
-                <li><a href="#" className="hover:text-purple-600 transition-colors">Join as Coder</a></li>
-                <li><a href="#" className="hover:text-purple-600 transition-colors">Sell Your Apps</a></li>
-                <li><a href="#" className="hover:text-purple-600 transition-colors">Success Stories</a></li>
+                <li><Link to="/waitlist" className="hover:text-purple-600 transition-colors">Apply as Vibe Coder</Link></li>
+                <li><Link to="/marketplace" className="hover:text-purple-600 transition-colors">Sell Your Apps</Link></li>
+                <li><Link to="/waitlist" className="hover:text-purple-600 transition-colors">Success Stories</Link></li>
               </ul>
             </div>
           </div>
@@ -600,9 +601,9 @@ const Index = () => {
               © 2025 Vibe Board by NativeStack AI LLC. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors text-sm">Privacy Policy</a>
-              <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors text-sm">Terms of Service</a>
-              <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors text-sm">Contact</a>
+              <Link to="/waitlist" className="text-gray-600 hover:text-purple-600 transition-colors text-sm">Privacy Policy</Link>
+              <Link to="/waitlist" className="text-gray-600 hover:text-purple-600 transition-colors text-sm">Terms of Service</Link>
+              <Link to="/waitlist" className="text-gray-600 hover:text-purple-600 transition-colors text-sm">Contact</Link>
             </div>
           </div>
         </div>
@@ -612,3 +613,4 @@ const Index = () => {
 };
 
 export default Index;
+

@@ -330,9 +330,7 @@ const Index = () => {
           <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
             {tools.map((tool, index) => (
               <Card key={index} className="vibe-card p-6 text-center hover:scale-105 transition-transform">
-                <div className="w-12 h-12 mx-auto mb-4">
-                  <ToolLogo name={tool.name} className="w-full h-full" />
-                </div>
+                <ToolLogo name={tool.name} category={tool.category} />
                 <h3 className="font-semibold text-gray-900 mb-1">{tool.name}</h3>
                 <p className="text-sm text-gray-600">{tool.category}</p>
               </Card>

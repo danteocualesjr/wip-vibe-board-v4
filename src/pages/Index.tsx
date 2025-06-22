@@ -1,5 +1,3 @@
-
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -474,11 +472,6 @@ const Index = () => {
                     alt={product.name}
                     className="w-full h-48 object-cover"
                   />
-                  <div className="absolute top-4 right-4">
-                    <Badge className="bg-green-500 text-white">
-                      50% OFF
-                    </Badge>
-                  </div>
                 </div>
                 
                 <CardContent className="p-6">
@@ -613,4 +606,3 @@ const Index = () => {
 };
 
 export default Index;
-

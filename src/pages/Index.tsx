@@ -187,15 +187,15 @@ const Index = () => {
             {/* Stats */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
               <div className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-purple-600 mb-2">500+</div>
+                <div className="text-4xl md:text-5xl font-bold text-purple-600 mb-2">300+</div>
                 <div className="text-gray-600 text-lg">Vibe Coders</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-pink-500 mb-2">1,200+</div>
+                <div className="text-4xl md:text-5xl font-bold text-pink-500 mb-2">1,000+</div>
                 <div className="text-gray-600 text-lg">Projects Delivered</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-orange-500 mb-2">$2M+</div>
+                <div className="text-4xl md:text-5xl font-bold text-orange-500 mb-2">$100k+</div>
                 <div className="text-gray-600 text-lg">Transactions</div>
               </div>
             </div>

@@ -20,6 +20,8 @@ const ToolLogo: React.FC<ToolLogoProps> = ({ name, category }) => {
       'v0': 'https://v0.dev/icon.png',
       'Manus': 'https://manus.ai/favicon.ico',
       'Gamma': 'https://gamma.app/favicon.ico',
+      'Zapier': 'https://zapier.com/favicon.ico',
+      'Lindy': 'https://lindy.ai/favicon.ico',
       'Others': ''
     };
     

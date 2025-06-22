@@ -19,6 +19,8 @@ const Index = () => {
     { name: "v0", category: "UI Generator" },
     { name: "Manus", category: "AI Tool" },
     { name: "Gamma", category: "Presentations" },
+    { name: "Zapier", category: "Automation" },
+    { name: "Lindy", category: "AI Agent" },
     { name: "Others", category: "Various" }
   ];
 

@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -5,8 +6,44 @@ import { ArrowRight, Zap, Users, Star, Trophy, Briefcase, Search, Sparkles, Code
 import { Link } from "react-router-dom";
 import ToolLogo from "@/components/ToolLogo";
 import { SparklesCore } from "@/components/ui/sparkles";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
+import { useEffect, useState } from "react";
 
 const Index = () => {
+  const [api, setApi] = useState<any>();
+
+  useEffect(() => {
+    if (!api) {
+      return;
+    }
+
+    // Auto-scroll every 3 seconds
+    const interval = setInterval(() => {
+      api.scrollNext();
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [api]);
+
+  const tools = [
+    { name: "Cursor", category: "AI Editor" },
+    { name: "Claude", category: "AI Assistant" },
+    { name: "v0", category: "UI Generator" },
+    { name: "Bolt", category: "Full-Stack" },
+    { name: "Lovable", category: "Web Apps" },
+    { name: "Windsurf", category: "AI IDE" },
+    { name: "Replit", category: "Cloud IDE" },
+    { name: "n8n", category: "Automation" },
+    { name: "Make", category: "Workflows" },
+    { name: "Gumloop", category: "No-Code" },
+    { name: "Supabase", category: "Backend" },
+    { name: "Vercel", category: "Deployment" }
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-purple-50 to-pink-50">
       {/* Navigation */}
@@ -180,32 +217,30 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-            {[
-              { name: "Cursor", category: "AI Editor" },
-              { name: "Claude", category: "AI Assistant" },
-              { name: "v0", category: "UI Generator" },
-              { name: "Bolt", category: "Full-Stack" },
-              { name: "Lovable", category: "Web Apps" },
-              { name: "Windsurf", category: "AI IDE" },
-              { name: "Replit", category: "Cloud IDE" },
-              { name: "n8n", category: "Automation" },
-              { name: "Make", category: "Workflows" },
-              { name: "Gumloop", category: "No-Code" },
-              { name: "Supabase", category: "Backend" },
-              { name: "Vercel", category: "Deployment" }
-            ].map((tool, index) => (
-              <Card key={tool.name} className="vibe-card p-6 text-center hover:scale-105 transition-transform">
-                <CardContent className="p-0">
-                  <ToolLogo name={tool.name} category={tool.category} />
-                  <h3 className="font-semibold text-lg mb-1">{tool.name}</h3>
-                  <Badge variant="secondary" className="text-xs bg-purple-100 text-purple-700">
-                    {tool.category}
-                  </Badge>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <Carousel 
+            setApi={setApi}
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-2 md:-ml-4">
+              {tools.map((tool, index) => (
+                <CarouselItem key={tool.name} className="pl-2 md:pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/6">
+                  <Card className="vibe-card p-6 text-center hover:scale-105 transition-transform h-full">
+                    <CardContent className="p-0 flex flex-col items-center justify-center h-full">
+                      <ToolLogo name={tool.name} category={tool.category} />
+                      <h3 className="font-semibold text-lg mb-1">{tool.name}</h3>
+                      <Badge variant="secondary" className="text-xs bg-purple-100 text-purple-700">
+                        {tool.category}
+                      </Badge>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
         </div>
       </section>
 

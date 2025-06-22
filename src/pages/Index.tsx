@@ -66,7 +66,7 @@ const Index = () => {
               </Link>
               <Link to="/waitlist">
                 <Button className="vibe-button">
-                  Join as Vibe Coder
+                  Apply as Vibe Coder
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
               </Link>

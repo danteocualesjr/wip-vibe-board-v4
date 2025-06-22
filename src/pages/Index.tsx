@@ -1,7 +1,8 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Zap, Users, Star, Trophy, Briefcase, Search, Sparkles, Code, MapPin, Clock, DollarSign, ShoppingCart } from "lucide-react";
+import { ArrowRight, Zap, Users, Star, Trophy, Briefcase, Search, Sparkles, Code, MapPin, Clock, DollarSign, ShoppingCart, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 import ToolLogo from "@/components/ToolLogo";
 import { SparklesCore } from "@/components/ui/sparkles";
@@ -727,6 +728,18 @@ const Index = () => {
               <p className="text-gray-600 mb-4 max-w-md">
                 The marketplace for fast, high-quality app development. Connect with talented vibe coders or find ready-made solutions for your business.
               </p>
+              <div className="flex items-center space-x-2 text-gray-600">
+                <Mail className="w-4 h-4" />
+                <span className="text-sm">
+                  For feedback and requests, email support at{" "}
+                  <a 
+                    href="mailto:dante@nativestack.ai" 
+                    className="text-purple-600 hover:text-purple-700 font-medium transition-colors"
+                  >
+                    dante@nativestack.ai
+                  </a>
+                </span>
+              </div>
             </div>
             
             <div>

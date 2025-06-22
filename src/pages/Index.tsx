@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -105,15 +106,19 @@ const Index = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-              <Button size="lg" className="vibe-button text-lg px-8 py-4">
-                <Users className="mr-2 w-5 h-5" />
-                Find Vibe Coders
-                <Sparkles className="ml-2 w-4 h-4" />
-              </Button>
-              <Button size="lg" variant="outline" className="vibe-button-outline text-lg px-8 py-4">
-                <Briefcase className="mr-2 w-5 h-5" />
-                Post a Project
-              </Button>
+              <Link to="/coders">
+                <Button size="lg" className="vibe-button text-lg px-8 py-4">
+                  <Users className="mr-2 w-5 h-5" />
+                  Find Vibe Coders
+                  <Sparkles className="ml-2 w-4 h-4" />
+                </Button>
+              </Link>
+              <Link to="/jobs">
+                <Button size="lg" variant="outline" className="vibe-button-outline text-lg px-8 py-4">
+                  <Briefcase className="mr-2 w-5 h-5" />
+                  Post a Project
+                </Button>
+              </Link>
             </div>
 
             {/* Stats */}
@@ -539,14 +544,18 @@ const Index = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100 text-lg px-8 py-4">
-              <Search className="mr-2 w-5 h-5" />
-              Find Developers
-            </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-purple-600 text-lg px-8 py-4">
-              <Users className="mr-2 w-5 h-5" />
-              Join as Coder
-            </Button>
+            <Link to="/coders">
+              <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100 text-lg px-8 py-4">
+                <Search className="mr-2 w-5 h-5" />
+                Find Developers
+              </Button>
+            </Link>
+            <Link to="/waitlist">
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-purple-600 text-lg px-8 py-4">
+                <Users className="mr-2 w-5 h-5" />
+                Join as Coder
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

@@ -402,8 +402,7 @@ const Index = () => {
                 name: "AI Chat Dashboard",
                 description: "Complete chat interface with AI integration, real-time messaging, and beautiful UI components.",
                 image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop",
-                price: "$149",
-                originalPrice: "$299",
+                price: "$2,499",
                 rating: 4.9,
                 reviews: 87,
                 tags: ["AI", "Chat", "React"],
@@ -413,8 +412,7 @@ const Index = () => {
                 name: "E-commerce Starter Kit",
                 description: "Full-featured online store with payment integration, inventory management, and admin dashboard.",
                 image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
-                price: "$199",
-                originalPrice: "$399",
+                price: "$3,299",
                 rating: 5.0,
                 reviews: 134,
                 tags: ["E-commerce", "Payments", "Admin"],
@@ -424,8 +422,7 @@ const Index = () => {
                 name: "SaaS Landing Page Template",
                 description: "Modern, conversion-optimized landing page template with animations and responsive design.",
                 image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
-                price: "$79",
-                originalPrice: "$149",
+                price: "$2,199",
                 rating: 4.8,
                 reviews: 156,
                 tags: ["Landing Page", "SaaS", "Conversion"],
@@ -435,8 +432,7 @@ const Index = () => {
                 name: "Task Management App",
                 description: "Complete project management solution with team collaboration, time tracking, and reporting.",
                 image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop",
-                price: "$129",
-                originalPrice: "$249",
+                price: "$2,799",
                 rating: 4.7,
                 reviews: 92,
                 tags: ["Productivity", "Teams", "Management"],
@@ -446,8 +442,7 @@ const Index = () => {
                 name: "Crypto Portfolio Tracker",
                 description: "Real-time cryptocurrency portfolio tracking with charts, alerts, and market analysis tools.",
                 image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=600&h=400&fit=crop",
-                price: "$89",
-                originalPrice: "$179",
+                price: "$2,099",
                 rating: 4.6,
                 reviews: 73,
                 tags: ["Crypto", "Finance", "Charts"],
@@ -457,8 +452,7 @@ const Index = () => {
                 name: "Social Media Scheduler",
                 description: "Automated social media posting tool with content calendar, analytics, and multi-platform support.",
                 image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&h=400&fit=crop",
-                price: "$99",
-                originalPrice: "$199",
+                price: "$2,599",
                 rating: 4.9,
                 reviews: 108,
                 tags: ["Social Media", "Automation", "Analytics"],
@@ -497,7 +491,6 @@ const Index = () => {
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center space-x-2">
                       <span className="text-2xl font-bold text-purple-600">{product.price}</span>
-                      <span className="text-lg text-gray-400 line-through">{product.originalPrice}</span>
                     </div>
                     <span className="text-sm text-gray-500">by {product.author}</span>
                   </div>

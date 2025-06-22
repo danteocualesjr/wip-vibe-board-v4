@@ -1,95 +1,33 @@
+
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Zap, Star, Users, Clock, Sparkles, TrendingUp, Shield, CheckCircle } from "lucide-react";
+import { ArrowRight, Zap, Users, Star, Trophy, Briefcase, Search, Sparkles, Code, MapPin, Clock, DollarSign, ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
 import ToolLogo from "@/components/ToolLogo";
+import { SparklesCore } from "@/components/ui/sparkles";
 
 const Index = () => {
-  const featuredProducts = [
-    {
-      id: 1,
-      title: "AI Customer Support Bot",
-      price: "$2,999",
-      creator: "Alex Chen",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
-      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=250&fit=crop",
-      tags: ["AI Agent", "Customer Service"],
-      tools: ["Claude", "n8n"],
-      rating: 4.9,
-      reviews: 23,
-      description: "Complete AI-powered customer support system with natural language processing and automated ticket routing."
-    },
-    {
-      id: 2,
-      title: "E-commerce Analytics Suite",
-      price: "$2,499",
-      creator: "Sarah Kim",
-      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b586?w=150&h=150&fit=crop&crop=face",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit=crop",
-      tags: ["Analytics", "Dashboard"],
-      tools: ["Lovable", "v0"],
-      rating: 4.8,
-      reviews: 31,
-      description: "Advanced analytics dashboard with real-time sales tracking, customer insights, and revenue optimization."
-    },
-    {
-      id: 3,
-      title: "Project Management Platform",
-      price: "$3,299",
-      creator: "Marcus Rodriguez",
-      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
-      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=250&fit=crop",
-      tags: ["Project Management", "Team Collaboration"],
-      tools: ["Cursor", "Make"],
-      rating: 4.9,
-      reviews: 42,
-      description: "Comprehensive project management solution with team collaboration, time tracking, and resource allocation."
-    }
-  ];
-
-  const stats = [
-    { number: "500+", label: "Vibe Coders" },
-    { number: "1,200+", label: "Projects Delivered" },
-    { number: "98%", label: "Client Satisfaction" },
-    { number: "48hrs", label: "Average Delivery" }
-  ];
-
-  const testimonials = [
-    {
-      name: "Sarah Johnson",
-      role: "Startup Founder",
-      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b586?w=150&h=150&fit=crop&crop=face",
-      content: "Vibe Board connected me with an incredible developer who built my MVP in just 3 days. The quality exceeded my expectations!",
-      rating: 5
-    },
-    {
-      name: "Michael Chen",
-      role: "Product Manager",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
-      content: "The speed and quality of development here is unmatched. Our internal tools were delivered faster than we thought possible.",
-      rating: 5
-    },
-    {
-      name: "Emily Rodriguez",
-      role: "E-commerce Owner",
-      avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
-      content: "I found the perfect analytics dashboard in the marketplace. It transformed how we track our business metrics.",
-      rating: 5
-    }
-  ];
-
   const tools = [
-    { name: "Cursor", category: "AI IDE" },
+    { name: "Cursor", category: "AI Editor" },
     { name: "Windsurf", category: "AI IDE" },
-    { name: "Claude", category: "AI Assistant" },
-    { name: "Lovable", category: "AI Builder" },
-    { name: "v0", category: "AI Builder" },
-    { name: "Bolt", category: "AI Builder" },
-    { name: "n8n", category: "Automation" },
-    { name: "Make", category: "Automation" },
-    { name: "Gumloop", category: "Automation" },
-    { name: "Replit", category: "Development" }
+    { name: "Claude Code", category: "AI Assistant" },
+    { name: "Codex", category: "AI Model" },
+    { name: "Devin", category: "AI Engineer" },
+    { name: "Bolt", category: "Full-Stack" },
+    { name: "Lovable", category: "Web Apps" },
+    { name: "Replit", category: "Cloud IDE" },
+    { name: "v0", category: "UI Generator" },
+    { name: "Manus AI", category: "AI Tool" },
+    { name: "Gamma", category: "Presentations" },
+    { name: "Zapier", category: "Automation" },
+    { name: "Lindy", category: "AI Agent" },
+    { name: "Sora", category: "AI Video" },
+    { name: "Veo 3", category: "AI Video" },
+    { name: "Factory", category: "AI Tool" },
+    { name: "Rork", category: "AI Tool" },
+    { name: "Firebase Studio", category: "Database" }
   ];
 
   return (
@@ -123,323 +61,502 @@ const Index = () => {
             </div>
 
             <div className="flex items-center space-x-3">
-              <Button variant="ghost" className="text-purple-600 hover:text-purple-700">
-                Sign In
-              </Button>
-              <Button className="vibe-button">
-                Join as Vibe Coder
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </Button>
+              <Link to="/waitlist">
+                <Button variant="ghost" className="text-purple-600 hover:text-purple-700">
+                  Sign In
+                </Button>
+              </Link>
+              <Link to="/waitlist">
+                <Button className="vibe-button">
+                  Apply as Vibe Coder
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-medium mb-6">
-              <Sparkles className="w-4 h-4 mr-2" />
-              Join 500+ developers building at lightning speed
-            </div>
-            
-            <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
-              Build Apps at 
-              <span className="hero-gradient-text block">Vibe Speed</span>
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-br from-gray-50 via-purple-50 to-pink-50">
+        <div className="max-w-6xl mx-auto text-center relative z-20">
+          {/* Background Sparkles */}
+          <div className="absolute inset-0 w-full h-full">
+            <SparklesCore
+              id="tsparticleshero"
+              background="transparent"
+              minSize={0.4}
+              maxSize={1.2}
+              particleDensity={80}
+              className="w-full h-full"
+              particleColor="#9333ea"
+              speed={0.5}
+            />
+          </div>
+          
+          {/* Content */}
+          <div className="relative z-30">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+              Where Vibe Coders Meet{" "}
+              <span className="hero-gradient-text">
+                Amazing Opportunities
+              </span>
             </h1>
-            
             <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed">
-              Connect with talented developers who build production-ready apps in hours, not months. 
-              Using cutting-edge AI tools for blazing-fast development.
+              Connect with elite developers who specialize in rapid prototyping, AI-driven development, and cutting-edge tools. Build your next app, hire top talent, or showcase your skills.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button size="lg" className="vibe-button text-lg px-8 py-4">
-                <Link to="/coders" className="flex items-center">
-                  Find a Vibe Coder
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </Link>
-              </Button>
-              <Button size="lg" variant="outline" className="vibe-button-outline text-lg px-8 py-4">
-                <Link to="/marketplace">
-                  Browse Marketplace
-                </Link>
-              </Button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
+              <Link to="/coders">
+                <Button size="lg" className="vibe-button text-lg px-8 py-4">
+                  <Users className="mr-2 w-5 h-5" />
+                  Find Vibe Coders
+                  <Sparkles className="ml-2 w-4 h-4" />
+                </Button>
+              </Link>
+              <Link to="/jobs">
+                <Button size="lg" variant="outline" className="vibe-button-outline text-lg px-8 py-4">
+                  <Briefcase className="mr-2 w-5 h-5" />
+                  Post a Project
+                </Button>
+              </Link>
+            </div>
+
+            {/* Stats */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+              <div className="text-center">
+                <div className="text-4xl md:text-5xl font-bold text-purple-600 mb-2">500+</div>
+                <div className="text-gray-600 text-lg">Vibe Coders</div>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl md:text-5xl font-bold text-pink-500 mb-2">1,200+</div>
+                <div className="text-gray-600 text-lg">Projects Delivered</div>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl md:text-5xl font-bold text-orange-500 mb-2">$2M+</div>
+                <div className="text-gray-600 text-lg">Transactions</div>
+              </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-3xl md:text-4xl font-bold gradient-text mb-2">
-                  {stat.number}
+      {/* Features Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white/50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              Why Choose <span className="gradient-text">Vibe Board</span>?
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              We connect you with developers who live and breathe modern tools like Cursor, Claude, v0, and more.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <Card className="vibe-card p-8 text-center">
+              <CardHeader>
+                <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <Zap className="w-8 h-8 text-white" />
                 </div>
-                <div className="text-gray-600 font-medium">
-                  {stat.label}
+                <CardTitle className="text-2xl mb-4">Lightning Fast Development</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 text-lg">
+                  Our vibe coders use AI-powered tools and modern frameworks to deliver projects 10x faster than traditional development.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="vibe-card p-8 text-center">
+              <CardHeader>
+                <div className="w-16 h-16 bg-gradient-to-r from-pink-500 to-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <Code className="w-8 h-8 text-white" />
                 </div>
-              </div>
+                <CardTitle className="text-2xl mb-4">Cutting-Edge Tools</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 text-lg">
+                  From Cursor and Claude to v0 and Bolt, our developers are experts in the latest AI-driven development tools.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="vibe-card p-8 text-center">
+              <CardHeader>
+                <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <Trophy className="w-8 h-8 text-white" />
+                </div>
+                <CardTitle className="text-2xl mb-4">Proven Results</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 text-lg">
+                  Join thousands of satisfied clients who've built successful products with our talented vibe coders.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Popular Tools Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              <span className="gradient-text">Popular Tools</span> Our Coders Use
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Stay ahead of the curve with developers who master the latest AI-powered development tools.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
+            {tools.map((tool, index) => (
+              <Card key={tool.name} className="vibe-card p-6 text-center hover:scale-105 transition-transform">
+                <CardContent className="p-0 flex flex-col items-center justify-center">
+                  <ToolLogo name={tool.name} category={tool.category} />
+                  <h3 className="font-semibold text-lg mb-1">{tool.name}</h3>
+                  <Badge variant="secondary" className="text-xs bg-purple-100 text-purple-700">
+                    {tool.category}
+                  </Badge>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Featured Products */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
+      {/* Featured Vibe Coders Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white/50">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Featured <span className="hero-gradient-text">Products</span>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              Meet Our <span className="gradient-text">Featured Vibe Coders</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Ready-to-use applications built by our top vibe coders. Get started instantly with these production-ready solutions.
+              Discover talented developers who are ready to bring your ideas to life with cutting-edge tools and lightning-fast delivery.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
-            {featuredProducts.map((product) => (
-              <Card key={product.id} className="vibe-card hover:scale-105 transition-transform overflow-hidden">
-                <div className="aspect-video relative overflow-hidden">
-                  <img
-                    src={product.image}
-                    alt={product.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute top-4 right-4">
-                    <Badge className="bg-white/90 text-purple-600 font-bold">
-                      {product.price}
-                    </Badge>
-                  </div>
-                </div>
-
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-gray-900">{product.title}</CardTitle>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-2">
-                      <img
-                        src={product.avatar}
-                        alt={product.creator}
-                        className="w-6 h-6 rounded-full"
-                      />
-                      <span className="text-purple-600 text-sm">by {product.creator}</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                name: "Alex Chen",
+                title: "Full-Stack AI Developer",
+                avatar: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=400&fit=crop&crop=face",
+                rating: 4.9,
+                reviews: 127,
+                location: "San Francisco, CA",
+                hourlyRate: "$85",
+                skills: ["Cursor", "Claude", "Next.js", "Supabase"],
+                completedProjects: 89,
+                responseTime: "< 1 hour",
+                description: "Specialized in AI-powered web apps with rapid prototyping using Cursor and Claude."
+              },
+              {
+                name: "Sarah Rodriguez",
+                title: "UI/UX & Frontend Specialist",
+                avatar: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=400&h=400&fit=crop&crop=face",
+                rating: 5.0,
+                reviews: 203,
+                location: "Austin, TX",
+                hourlyRate: "$75",
+                skills: ["v0", "Lovable", "React", "Tailwind"],
+                completedProjects: 156,
+                responseTime: "< 30 min",
+                description: "Expert in creating beautiful, responsive interfaces using v0 and modern design tools."
+              },
+              {
+                name: "Marcus Thompson",
+                title: "Automation & Integration Expert",
+                avatar: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=400&fit=crop&crop=face",
+                rating: 4.8,
+                reviews: 94,
+                location: "Remote",
+                hourlyRate: "$90",
+                skills: ["n8n", "Make", "Zapier", "Supabase"],
+                completedProjects: 67,
+                responseTime: "< 2 hours",
+                description: "Building seamless workflows and automations that save businesses time and money."
+              },
+              {
+                name: "Emma Wilson",
+                title: "Full-Stack Developer",
+                avatar: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=400&h=400&fit=crop&crop=face",
+                rating: 4.9,
+                reviews: 156,
+                location: "New York, NY",
+                hourlyRate: "$80",
+                skills: ["Bolt", "Windsurf", "React", "Node.js"],
+                completedProjects: 112,
+                responseTime: "< 1 hour",
+                description: "End-to-end application development with modern AI tools and frameworks."
+              },
+              {
+                name: "David Kim",
+                title: "AI & Backend Specialist",
+                avatar: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=400&fit=crop&crop=face",
+                rating: 4.7,
+                reviews: 89,
+                location: "Seattle, WA",
+                hourlyRate: "$95",
+                skills: ["Claude", "Replit", "Python", "FastAPI"],
+                completedProjects: 73,
+                responseTime: "< 3 hours",
+                description: "Building intelligent backends and AI integrations for modern applications."
+              },
+              {
+                name: "Lisa Chang",
+                title: "No-Code Solutions Expert",
+                avatar: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=400&h=400&fit=crop&crop=face",
+                rating: 5.0,
+                reviews: 134,
+                location: "Los Angeles, CA",
+                hourlyRate: "$70",
+                skills: ["Gumloop", "Make", "Bubble", "Webflow"],
+                completedProjects: 98,
+                responseTime: "< 45 min",
+                description: "Rapid prototyping and MVP development using cutting-edge no-code platforms."
+              }
+            ].map((coder, index) => (
+              <Card key={coder.name} className="vibe-card p-6 hover:scale-105 transition-transform">
+                <CardContent className="p-0">
+                  <div className="flex items-start space-x-4 mb-4">
+                    <img 
+                      src={coder.avatar} 
+                      alt={coder.name}
+                      className="w-16 h-16 rounded-full object-cover"
+                    />
+                    <div className="flex-1">
+                      <h3 className="font-bold text-xl mb-1">{coder.name}</h3>
+                      <p className="text-purple-600 font-semibold mb-2">{coder.title}</p>
+                      <div className="flex items-center space-x-2 mb-2">
+                        <div className="flex items-center">
+                          <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                          <span className="text-sm font-semibold ml-1">{coder.rating}</span>
+                          <span className="text-sm text-gray-500 ml-1">({coder.reviews} reviews)</span>
+                        </div>
+                      </div>
+                      <div className="flex items-center space-x-4 text-sm text-gray-600 mb-3">
+                        <div className="flex items-center">
+                          <MapPin className="w-3 h-3 mr-1" />
+                          {coder.location}
+                        </div>
+                        <div className="flex items-center">
+                          <Clock className="w-3 h-3 mr-1" />
+                          {coder.responseTime}
+                        </div>
+                      </div>
                     </div>
-                    <div className="flex items-center space-x-1">
-                      <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                      <span className="text-gray-700 text-sm">{product.rating}</span>
-                    </div>
                   </div>
-                </CardHeader>
-                
-                <CardContent>
-                  <p className="text-gray-600 text-sm mb-4">{product.description}</p>
+                  
+                  <p className="text-gray-600 mb-4">{coder.description}</p>
                   
                   <div className="flex flex-wrap gap-2 mb-4">
-                    {product.tags.map((tag) => (
-                      <Badge key={tag} variant="outline" className="text-pink-600 border-pink-300">
-                        {tag}
+                    {coder.skills.map((skill) => (
+                      <Badge key={skill} variant="secondary" className="bg-purple-100 text-purple-700">
+                        {skill}
                       </Badge>
                     ))}
                   </div>
                   
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {product.tools.map((tool) => (
-                      <Badge key={tool} variant="secondary" className="text-purple-700 bg-purple-100">
-                        {tool}
-                      </Badge>
-                    ))}
+                  <div className="flex justify-between items-center mb-4 text-sm">
+                    <span className="text-gray-600">{coder.completedProjects} projects completed</span>
+                    <span className="font-bold text-lg text-purple-600">{coder.hourlyRate}/hr</span>
                   </div>
-
+                  
                   <Button className="w-full vibe-button">
-                    View Details
+                    View Profile
+                    <ArrowRight className="ml-2 w-4 h-4" />
                   </Button>
                 </CardContent>
               </Card>
             ))}
           </div>
-
-          <div className="text-center">
-            <Button variant="outline" className="vibe-button-outline">
-              <Link to="/marketplace">
-                View All Products
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </Link>
-            </Button>
+          
+          <div className="text-center mt-12">
+            <Link to="/coders">
+              <Button size="lg" variant="outline" className="vibe-button-outline">
+                <Users className="mr-2 w-5 h-5" />
+                Browse All Vibe Coders
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* How It Works */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white/50">
+      {/* Featured Products Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              How It <span className="hero-gradient-text">Works</span>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              <span className="gradient-text">Featured Products</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Get your app built in three simple steps. Our vibe coders use AI tools to deliver fast, high-quality results.
+              Ready-to-use apps and tools built by our talented vibe coders. Get started instantly with these high-quality solutions.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="vibe-card text-center p-8">
-              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Users className="w-8 h-8 text-purple-600" />
-              </div>
-              <h3 className="text-2xl font-bold mb-4 text-gray-900">1. Post Your Project</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Describe your app idea, features, and timeline. Our vibe coders will review and send you proposals within hours.
-              </p>
-            </Card>
-
-            <Card className="vibe-card text-center p-8">
-              <div className="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Zap className="w-8 h-8 text-pink-600" />
-              </div>
-              <h3 className="text-2xl font-bold mb-4 text-gray-900">2. Choose Your Coder</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Browse profiles, portfolios, and reviews. Select the vibe coder who best matches your project needs and budget.
-              </p>
-            </Card>
-
-            <Card className="vibe-card text-center p-8">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Clock className="w-8 h-8 text-green-600" />
-              </div>
-              <h3 className="text-2xl font-bold mb-4 text-gray-900">3. Get Your App</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Watch your app come to life in real-time. Most projects are delivered within 24-48 hours with full source code.
-              </p>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Tools */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Powered by <span className="hero-gradient-text">AI Tools</span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Our vibe coders leverage the latest AI development tools to build faster and better than traditional methods.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
-            {tools.map((tool, index) => (
-              <Card key={index} className="vibe-card p-6 text-center hover:scale-105 transition-transform">
-                <ToolLogo name={tool.name} category={tool.category} />
-                <h3 className="font-semibold text-gray-900 mb-1">{tool.name}</h3>
-                <p className="text-sm text-gray-600">{tool.category}</p>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Why Choose Us */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white/50">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Why Choose <span className="hero-gradient-text">Vibe Board</span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Experience the future of app development with our unique approach that combines AI tools with human expertise.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="vibe-card p-8">
-              <TrendingUp className="w-12 h-12 text-purple-600 mb-6" />
-              <h3 className="text-2xl font-bold mb-4 text-gray-900">Lightning Fast</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Our vibe coders use AI tools to build apps 10x faster than traditional development, without compromising quality.
-              </p>
-            </Card>
-
-            <Card className="vibe-card p-8">
-              <Shield className="w-12 h-12 text-purple-600 mb-6" />
-              <h3 className="text-2xl font-bold mb-4 text-gray-900">Quality Guaranteed</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Every project goes through rigorous testing and review. We guarantee production-ready code that scales.
-              </p>
-            </Card>
-
-            <Card className="vibe-card p-8">
-              <CheckCircle className="w-12 h-12 text-purple-600 mb-6" />
-              <h3 className="text-2xl font-bold mb-4 text-gray-900">Full Ownership</h3>
-              <p className="text-gray-600 leading-relaxed">
-                You get complete source code ownership, detailed documentation, and deployment assistance for your app.
-              </p>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              What Our <span className="hero-gradient-text">Clients Say</span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Join hundreds of satisfied clients who have transformed their ideas into reality with Vibe Board.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index} className="vibe-card p-8">
-                <div className="flex items-center mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                  ))}
-                </div>
-                <p className="text-gray-600 mb-6 leading-relaxed italic">
-                  "{testimonial.content}"
-                </p>
-                <div className="flex items-center">
-                  <img
-                    src={testimonial.avatar}
-                    alt={testimonial.name}
-                    className="w-12 h-12 rounded-full mr-4"
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                name: "AI Chat Dashboard",
+                description: "Complete chat interface with AI integration, real-time messaging, and beautiful UI components.",
+                image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop",
+                price: "$149",
+                originalPrice: "$299",
+                rating: 4.9,
+                reviews: 87,
+                tags: ["AI", "Chat", "React"],
+                author: "Alex Chen"
+              },
+              {
+                name: "E-commerce Starter Kit",
+                description: "Full-featured online store with payment integration, inventory management, and admin dashboard.",
+                image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
+                price: "$199",
+                originalPrice: "$399",
+                rating: 5.0,
+                reviews: 134,
+                tags: ["E-commerce", "Payments", "Admin"],
+                author: "Sarah Rodriguez"
+              },
+              {
+                name: "SaaS Landing Page Template",
+                description: "Modern, conversion-optimized landing page template with animations and responsive design.",
+                image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
+                price: "$79",
+                originalPrice: "$149",
+                rating: 4.8,
+                reviews: 156,
+                tags: ["Landing Page", "SaaS", "Conversion"],
+                author: "Emma Wilson"
+              },
+              {
+                name: "Task Management App",
+                description: "Complete project management solution with team collaboration, time tracking, and reporting.",
+                image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop",
+                price: "$129",
+                originalPrice: "$249",
+                rating: 4.7,
+                reviews: 92,
+                tags: ["Productivity", "Teams", "Management"],
+                author: "Marcus Thompson"
+              },
+              {
+                name: "Crypto Portfolio Tracker",
+                description: "Real-time cryptocurrency portfolio tracking with charts, alerts, and market analysis tools.",
+                image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=600&h=400&fit=crop",
+                price: "$89",
+                originalPrice: "$179",
+                rating: 4.6,
+                reviews: 73,
+                tags: ["Crypto", "Finance", "Charts"],
+                author: "David Kim"
+              },
+              {
+                name: "Social Media Scheduler",
+                description: "Automated social media posting tool with content calendar, analytics, and multi-platform support.",
+                image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&h=400&fit=crop",
+                price: "$99",
+                originalPrice: "$199",
+                rating: 4.9,
+                reviews: 108,
+                tags: ["Social Media", "Automation", "Analytics"],
+                author: "Lisa Chang"
+              }
+            ].map((product, index) => (
+              <Card key={product.name} className="vibe-card overflow-hidden hover:scale-105 transition-transform">
+                <div className="relative">
+                  <img 
+                    src={product.image} 
+                    alt={product.name}
+                    className="w-full h-48 object-cover"
                   />
-                  <div>
-                    <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
-                    <p className="text-purple-600 text-sm">{testimonial.role}</p>
+                  <div className="absolute top-4 right-4">
+                    <Badge className="bg-green-500 text-white">
+                      50% OFF
+                    </Badge>
                   </div>
                 </div>
+                
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className="font-bold text-xl">{product.name}</h3>
+                    <div className="flex items-center">
+                      <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                      <span className="text-sm font-semibold ml-1">{product.rating}</span>
+                      <span className="text-sm text-gray-500 ml-1">({product.reviews})</span>
+                    </div>
+                  </div>
+                  
+                  <p className="text-gray-600 mb-4 text-sm leading-relaxed">{product.description}</p>
+                  
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {product.tags.map((tag) => (
+                      <Badge key={tag} variant="secondary" className="bg-purple-100 text-purple-700 text-xs">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                  
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center space-x-2">
+                      <span className="text-2xl font-bold text-purple-600">{product.price}</span>
+                      <span className="text-lg text-gray-400 line-through">{product.originalPrice}</span>
+                    </div>
+                    <span className="text-sm text-gray-500">by {product.author}</span>
+                  </div>
+                  
+                  <div className="flex space-x-2">
+                    <Button className="flex-1 vibe-button text-sm">
+                      <ShoppingCart className="mr-2 w-4 h-4" />
+                      Buy Now
+                    </Button>
+                    <Button variant="outline" size="sm" className="px-3">
+                      Preview
+                    </Button>
+                  </div>
+                </CardContent>
               </Card>
             ))}
+          </div>
+          
+          <div className="text-center mt-12">
+            <Link to="/marketplace">
+              <Button size="lg" variant="outline" className="vibe-button-outline">
+                <Search className="mr-2 w-5 h-5" />
+                Browse All Products
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-purple-600 to-pink-600">
+      {/* CTA Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Ready to Build at Vibe Speed?
+            Ready to Build Something Amazing?
           </h2>
-          <p className="text-xl text-purple-100 mb-8 max-w-2xl mx-auto">
-            Join thousands of entrepreneurs and businesses who have accelerated their growth with our vibe coders.
+          <p className="text-xl text-purple-100 mb-12 max-w-2xl mx-auto">
+            Join the community of vibe coders and companies building the future with AI-powered development.
           </p>
+          
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100 text-lg px-8 py-4">
-              <Link to="/jobs" className="flex items-center">
-                Start Your Project
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Link>
-            </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-purple-600 text-lg px-8 py-4">
-              <Link to="/waitlist">
-                Join as Vibe Coder
-              </Link>
-            </Button>
+            <Link to="/coders">
+              <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100 text-lg px-8 py-4">
+                <Search className="mr-2 w-5 h-5" />
+                Find Developers
+              </Button>
+            </Link>
+            <Link to="/waitlist">
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-purple-600 text-lg px-8 py-4">
+                <Users className="mr-2 w-5 h-5" />
+                Join as Coder
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -496,3 +613,4 @@ const Index = () => {
 };
 
 export default Index;
+

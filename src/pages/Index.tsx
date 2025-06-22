@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -27,6 +28,69 @@ const Index = () => {
     { name: "Rork", category: "AI Tool" },
     { name: "Firebase Studio", category: "Database" }
   ];
+
+  const getSkillBadgeColor = (skill: string) => {
+    const skillCategories = {
+      // AI Tools
+      "Cursor": "bg-blue-100 text-blue-700 border-blue-200",
+      "Claude": "bg-orange-100 text-orange-700 border-orange-200",
+      "ChatGPT": "bg-green-100 text-green-700 border-green-200",
+      "Copilot": "bg-purple-100 text-purple-700 border-purple-200",
+      "v0": "bg-gray-100 text-gray-700 border-gray-200",
+      "Bolt": "bg-yellow-100 text-yellow-700 border-yellow-200",
+      "Windsurf": "bg-cyan-100 text-cyan-700 border-cyan-200",
+      "Replit": "bg-emerald-100 text-emerald-700 border-emerald-200",
+      "Lovable": "bg-pink-100 text-pink-700 border-pink-200",
+      "Codex": "bg-indigo-100 text-indigo-700 border-indigo-200",
+      
+      // Frontend
+      "React": "bg-sky-100 text-sky-700 border-sky-200",
+      "Next.js": "bg-slate-100 text-slate-700 border-slate-200",
+      "Vue": "bg-green-100 text-green-700 border-green-200",
+      "Angular": "bg-red-100 text-red-700 border-red-200",
+      "Tailwind": "bg-teal-100 text-teal-700 border-teal-200",
+      
+      // Backend
+      "Node.js": "bg-lime-100 text-lime-700 border-lime-200",
+      "Python": "bg-blue-100 text-blue-700 border-blue-200",
+      "FastAPI": "bg-emerald-100 text-emerald-700 border-emerald-200",
+      "Supabase": "bg-green-100 text-green-700 border-green-200",
+      "Firebase": "bg-orange-100 text-orange-700 border-orange-200",
+      
+      // Automation
+      "n8n": "bg-red-100 text-red-700 border-red-200",
+      "Make": "bg-purple-100 text-purple-700 border-purple-200",
+      "Zapier": "bg-orange-100 text-orange-700 border-orange-200",
+      "Gumloop": "bg-indigo-100 text-indigo-700 border-indigo-200",
+      
+      // Mobile
+      "React Native": "bg-cyan-100 text-cyan-700 border-cyan-200",
+      "Flutter": "bg-blue-100 text-blue-700 border-blue-200",
+      
+      // No-Code
+      "Bubble": "bg-blue-100 text-blue-700 border-blue-200",
+      "Webflow": "bg-purple-100 text-purple-700 border-purple-200",
+    };
+    
+    return skillCategories[skill] || "bg-gray-100 text-gray-700 border-gray-200";
+  };
+
+  const getSpecialtyBadgeColor = (specialty: string) => {
+    const specialtyColors = {
+      "AI Agents": "bg-purple-100 text-purple-700 border-purple-200",
+      "Custom Dashboards": "bg-blue-100 text-blue-700 border-blue-200",
+      "Mobile Apps": "bg-green-100 text-green-700 border-green-200",
+      "Micro SaaS": "bg-orange-100 text-orange-700 border-orange-200",
+      "Automation": "bg-red-100 text-red-700 border-red-200",
+      "E-commerce": "bg-pink-100 text-pink-700 border-pink-200",
+      "Data Visualization": "bg-cyan-100 text-cyan-700 border-cyan-200",
+      "Landing Pages": "bg-yellow-100 text-yellow-700 border-yellow-200",
+      "Web Scraping": "bg-indigo-100 text-indigo-700 border-indigo-200",
+      "API Integration": "bg-emerald-100 text-emerald-700 border-emerald-200"
+    };
+    
+    return specialtyColors[specialty] || "bg-gray-100 text-gray-700 border-gray-200";
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-purple-50 to-pink-50">
@@ -241,94 +305,155 @@ const Index = () => {
             {[
               {
                 name: "Alex Chen",
-                title: "Full-Stack AI Developer",
+                role: "AI Agent Specialist",
                 avatar: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=400&fit=crop&crop=face",
                 rating: 4.9,
                 reviews: 127,
                 location: "San Francisco, CA",
-                hourlyRate: "$85",
-                skills: ["Cursor", "Claude", "Next.js", "Supabase"],
-                completedProjects: 89,
                 responseTime: "< 1 hour",
-                description: "Specialized in AI-powered web apps with rapid prototyping using Cursor and Claude."
+                oneLiner: "Specializes in AI-powered web apps with rapid prototyping using Cursor and Claude.",
+                tools: ["Cursor", "Claude", "Next.js", "Supabase", "TypeScript"],
+                specialties: ["AI Agents", "Custom Dashboards", "API Integration"],
+                recentProjects: [
+                  { name: "AI Chat Assistant", price: "$2,500" },
+                  { name: "Smart Analytics Dashboard", price: "$3,200" }
+                ],
+                completedProjects: 89,
+                hourlyRate: "$85",
+                featured: true,
+                available: true
               },
               {
                 name: "Sarah Rodriguez",
-                title: "UI/UX & Frontend Specialist",
+                role: "Micro SaaS Builder",
                 avatar: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=400&h=400&fit=crop&crop=face",
                 rating: 5.0,
                 reviews: 203,
                 location: "Austin, TX",
-                hourlyRate: "$75",
-                skills: ["v0", "Lovable", "React", "Tailwind"],
+                responseTime: "< 2 hours",
+                oneLiner: "Expert in creating beautiful, responsive micro SaaS applications using v0 and modern design tools.",
+                tools: ["v0", "Lovable", "React", "Tailwind", "Webflow"],
+                specialties: ["Micro SaaS", "Landing Pages", "E-commerce"],
+                recentProjects: [
+                  { name: "SaaS Landing Page", price: "$1,800" },
+                  { name: "E-commerce Store", price: "$4,500" }
+                ],
                 completedProjects: 156,
-                responseTime: "< 30 min",
-                description: "Expert in creating beautiful, responsive interfaces using v0 and modern design tools."
+                hourlyRate: "$75",
+                featured: true,
+                available: true
               },
               {
                 name: "Marcus Thompson",
-                title: "Automation & Integration Expert",
+                role: "Automation Expert",
                 avatar: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=400&fit=crop&crop=face",
                 rating: 4.8,
                 reviews: 94,
                 location: "Remote",
-                hourlyRate: "$90",
-                skills: ["n8n", "Make", "Zapier", "Supabase"],
+                responseTime: "< 3 hours",
+                oneLiner: "Building seamless workflows and automations that save businesses time and money.",
+                tools: ["n8n", "Make", "Zapier", "Supabase", "Python"],
+                specialties: ["Automation", "API Integration", "Web Scraping"],
+                recentProjects: [
+                  { name: "CRM Automation System", price: "$3,800" },
+                  { name: "Data Pipeline Setup", price: "$2,200" }
+                ],
                 completedProjects: 67,
-                responseTime: "< 2 hours",
-                description: "Building seamless workflows and automations that save businesses time and money."
+                hourlyRate: "$90",
+                featured: false,
+                available: true
               },
               {
                 name: "Emma Wilson",
-                title: "Full-Stack Developer",
+                role: "Full-Stack Developer",
                 avatar: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=400&h=400&fit=crop&crop=face",
                 rating: 4.9,
                 reviews: 156,
-                location: "New York, NY",
-                hourlyRate: "$80",
-                skills: ["Bolt", "Windsurf", "React", "Node.js"],
-                completedProjects: 112,
+                location: "Seattle, WA",
                 responseTime: "< 1 hour",
-                description: "End-to-end application development with modern AI tools and frameworks."
+                oneLiner: "End-to-end application development with modern AI tools and frameworks.",
+                tools: ["Bolt", "Windsurf", "React", "Node.js", "TypeScript"],
+                specialties: ["Custom Dashboards", "Mobile Apps", "API Integration"],
+                recentProjects: [
+                  { name: "Project Management App", price: "$5,200" },
+                  { name: "Mobile Dashboard", price: "$3,700" }
+                ],
+                completedProjects: 112,
+                hourlyRate: "$80",
+                featured: false,
+                available: false
               },
               {
                 name: "David Kim",
-                title: "AI & Backend Specialist",
-                avatar: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=400&fit=crop&crop=face",
+                role: "AI & Backend Specialist",
+                avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
                 rating: 4.7,
                 reviews: 89,
-                location: "Seattle, WA",
-                hourlyRate: "$95",
-                skills: ["Claude", "Replit", "Python", "FastAPI"],
+                location: "New York, NY",
+                responseTime: "< 4 hours",
+                oneLiner: "Building intelligent backends and AI integrations for modern applications.",
+                tools: ["Claude", "Replit", "Python", "FastAPI", "Codex"],
+                specialties: ["AI Agents", "Data Visualization", "API Integration"],
+                recentProjects: [
+                  { name: "AI Content Generator", price: "$4,800" },
+                  { name: "Analytics Platform", price: "$6,200" }
+                ],
                 completedProjects: 73,
-                responseTime: "< 3 hours",
-                description: "Building intelligent backends and AI integrations for modern applications."
+                hourlyRate: "$95",
+                featured: true,
+                available: true
               },
               {
                 name: "Lisa Chang",
-                title: "No-Code Solutions Expert",
-                avatar: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=400&h=400&fit=crop&crop=face",
+                role: "No-Code Solutions Expert",
+                avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b586?w=400&h=400&fit=crop&crop=face",
                 rating: 5.0,
                 reviews: 134,
                 location: "Los Angeles, CA",
-                hourlyRate: "$70",
-                skills: ["Gumloop", "Make", "Bubble", "Webflow"],
+                responseTime: "< 2 hours",
+                oneLiner: "Rapid prototyping and MVP development using cutting-edge no-code platforms.",
+                tools: ["Gumloop", "Make", "Bubble", "Webflow", "Lovable"],
+                specialties: ["Landing Pages", "E-commerce", "Micro SaaS"],
+                recentProjects: [
+                  { name: "MVP Prototype", price: "$2,800" },
+                  { name: "Business Directory", price: "$3,500" }
+                ],
                 completedProjects: 98,
-                responseTime: "< 45 min",
-                description: "Rapid prototyping and MVP development using cutting-edge no-code platforms."
+                hourlyRate: "$70",
+                featured: false,
+                available: true
               }
             ].map((coder, index) => (
-              <Card key={coder.name} className="vibe-card p-6 hover:scale-105 transition-transform">
-                <CardContent className="p-0">
+              <Card 
+                key={coder.name} 
+                className={`vibe-card hover:scale-105 transition-transform relative ${
+                  coder.featured ? "ring-2 ring-purple-200" : ""
+                }`}
+              >
+                {coder.featured && (
+                  <div className="absolute top-4 left-4 z-10">
+                    <Badge className="bg-purple-500 text-white">
+                      Featured
+                    </Badge>
+                  </div>
+                )}
+                
+                <CardContent className="p-6">
+                  {/* Header with Avatar, Name, Role, Rating */}
                   <div className="flex items-start space-x-4 mb-4">
-                    <img 
-                      src={coder.avatar} 
-                      alt={coder.name}
-                      className="w-16 h-16 rounded-full object-cover"
-                    />
+                    <div className="relative">
+                      <img 
+                        src={coder.avatar} 
+                        alt={coder.name}
+                        className="w-16 h-16 rounded-full object-cover"
+                      />
+                      <div className={`absolute -bottom-1 -right-1 w-5 h-5 rounded-full border-2 border-white ${
+                        coder.available ? "bg-green-400" : "bg-gray-400"
+                      }`}></div>
+                    </div>
                     <div className="flex-1">
                       <h3 className="font-bold text-xl mb-1">{coder.name}</h3>
-                      <p className="text-purple-600 font-semibold mb-2">{coder.title}</p>
+                      <p className="text-purple-600 font-semibold mb-2">{coder.role}</p>
                       <div className="flex items-center space-x-2 mb-2">
                         <div className="flex items-center">
                           <Star className="w-4 h-4 text-yellow-400 fill-current" />
@@ -336,38 +461,90 @@ const Index = () => {
                           <span className="text-sm text-gray-500 ml-1">({coder.reviews} reviews)</span>
                         </div>
                       </div>
-                      <div className="flex items-center space-x-4 text-sm text-gray-600 mb-3">
+                      <div className="flex items-center space-x-4 text-sm text-gray-500">
                         <div className="flex items-center">
-                          <MapPin className="w-3 h-3 mr-1" />
+                          <MapPin className="w-4 h-4 mr-1" />
                           {coder.location}
                         </div>
                         <div className="flex items-center">
-                          <Clock className="w-3 h-3 mr-1" />
+                          <Clock className="w-4 h-4 mr-1" />
                           {coder.responseTime}
                         </div>
                       </div>
                     </div>
+                    <div className="text-right">
+                      <div className="font-bold text-lg text-purple-600">{coder.hourlyRate}/hr</div>
+                      <div className={`text-sm font-medium ${
+                        coder.available ? "text-green-600" : "text-gray-500"
+                      }`}>
+                        {coder.available ? "Available" : "Busy"}
+                      </div>
+                    </div>
                   </div>
                   
-                  <p className="text-gray-600 mb-4">{coder.description}</p>
+                  {/* One-liner */}
+                  <p className="text-gray-600 mb-4 italic">"{coder.oneLiner}"</p>
                   
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {coder.skills.map((skill) => (
-                      <Badge key={skill} variant="secondary" className="bg-purple-100 text-purple-700">
-                        {skill}
-                      </Badge>
-                    ))}
+                  {/* Tools */}
+                  <div className="mb-4">
+                    <h4 className="text-sm font-semibold text-gray-700 mb-2">Tools</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {coder.tools.map((tool) => (
+                        <Badge 
+                          key={tool} 
+                          variant="secondary" 
+                          className={`${getSkillBadgeColor(tool)} border text-xs`}
+                        >
+                          {tool}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Specialties */}
+                  <div className="mb-4">
+                    <h4 className="text-sm font-semibold text-gray-700 mb-2">Specialties</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {coder.specialties.map((specialty) => (
+                        <Badge 
+                          key={specialty} 
+                          variant="outline" 
+                          className={`${getSpecialtyBadgeColor(specialty)} text-xs`}
+                        >
+                          {specialty}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Recent Projects */}
+                  <div className="mb-4">
+                    <h4 className="text-sm font-semibold text-gray-700 mb-2">Recent Projects</h4>
+                    <div className="space-y-2">
+                      {coder.recentProjects.map((project, idx) => (
+                        <div key={idx} className="flex justify-between items-center text-sm">
+                          <span className="text-gray-600">{project.name}</span>
+                          <span className="font-semibold text-green-600">{project.price}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                   
+                  {/* Projects Completed */}
                   <div className="flex justify-between items-center mb-4 text-sm">
                     <span className="text-gray-600">{coder.completedProjects} projects completed</span>
-                    <span className="font-bold text-lg text-purple-600">{coder.hourlyRate}/hr</span>
                   </div>
                   
-                  <Button className="w-full vibe-button">
-                    View Profile
-                    <ArrowRight className="ml-2 w-4 h-4" />
-                  </Button>
+                  {/* Action Buttons */}
+                  <div className="flex gap-3">
+                    <Button variant="outline" className="flex-1 vibe-button-outline">
+                      View Profile
+                    </Button>
+                    <Button className="flex-1 vibe-button">
+                      Hire
+                      <ArrowRight className="ml-2 w-4 h-4" />
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
             ))}

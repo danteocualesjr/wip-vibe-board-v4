@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -21,7 +22,10 @@ const Index = () => {
     { name: "Gamma", category: "Presentations" },
     { name: "Zapier", category: "Automation" },
     { name: "Lindy", category: "AI Agent" },
-    { name: "Others", category: "Various" }
+    { name: "Sora", category: "AI Video" },
+    { name: "Veo 3", category: "AI Video" },
+    { name: "Factory", category: "AI Tool" },
+    { name: "Rork", category: "AI Tool" }
   ];
 
   return (

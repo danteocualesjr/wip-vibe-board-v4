@@ -22,7 +22,10 @@ const ToolLogo: React.FC<ToolLogoProps> = ({ name, category }) => {
       'Gamma': 'https://gamma.app/favicon.ico',
       'Zapier': 'https://zapier.com/favicon.ico',
       'Lindy': 'https://lindy.ai/favicon.ico',
-      'Others': ''
+      'Sora': 'https://openai.com/favicon.ico',
+      'Veo 3': 'https://deepmind.google/favicon.ico',
+      'Factory': '',
+      'Rork': ''
     };
     
     return logoMap[toolName] || '';

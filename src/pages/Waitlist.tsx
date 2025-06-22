@@ -9,13 +9,14 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const Waitlist = () => {
+  const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the email to your backend
-    console.log("Waitlist signup:", email);
+    // Here you would typically send the data to your backend
+    console.log("Waitlist signup:", { fullName, email });
     setIsSubmitted(true);
   };
 
@@ -91,6 +92,20 @@ const Waitlist = () => {
                 <CardContent className="p-0">
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
+                      <Label htmlFor="fullName" className="text-lg font-semibold text-gray-700">
+                        Full Name
+                      </Label>
+                      <Input
+                        id="fullName"
+                        type="text"
+                        placeholder="John Doe"
+                        value={fullName}
+                        onChange={(e) => setFullName(e.target.value)}
+                        required
+                        className="mt-2 text-lg p-4 h-12"
+                      />
+                    </div>
+                    <div>
                       <Label htmlFor="email" className="text-lg font-semibold text-gray-700">
                         Email Address
                       </Label>
@@ -123,7 +138,11 @@ const Waitlist = () => {
                     Thank you for joining our waitlist. We'll notify you as soon as early access is available.
                   </p>
                   <Button 
-                    onClick={() => setIsSubmitted(false)} 
+                    onClick={() => {
+                      setIsSubmitted(false);
+                      setFullName("");
+                      setEmail("");
+                    }} 
                     variant="outline" 
                     className="vibe-button-outline"
                   >

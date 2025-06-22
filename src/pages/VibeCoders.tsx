@@ -85,7 +85,6 @@ const VibeCoders = () => {
       rating: 4.9,
       reviews: 127,
       location: "San Francisco, CA",
-      responseTime: "< 1 hour",
       oneLiner: "Specializes in AI-powered web apps with rapid prototyping using Cursor and Claude.",
       tools: ["Cursor", "Claude", "Next.js", "Supabase", "TypeScript"],
       specialties: ["AI Agents", "Custom Dashboards", "API Integration"],
@@ -105,7 +104,6 @@ const VibeCoders = () => {
       rating: 5.0,
       reviews: 203,
       location: "Austin, TX",
-      responseTime: "< 2 hours",
       oneLiner: "Expert in creating beautiful, responsive micro SaaS applications using v0 and modern design tools.",
       tools: ["v0", "Lovable", "React", "Tailwind", "Webflow"],
       specialties: ["Micro SaaS", "Landing Pages", "E-commerce"],
@@ -125,7 +123,6 @@ const VibeCoders = () => {
       rating: 4.8,
       reviews: 94,
       location: "Remote",
-      responseTime: "< 3 hours",
       oneLiner: "Building seamless workflows and automations that save businesses time and money.",
       tools: ["n8n", "Make", "Zapier", "Supabase", "Python"],
       specialties: ["Automation", "API Integration", "Web Scraping"],
@@ -145,7 +142,6 @@ const VibeCoders = () => {
       rating: 4.9,
       reviews: 156,
       location: "Seattle, WA",
-      responseTime: "< 1 hour",
       oneLiner: "End-to-end application development with modern AI tools and frameworks.",
       tools: ["Bolt", "Windsurf", "React", "Node.js", "TypeScript"],
       specialties: ["Custom Dashboards", "Mobile Apps", "API Integration"],
@@ -165,7 +161,6 @@ const VibeCoders = () => {
       rating: 4.7,
       reviews: 89,
       location: "New York, NY",
-      responseTime: "< 4 hours",
       oneLiner: "Building intelligent backends and AI integrations for modern applications.",
       tools: ["Claude", "Replit", "Python", "FastAPI", "Codex"],
       specialties: ["AI Agents", "Data Visualization", "API Integration"],
@@ -185,7 +180,6 @@ const VibeCoders = () => {
       rating: 5.0,
       reviews: 134,
       location: "Los Angeles, CA",
-      responseTime: "< 2 hours",
       oneLiner: "Rapid prototyping and MVP development using cutting-edge no-code platforms.",
       tools: ["Gumloop", "Make", "Bubble", "Webflow", "Lovable"],
       specialties: ["Landing Pages", "E-commerce", "Micro SaaS"],
@@ -456,14 +450,10 @@ const VibeCoders = () => {
                         <span className="text-sm text-gray-500 ml-1">({coder.reviews} reviews)</span>
                       </div>
                     </div>
-                    <div className="flex items-center space-x-4 text-sm text-gray-500">
+                    <div className="flex items-center text-sm text-gray-500">
                       <div className="flex items-center">
                         <MapPin className="w-4 h-4 mr-1" />
                         {coder.location}
-                      </div>
-                      <div className="flex items-center">
-                        <Clock className="w-4 h-4 mr-1" />
-                        {coder.responseTime}
                       </div>
                     </div>
                   </div>

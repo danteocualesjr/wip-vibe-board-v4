@@ -1,10 +1,11 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ArrowRight, Zap, Search, Filter, Grid, List, Star, MapPin, Clock, Users, Code, Trophy, DollarSign } from "lucide-react";
+import { ArrowRight, Zap, Search, Filter, Grid, List, Star, Users, Code, Trophy } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const VibeCoders = () => {
@@ -454,16 +455,6 @@ const VibeCoders = () => {
                         <Star className="w-4 h-4 text-yellow-400 fill-current" />
                         <span className="text-sm font-semibold ml-1">{coder.rating}</span>
                         <span className="text-sm text-gray-500 ml-1">({coder.reviews} reviews)</span>
-                      </div>
-                    </div>
-                    <div className="flex items-center space-x-4 text-sm text-gray-500">
-                      <div className="flex items-center">
-                        <MapPin className="w-4 h-4 mr-1" />
-                        {coder.location}
-                      </div>
-                      <div className="flex items-center">
-                        <Clock className="w-4 h-4 mr-1" />
-                        {coder.responseTime}
                       </div>
                     </div>
                   </div>

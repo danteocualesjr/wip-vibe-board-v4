@@ -18,7 +18,7 @@ const ToolLogo: React.FC<ToolLogoProps> = ({ name, category }) => {
       'Lovable': 'https://lovable.dev/favicon.ico',
       'Replit': 'https://replit.com/public/images/logo-small.png',
       'v0': 'https://v0.dev/icon.png',
-      'Manus': 'https://manus.ai/favicon.ico',
+      'Manus AI': 'https://manus.ai/favicon.ico',
       'Gamma': 'https://gamma.app/favicon.ico',
       'Zapier': 'https://zapier.com/favicon.ico',
       'Lindy': 'https://lindy.ai/favicon.ico',

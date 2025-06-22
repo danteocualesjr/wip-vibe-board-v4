@@ -25,7 +25,8 @@ const ToolLogo: React.FC<ToolLogoProps> = ({ name, category }) => {
       'Sora': 'https://openai.com/favicon.ico',
       'Veo 3': 'https://deepmind.google/favicon.ico',
       'Factory': '',
-      'Rork': ''
+      'Rork': '',
+      'Firebase Studio': 'https://firebase.google.com/favicon.ico'
     };
     
     return logoMap[toolName] || '';

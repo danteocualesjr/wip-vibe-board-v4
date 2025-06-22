@@ -25,7 +25,8 @@ const Index = () => {
     { name: "Sora", category: "AI Video" },
     { name: "Veo 3", category: "AI Video" },
     { name: "Factory", category: "AI Tool" },
-    { name: "Rork", category: "AI Tool" }
+    { name: "Rork", category: "AI Tool" },
+    { name: "Firebase Studio", category: "Database" }
   ];
 
   return (

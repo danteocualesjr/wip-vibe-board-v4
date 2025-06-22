@@ -7,17 +7,57 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Zap, Users, Star, CheckCircle, Clock, Bell, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 const Waitlist = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the data to your backend
-    console.log("Waitlist signup:", { fullName, email });
-    setIsSubmitted(true);
+    setIsLoading(true);
+
+    try {
+      const { error } = await supabase
+        .from('waitlist')
+        .insert([
+          {
+            full_name: fullName,
+            email: email
+          }
+        ]);
+
+      if (error) {
+        if (error.code === '23505') { // Unique constraint violation
+          toast({
+            title: "Email already registered",
+            description: "This email is already on our waitlist.",
+            variant: "destructive",
+          });
+        } else {
+          throw error;
+        }
+      } else {
+        setIsSubmitted(true);
+        toast({
+          title: "Welcome to the waitlist!",
+          description: "We'll notify you as soon as early access is available.",
+        });
+      }
+    } catch (error) {
+      console.error('Error submitting waitlist:', error);
+      toast({
+        title: "Something went wrong",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -102,6 +142,7 @@ const Waitlist = () => {
                         value={fullName}
                         onChange={(e) => setFullName(e.target.value)}
                         required
+                        disabled={isLoading}
                         className="mt-2 text-lg p-4 h-12"
                       />
                     </div>
@@ -116,12 +157,18 @@ const Waitlist = () => {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
+                        disabled={isLoading}
                         className="mt-2 text-lg p-4 h-12"
                       />
                     </div>
-                    <Button type="submit" size="lg" className="w-full vibe-button text-lg py-4">
+                    <Button 
+                      type="submit" 
+                      size="lg" 
+                      className="w-full vibe-button text-lg py-4"
+                      disabled={isLoading}
+                    >
                       <Sparkles className="mr-2 w-5 h-5" />
-                      Join Waitlist
+                      {isLoading ? "Joining..." : "Join Waitlist"}
                       <ArrowRight className="ml-2 w-5 h-5" />
                     </Button>
                   </form>

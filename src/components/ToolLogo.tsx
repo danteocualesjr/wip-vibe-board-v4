@@ -10,17 +10,17 @@ const ToolLogo: React.FC<ToolLogoProps> = ({ name, category }) => {
   const getLogoUrl = (toolName: string) => {
     const logoMap: { [key: string]: string } = {
       'Cursor': 'https://cursor.sh/brand/icon.png',
-      'Claude': 'https://claude.ai/images/claude_app_icon.png',
-      'v0': 'https://v0.dev/icon.png',
+      'Windsurf': 'https://codeium.com/favicon.ico',
+      'Claude Code': 'https://claude.ai/images/claude_app_icon.png',
+      'Codex': 'https://openai.com/favicon.ico',
+      'Devin': 'https://devin.ai/favicon.ico',
       'Bolt': 'https://bolt.new/icons/bolt.svg',
       'Lovable': 'https://lovable.dev/favicon.ico',
-      'Windsurf': 'https://codeium.com/favicon.ico',
       'Replit': 'https://replit.com/public/images/logo-small.png',
-      'n8n': 'https://n8n.io/favicon.ico',
-      'Make': 'https://www.make.com/favicon.ico',
-      'Gumloop': 'https://gumloop.com/favicon.ico',
-      'Supabase': 'https://supabase.com/favicon/favicon-32x32.png',
-      'Vercel': 'https://vercel.com/favicon.ico'
+      'v0': 'https://v0.dev/icon.png',
+      'Manus': 'https://manus.ai/favicon.ico',
+      'Gamma': 'https://gamma.app/favicon.ico',
+      'Others': ''
     };
     
     return logoMap[toolName] || '';

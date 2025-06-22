@@ -9,17 +9,17 @@ import { SparklesCore } from "@/components/ui/sparkles";
 const Index = () => {
   const tools = [
     { name: "Cursor", category: "AI Editor" },
-    { name: "Claude", category: "AI Assistant" },
-    { name: "v0", category: "UI Generator" },
+    { name: "Windsurf", category: "AI IDE" },
+    { name: "Claude Code", category: "AI Assistant" },
+    { name: "Codex", category: "AI Model" },
+    { name: "Devin", category: "AI Engineer" },
     { name: "Bolt", category: "Full-Stack" },
     { name: "Lovable", category: "Web Apps" },
-    { name: "Windsurf", category: "AI IDE" },
     { name: "Replit", category: "Cloud IDE" },
-    { name: "n8n", category: "Automation" },
-    { name: "Make", category: "Workflows" },
-    { name: "Gumloop", category: "No-Code" },
-    { name: "Supabase", category: "Backend" },
-    { name: "Vercel", category: "Deployment" }
+    { name: "v0", category: "UI Generator" },
+    { name: "Manus", category: "AI Tool" },
+    { name: "Gamma", category: "Presentations" },
+    { name: "Others", category: "Various" }
   ];
 
   return (

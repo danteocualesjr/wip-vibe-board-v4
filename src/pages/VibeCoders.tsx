@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -14,6 +15,68 @@ const VibeCoders = () => {
   const [selectedLocation, setSelectedLocation] = useState("all");
   const [selectedRate, setSelectedRate] = useState("all");
 
+  const getSkillBadgeColor = (skill: string) => {
+    const skillCategories = {
+      // AI Tools
+      "Cursor": "bg-blue-100 text-blue-700 border-blue-200",
+      "Claude": "bg-orange-100 text-orange-700 border-orange-200",
+      "ChatGPT": "bg-green-100 text-green-700 border-green-200",
+      "Copilot": "bg-purple-100 text-purple-700 border-purple-200",
+      "v0": "bg-gray-100 text-gray-700 border-gray-200",
+      "Bolt": "bg-yellow-100 text-yellow-700 border-yellow-200",
+      "Windsurf": "bg-cyan-100 text-cyan-700 border-cyan-200",
+      "Replit": "bg-emerald-100 text-emerald-700 border-emerald-200",
+      
+      // Frontend
+      "React": "bg-sky-100 text-sky-700 border-sky-200",
+      "Next.js": "bg-slate-100 text-slate-700 border-slate-200",
+      "Vue": "bg-green-100 text-green-700 border-green-200",
+      "Angular": "bg-red-100 text-red-700 border-red-200",
+      "Tailwind": "bg-teal-100 text-teal-700 border-teal-200",
+      "Lovable": "bg-pink-100 text-pink-700 border-pink-200",
+      
+      // Backend
+      "Node.js": "bg-lime-100 text-lime-700 border-lime-200",
+      "Python": "bg-blue-100 text-blue-700 border-blue-200",
+      "FastAPI": "bg-emerald-100 text-emerald-700 border-emerald-200",
+      "Supabase": "bg-green-100 text-green-700 border-green-200",
+      "Firebase": "bg-orange-100 text-orange-700 border-orange-200",
+      
+      // Automation
+      "n8n": "bg-red-100 text-red-700 border-red-200",
+      "Make": "bg-purple-100 text-purple-700 border-purple-200",
+      "Zapier": "bg-orange-100 text-orange-700 border-orange-200",
+      "Gumloop": "bg-indigo-100 text-indigo-700 border-indigo-200",
+      
+      // Mobile
+      "React Native": "bg-cyan-100 text-cyan-700 border-cyan-200",
+      "Flutter": "bg-blue-100 text-blue-700 border-blue-200",
+      
+      // No-Code
+      "Bubble": "bg-blue-100 text-blue-700 border-blue-200",
+      "Webflow": "bg-purple-100 text-purple-700 border-purple-200",
+      
+      // Data Science
+      "TensorFlow": "bg-orange-100 text-orange-700 border-orange-200",
+      "Jupyter": "bg-orange-100 text-orange-700 border-orange-200",
+      "Pandas": "bg-blue-100 text-blue-700 border-blue-200",
+      
+      // DevOps
+      "Docker": "bg-blue-100 text-blue-700 border-blue-200",
+      "AWS": "bg-orange-100 text-orange-700 border-orange-200",
+      "Terraform": "bg-purple-100 text-purple-700 border-purple-200",
+      "Kubernetes": "bg-blue-100 text-blue-700 border-blue-200",
+      
+      // Languages
+      "TypeScript": "bg-blue-100 text-blue-700 border-blue-200",
+      "JavaScript": "bg-yellow-100 text-yellow-700 border-yellow-200",
+      "Go": "bg-cyan-100 text-cyan-700 border-cyan-200",
+      "Rust": "bg-orange-100 text-orange-700 border-orange-200"
+    };
+    
+    return skillCategories[skill] || "bg-gray-100 text-gray-700 border-gray-200";
+  };
+
   const coders = [
     {
       name: "Alex Chen",
@@ -23,7 +86,7 @@ const VibeCoders = () => {
       reviews: 127,
       location: "San Francisco, CA",
       hourlyRate: "$85",
-      skills: ["Cursor", "Claude", "Next.js", "Supabase"],
+      skills: ["Cursor", "Claude", "Next.js", "Supabase", "TypeScript", "Tailwind", "ChatGPT", "React", "Node.js"],
       completedProjects: 89,
       responseTime: "< 1 hour",
       description: "Specialized in AI-powered web apps with rapid prototyping using Cursor and Claude.",
@@ -38,7 +101,7 @@ const VibeCoders = () => {
       reviews: 203,
       location: "Austin, TX",
       hourlyRate: "$75",
-      skills: ["v0", "Lovable", "React", "Tailwind"],
+      skills: ["v0", "Lovable", "React", "Tailwind", "Figma", "Framer", "Vue", "TypeScript", "Webflow"],
       completedProjects: 156,
       responseTime: "< 30 min",
       description: "Expert in creating beautiful, responsive interfaces using v0 and modern design tools.",
@@ -53,7 +116,7 @@ const VibeCoders = () => {
       reviews: 94,
       location: "Remote",
       hourlyRate: "$90",
-      skills: ["n8n", "Make", "Zapier", "Supabase"],
+      skills: ["n8n", "Make", "Zapier", "Supabase", "Gumloop", "Python", "JavaScript", "Node.js", "Firebase"],
       completedProjects: 67,
       responseTime: "< 2 hours",
       description: "Building seamless workflows and automations that save businesses time and money.",
@@ -68,7 +131,7 @@ const VibeCoders = () => {
       reviews: 156,
       location: "New York, NY",
       hourlyRate: "$80",
-      skills: ["Bolt", "Windsurf", "React", "Node.js"],
+      skills: ["Bolt", "Windsurf", "React", "Node.js", "TypeScript", "Next.js", "Cursor", "Supabase", "Tailwind"],
       completedProjects: 112,
       responseTime: "< 1 hour",
       description: "End-to-end application development with modern AI tools and frameworks.",
@@ -83,7 +146,7 @@ const VibeCoders = () => {
       reviews: 89,
       location: "Seattle, WA",
       hourlyRate: "$95",
-      skills: ["Claude", "Replit", "Python", "FastAPI"],
+      skills: ["Claude", "Replit", "Python", "FastAPI", "TensorFlow", "Jupyter", "ChatGPT", "Pandas", "AWS"],
       completedProjects: 73,
       responseTime: "< 3 hours",
       description: "Building intelligent backends and AI integrations for modern applications.",
@@ -98,7 +161,7 @@ const VibeCoders = () => {
       reviews: 134,
       location: "Los Angeles, CA",
       hourlyRate: "$70",
-      skills: ["Gumloop", "Make", "Bubble", "Webflow"],
+      skills: ["Gumloop", "Make", "Bubble", "Webflow", "Zapier", "n8n", "Lovable", "v0", "Cursor"],
       completedProjects: 98,
       responseTime: "< 45 min",
       description: "Rapid prototyping and MVP development using cutting-edge no-code platforms.",
@@ -113,7 +176,7 @@ const VibeCoders = () => {
       reviews: 167,
       location: "Miami, FL",
       hourlyRate: "$82",
-      skills: ["Cursor", "React Native", "Firebase", "TypeScript"],
+      skills: ["Cursor", "React Native", "Firebase", "TypeScript", "React", "Flutter", "Next.js", "Tailwind", "Supabase"],
       completedProjects: 134,
       responseTime: "< 1.5 hours",
       description: "Cross-platform mobile and web applications with focus on performance and UX.",
@@ -128,7 +191,7 @@ const VibeCoders = () => {
       reviews: 92,
       location: "Boston, MA",
       hourlyRate: "$88",
-      skills: ["Claude", "Python", "TensorFlow", "Jupyter"],
+      skills: ["Claude", "Python", "TensorFlow", "Jupyter", "Pandas", "ChatGPT", "FastAPI", "AWS", "Replit"],
       completedProjects: 67,
       responseTime: "< 2 hours",
       description: "Machine learning models and data-driven applications with AI integration expertise.",
@@ -143,7 +206,7 @@ const VibeCoders = () => {
       reviews: 78,
       location: "Denver, CO",
       hourlyRate: "$92",
-      skills: ["Docker", "AWS", "Terraform", "Kubernetes"],
+      skills: ["Docker", "AWS", "Terraform", "Kubernetes", "Python", "Go", "Node.js", "Rust", "TypeScript"],
       completedProjects: 89,
       responseTime: "< 4 hours",
       description: "Scalable cloud infrastructure and deployment pipelines for modern applications.",
@@ -433,7 +496,11 @@ const VibeCoders = () => {
                 
                 <div className="flex flex-wrap gap-2 mb-4">
                   {coder.skills.map((skill) => (
-                    <Badge key={skill} variant="secondary" className="bg-purple-100 text-purple-700">
+                    <Badge 
+                      key={skill} 
+                      variant="secondary" 
+                      className={`${getSkillBadgeColor(skill)} border`}
+                    >
                       {skill}
                     </Badge>
                   ))}

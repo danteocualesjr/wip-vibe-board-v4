@@ -84,6 +84,8 @@ const VibeCoders = () => {
       avatar: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=400&fit=crop&crop=face",
       rating: 4.9,
       reviews: 127,
+      location: "San Francisco, CA",
+      responseTime: "< 1 hour",
       oneLiner: "Specializes in AI-powered web apps with rapid prototyping using Cursor and Claude.",
       tools: ["Cursor", "Claude", "Next.js", "Supabase", "TypeScript"],
       specialties: ["AI Agents", "Custom Dashboards", "API Integration"],
@@ -102,6 +104,8 @@ const VibeCoders = () => {
       avatar: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=400&h=400&fit=crop&crop=face",
       rating: 5.0,
       reviews: 203,
+      location: "Austin, TX",
+      responseTime: "< 2 hours",
       oneLiner: "Expert in creating beautiful, responsive micro SaaS applications using v0 and modern design tools.",
       tools: ["v0", "Lovable", "React", "Tailwind", "Webflow"],
       specialties: ["Micro SaaS", "Landing Pages", "E-commerce"],
@@ -120,6 +124,8 @@ const VibeCoders = () => {
       avatar: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=400&fit=crop&crop=face",
       rating: 4.8,
       reviews: 94,
+      location: "Remote",
+      responseTime: "< 3 hours",
       oneLiner: "Building seamless workflows and automations that save businesses time and money.",
       tools: ["n8n", "Make", "Zapier", "Supabase", "Python"],
       specialties: ["Automation", "API Integration", "Web Scraping"],
@@ -138,6 +144,8 @@ const VibeCoders = () => {
       avatar: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=400&h=400&fit=crop&crop=face",
       rating: 4.9,
       reviews: 156,
+      location: "Seattle, WA",
+      responseTime: "< 1 hour",
       oneLiner: "End-to-end application development with modern AI tools and frameworks.",
       tools: ["Bolt", "Windsurf", "React", "Node.js", "TypeScript"],
       specialties: ["Custom Dashboards", "Mobile Apps", "API Integration"],
@@ -156,6 +164,8 @@ const VibeCoders = () => {
       avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
       rating: 4.7,
       reviews: 89,
+      location: "New York, NY",
+      responseTime: "< 4 hours",
       oneLiner: "Building intelligent backends and AI integrations for modern applications.",
       tools: ["Claude", "Replit", "Python", "FastAPI", "Codex"],
       specialties: ["AI Agents", "Data Visualization", "API Integration"],
@@ -174,6 +184,8 @@ const VibeCoders = () => {
       avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b586?w=400&h=400&fit=crop&crop=face",
       rating: 5.0,
       reviews: 134,
+      location: "Los Angeles, CA",
+      responseTime: "< 2 hours",
       oneLiner: "Rapid prototyping and MVP development using cutting-edge no-code platforms.",
       tools: ["Gumloop", "Make", "Bubble", "Webflow", "Lovable"],
       specialties: ["Landing Pages", "E-commerce", "Micro SaaS"],
@@ -411,7 +423,7 @@ const VibeCoders = () => {
               key={coder.name} 
               className={`vibe-card hover:scale-105 transition-transform ${
                 viewMode === "list" ? "flex" : ""
-              } ${coder.featured ? "ring-2 ring-purple-200" : ""}`}
+              } ${coder.featured ? "ring-2 ring-purple-200" : ""} relative`}
             >
               {coder.featured && (
                 <div className="absolute top-4 left-4 z-10">
@@ -442,6 +454,16 @@ const VibeCoders = () => {
                         <Star className="w-4 h-4 text-yellow-400 fill-current" />
                         <span className="text-sm font-semibold ml-1">{coder.rating}</span>
                         <span className="text-sm text-gray-500 ml-1">({coder.reviews} reviews)</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center space-x-4 text-sm text-gray-500">
+                      <div className="flex items-center">
+                        <MapPin className="w-4 h-4 mr-1" />
+                        {coder.location}
+                      </div>
+                      <div className="flex items-center">
+                        <Clock className="w-4 h-4 mr-1" />
+                        {coder.responseTime}
                       </div>
                     </div>
                   </div>

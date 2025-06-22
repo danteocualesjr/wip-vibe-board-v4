@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -103,6 +102,51 @@ const VibeCoders = () => {
       completedProjects: 98,
       responseTime: "< 45 min",
       description: "Rapid prototyping and MVP development using cutting-edge no-code platforms.",
+      featured: false,
+      available: true
+    },
+    {
+      name: "Jordan Martinez",
+      title: "Mobile & Web Developer",
+      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
+      rating: 4.8,
+      reviews: 167,
+      location: "Miami, FL",
+      hourlyRate: "$82",
+      skills: ["Cursor", "React Native", "Firebase", "TypeScript"],
+      completedProjects: 134,
+      responseTime: "< 1.5 hours",
+      description: "Cross-platform mobile and web applications with focus on performance and UX.",
+      featured: false,
+      available: true
+    },
+    {
+      name: "Priya Patel",
+      title: "Data Science & AI Engineer",
+      avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop&crop=face",
+      rating: 4.9,
+      reviews: 92,
+      location: "Boston, MA",
+      hourlyRate: "$88",
+      skills: ["Claude", "Python", "TensorFlow", "Jupyter"],
+      completedProjects: 67,
+      responseTime: "< 2 hours",
+      description: "Machine learning models and data-driven applications with AI integration expertise.",
+      featured: true,
+      available: true
+    },
+    {
+      name: "Ryan O'Connor",
+      title: "DevOps & Cloud Architect",
+      avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop&crop=face",
+      rating: 4.7,
+      reviews: 78,
+      location: "Denver, CO",
+      hourlyRate: "$92",
+      skills: ["Docker", "AWS", "Terraform", "Kubernetes"],
+      completedProjects: 89,
+      responseTime: "< 4 hours",
+      description: "Scalable cloud infrastructure and deployment pipelines for modern applications.",
       featured: false,
       available: true
     }

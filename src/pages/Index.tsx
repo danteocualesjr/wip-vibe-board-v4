@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -6,8 +5,13 @@ import { ArrowRight, Zap, Users, Star, Trophy, Briefcase, Search, Sparkles, Code
 import { Link } from "react-router-dom";
 import ToolLogo from "@/components/ToolLogo";
 import { SparklesCore } from "@/components/ui/sparkles";
+import { ToolModal } from "@/components/ToolModal";
+import { useState } from "react";
 
 const Index = () => {
+  const [selectedTool, setSelectedTool] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const tools = [
     { name: "Cursor", category: "AI Editor" },
     { name: "Windsurf", category: "AI IDE" },
@@ -28,6 +32,16 @@ const Index = () => {
     { name: "Rork", category: "AI Tool" },
     { name: "Firebase Studio", category: "Database" }
   ];
+
+  const handleToolClick = (toolName: string) => {
+    setSelectedTool(toolName);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedTool(null);
+  };
 
   const getSkillBadgeColor = (skill: string) => {
     const skillCategories = {
@@ -275,7 +289,11 @@ const Index = () => {
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
             {tools.map((tool, index) => (
-              <Card key={tool.name} className="vibe-card p-6 text-center hover:scale-105 transition-transform">
+              <Card 
+                key={tool.name} 
+                className="vibe-card p-6 text-center hover:scale-105 transition-transform cursor-pointer"
+                onClick={() => handleToolClick(tool.name)}
+              >
                 <CardContent className="p-0 flex flex-col items-center justify-center">
                   <ToolLogo name={tool.name} category={tool.category} />
                   <h3 className="font-semibold text-lg mb-1">{tool.name}</h3>
@@ -773,6 +791,13 @@ const Index = () => {
           </div>
         </div>
       </footer>
+
+      {/* Tool Modal */}
+      <ToolModal 
+        tool={selectedTool ? { name: selectedTool, category: tools.find(t => t.name === selectedTool)?.category || "AI Tool" } : null}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
     </div>
   );
 };

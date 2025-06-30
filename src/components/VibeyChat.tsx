@@ -33,13 +33,18 @@ export const VibeyChat = () => {
     scrollToBottom();
   }, [messages]);
 
-  // Initialize chat on first open
+  // Show welcome message when chat opens
   useEffect(() => {
-    if (isOpen && !hasInitialized) {
-      initializeChat();
-      setHasInitialized(true);
+    if (isOpen && messages.length === 0) {
+      const welcomeMessage: Message = {
+        id: 'welcome',
+        content: "Hey, I'm Vibey, your personal AI agent. How can I help you today?",
+        isUser: false,
+        timestamp: new Date()
+      };
+      setMessages([welcomeMessage]);
     }
-  }, [isOpen, hasInitialized]);
+  }, [isOpen, messages.length]);
 
   const initializeChat = async () => {
     setIsLoading(true);
@@ -111,15 +116,15 @@ export const VibeyChat = () => {
     } finally {
       setIsLoading(false);
       abortControllerRef.current = null;
+      setHasInitialized(true);
     }
   };
 
   const sendMessage = async () => {
-    if (!inputMessage.trim() || !runId || isLoading) return;
+    if (!inputMessage.trim() || isLoading) return;
 
     const userMessage = inputMessage.trim();
     setInputMessage('');
-    setIsLoading(true);
 
     // Add user message
     const userMessageObj: Message = {
@@ -130,6 +135,16 @@ export const VibeyChat = () => {
     };
     
     setMessages(prev => [...prev, userMessageObj]);
+
+    // Initialize chat if this is the first user message
+    if (!hasInitialized) {
+      await initializeChat();
+      if (!runId) return; // If initialization failed, don't continue
+    }
+
+    if (!runId) return;
+
+    setIsLoading(true);
 
     try {
       abortControllerRef.current = new AbortController();
@@ -326,12 +341,12 @@ export const VibeyChat = () => {
                 onChange={(e) => setInputMessage(e.target.value)}
                 onKeyPress={handleKeyPress}
                 placeholder="Type your message..."
-                disabled={isLoading || !runId}
+                disabled={isLoading}
                 className="flex-1"
               />
               <Button
                 onClick={sendMessage}
-                disabled={!inputMessage.trim() || isLoading || !runId}
+                disabled={!inputMessage.trim() || isLoading}
                 className="bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600"
               >
                 <Send className="w-4 h-4" />

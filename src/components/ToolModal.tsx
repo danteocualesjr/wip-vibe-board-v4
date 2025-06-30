@@ -20,7 +20,7 @@ interface ToolData {
 }
 
 interface ToolModalProps {
-  tool: ToolData | null;
+  tool: { name: string; category: string } | null;
   isOpen: boolean;
   onClose: () => void;
 }
@@ -407,16 +407,18 @@ const getToolData = (toolName: string): ToolData => {
 export function ToolModal({ tool, isOpen, onClose }: ToolModalProps) {
   if (!tool) return null;
 
+  const toolData = getToolData(tool.name);
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <div className="flex items-center space-x-4 mb-4">
-            <ToolLogo name={tool.name} category={tool.category} />
+            <ToolLogo name={toolData.name} category={toolData.category} />
             <div>
-              <DialogTitle className="text-2xl font-bold">{tool.name}</DialogTitle>
+              <DialogTitle className="text-2xl font-bold">{toolData.name}</DialogTitle>
               <Badge variant="secondary" className="mt-1">
-                {tool.category}
+                {toolData.category}
               </Badge>
             </div>
           </div>
@@ -427,17 +429,17 @@ export function ToolModal({ tool, isOpen, onClose }: ToolModalProps) {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="text-center p-3 bg-gray-50 rounded-lg">
               <Star className="w-5 h-5 text-yellow-500 mx-auto mb-1" />
-              <div className="font-semibold">{tool.rating}</div>
+              <div className="font-semibold">{toolData.rating}</div>
               <div className="text-sm text-gray-600">Rating</div>
             </div>
             <div className="text-center p-3 bg-gray-50 rounded-lg">
               <Users className="w-5 h-5 text-blue-500 mx-auto mb-1" />
-              <div className="font-semibold">{tool.userCount}</div>
+              <div className="font-semibold">{toolData.userCount}</div>
               <div className="text-sm text-gray-600">Users</div>
             </div>
             <div className="text-center p-3 bg-gray-50 rounded-lg">
               <Calendar className="w-5 h-5 text-green-500 mx-auto mb-1" />
-              <div className="font-semibold">{tool.releaseDate}</div>
+              <div className="font-semibold">{toolData.releaseDate}</div>
               <div className="text-sm text-gray-600">Released</div>
             </div>
             <div className="text-center p-3 bg-gray-50 rounded-lg">
@@ -449,15 +451,15 @@ export function ToolModal({ tool, isOpen, onClose }: ToolModalProps) {
 
           {/* Description */}
           <div>
-            <h3 className="text-lg font-semibold mb-2">About {tool.name}</h3>
-            <p className="text-gray-600 leading-relaxed">{tool.longDescription}</p>
+            <h3 className="text-lg font-semibold mb-2">About {toolData.name}</h3>
+            <p className="text-gray-600 leading-relaxed">{toolData.longDescription}</p>
           </div>
 
           {/* Features */}
           <div>
             <h3 className="text-lg font-semibold mb-3">Key Features</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-              {tool.features.map((feature, index) => (
+              {toolData.features.map((feature, index) => (
                 <div key={index} className="flex items-center space-x-2">
                   <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
                   <span className="text-gray-700">{feature}</span>
@@ -470,7 +472,7 @@ export function ToolModal({ tool, isOpen, onClose }: ToolModalProps) {
           <div>
             <h3 className="text-lg font-semibold mb-3">Tags</h3>
             <div className="flex flex-wrap gap-2">
-              {tool.tags.map((tag, index) => (
+              {toolData.tags.map((tag, index) => (
                 <Badge key={index} variant="outline" className="text-xs">
                   {tag}
                 </Badge>
@@ -481,14 +483,14 @@ export function ToolModal({ tool, isOpen, onClose }: ToolModalProps) {
           {/* Pricing */}
           <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-4 rounded-lg">
             <h3 className="text-lg font-semibold mb-2">Pricing</h3>
-            <p className="text-gray-700 font-medium">{tool.pricing}</p>
+            <p className="text-gray-700 font-medium">{toolData.pricing}</p>
           </div>
 
           {/* Actions */}
           <div className="flex space-x-3 pt-4">
             <Button 
               className="flex-1 vibe-button" 
-              onClick={() => window.open(tool.website, '_blank')}
+              onClick={() => window.open(toolData.website, '_blank')}
             >
               <ExternalLink className="mr-2 w-4 h-4" />
               Visit Website

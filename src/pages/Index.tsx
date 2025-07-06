@@ -16,6 +16,7 @@ const Index = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const tools = [
+    
     { name: "Cursor", category: "AI Editor" },
     { name: "Windsurf", category: "AI IDE" },
     { name: "Claude Code", category: "AI Assistant" },

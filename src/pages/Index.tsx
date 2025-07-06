@@ -35,6 +35,7 @@ const Index = () => {
     { name: "Factory", category: "AI Tool" },
     { name: "Rork", category: "AI Tool" },
     { name: "Firebase Studio", category: "Database" }
+    
   ];
 
   const handleToolClick = (toolName: string) => {

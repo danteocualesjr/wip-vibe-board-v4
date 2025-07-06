@@ -11,6 +11,7 @@ import { VibeyChat } from "@/components/VibeyChat";
 import { useState } from "react";
 
 const Index = () => {
+  
   const [selectedTool, setSelectedTool] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 

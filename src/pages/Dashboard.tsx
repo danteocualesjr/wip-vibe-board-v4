@@ -89,9 +89,8 @@ const Dashboard = () => {
                 <Code2 className="w-8 h-8 text-primary" />
               </div>
               <span className="text-2xl font-bold gradient-text">
-                VibeCode
+                Vibe Board
               </span>
-              <span className="text-muted-foreground">Dashboard</span>
             </div>
             
             <div className="flex items-center space-x-4">

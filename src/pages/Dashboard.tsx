@@ -110,6 +110,22 @@ const Dashboard = () => {
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Activity Heatmap - Top Section */}
+        <Card className="premium-card mb-8">
+          <CardHeader>
+            <CardTitle className="flex items-center gradient-text">
+              <TrendingUp className="w-5 h-5 mr-2" />
+              Activity Overview
+            </CardTitle>
+            <CardDescription>
+              Your coding contributions over the past year
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <ActivityHeatmap userId={user.id} />
+          </CardContent>
+        </Card>
+
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Left Sidebar - Profile & Skills */}
           <div className="lg:col-span-1 space-y-6">
@@ -127,22 +143,6 @@ const Dashboard = () => {
 
             {/* Project Insights */}
             <ProjectInsights userId={user.id} />
-
-            {/* Activity Heatmap */}
-            <Card className="premium-card">
-              <CardHeader>
-                <CardTitle className="flex items-center gradient-text">
-                  <TrendingUp className="w-5 h-5 mr-2" />
-                  Activity Heatmap
-                </CardTitle>
-                <CardDescription>
-                  Your coding activity over the past year
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ActivityHeatmap userId={user.id} />
-              </CardContent>
-            </Card>
 
             {/* Tabs for Projects and Activity */}
             <Tabs defaultValue="projects" className="w-full">

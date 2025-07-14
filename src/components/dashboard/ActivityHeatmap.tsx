@@ -74,11 +74,21 @@ export const ActivityHeatmap: React.FC<ActivityHeatmapProps> = ({ userId }) => {
   };
 
   const getIntensityClass = (count: number) => {
-    if (count === 0) return 'bg-muted';
-    if (count <= 2) return 'bg-primary/20';
-    if (count <= 4) return 'bg-primary/40';
-    if (count <= 6) return 'bg-primary/60';
-    return 'bg-primary';
+    if (count === 0) return 'bg-gray-100 border border-gray-200';
+    if (count <= 2) return 'bg-green-100 border border-green-200';
+    if (count <= 4) return 'bg-green-300 border border-green-400';
+    if (count <= 6) return 'bg-green-500 border border-green-600';
+    return 'bg-green-700 border border-green-800';
+  };
+
+  const getMonths = () => {
+    const months = [];
+    const today = new Date();
+    for (let i = 11; i >= 0; i--) {
+      const date = new Date(today.getFullYear(), today.getMonth() - i, 1);
+      months.push(date.toLocaleDateString('en-US', { month: 'short' }));
+    }
+    return months;
   };
 
   const heatmapData = generateHeatmapData();
@@ -93,47 +103,64 @@ export const ActivityHeatmap: React.FC<ActivityHeatmapProps> = ({ userId }) => {
   }
 
   return (
-    <div className="w-full overflow-x-auto">
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+    <div className="w-full">
+      {/* GitHub-style header */}
+      <div className="flex items-center justify-between mb-4">
+        <div className="text-sm text-muted-foreground">
+          <span className="font-medium text-foreground">{heatmapData.filter(d => d.count > 0).length}</span> contributions in the last year
+        </div>
+        <div className="flex items-center space-x-2 text-xs text-muted-foreground">
           <span>Less</span>
           <div className="flex space-x-1">
-            <div className="w-3 h-3 rounded-sm bg-muted transition-all hover:scale-110"></div>
-            <div className="w-3 h-3 rounded-sm bg-primary/20 transition-all hover:scale-110"></div>
-            <div className="w-3 h-3 rounded-sm bg-primary/40 transition-all hover:scale-110"></div>
-            <div className="w-3 h-3 rounded-sm bg-primary/60 transition-all hover:scale-110"></div>
-            <div className="w-3 h-3 rounded-sm bg-primary glow-effect transition-all hover:scale-110"></div>
+            <div className="w-3 h-3 bg-gray-100 border border-gray-200 rounded-sm"></div>
+            <div className="w-3 h-3 bg-green-100 border border-green-200 rounded-sm"></div>
+            <div className="w-3 h-3 bg-green-300 border border-green-400 rounded-sm"></div>
+            <div className="w-3 h-3 bg-green-500 border border-green-600 rounded-sm"></div>
+            <div className="w-3 h-3 bg-green-700 border border-green-800 rounded-sm"></div>
           </div>
           <span>More</span>
         </div>
-        
-        <div className="text-sm text-muted-foreground">
-          <span className="gradient-text font-medium">{heatmapData.filter(d => d.count > 0).length}</span> active days
-        </div>
       </div>
-      
-      <div className="grid grid-cols-53 gap-1 min-w-[700px] animate-fade-in">
-        {Array.from({ length: weeks }).map((_, weekIndex) => (
-          <div key={weekIndex} className="grid grid-rows-7 gap-1">
-            {Array.from({ length: 7 }).map((_, dayIndex) => {
-              const dataPoint = heatmapData.find(d => d.week === weekIndex && d.day === dayIndex);
-              return (
-                <div
-                  key={`${weekIndex}-${dayIndex}`}
-                  className={`w-3 h-3 rounded-sm ${
-                    dataPoint ? getIntensityClass(dataPoint.count) : 'bg-muted'
-                  } hover:ring-2 hover:ring-primary/50 hover:scale-125 transition-all duration-200 cursor-pointer group ${
-                    dataPoint?.count > 6 ? 'animate-glow-pulse' : ''
-                  }`}
-                  title={dataPoint ? `${dataPoint.date}: ${dataPoint.count} activities` : ''}
-                  style={{
-                    animationDelay: `${(weekIndex * 7 + dayIndex) * 10}ms`
-                  }}
-                />
-              );
-            })}
+
+      {/* Month labels */}
+      <div className="relative">
+        <div className="flex justify-start mb-2 ml-8">
+          {getMonths().map((month, index) => (
+            <div key={index} className="text-xs text-muted-foreground w-11 text-left">
+              {index % 2 === 0 ? month : ''}
+            </div>
+          ))}
+        </div>
+
+        {/* Days and grid */}
+        <div className="flex">
+          {/* Day labels */}
+          <div className="flex flex-col justify-between text-xs text-muted-foreground pr-2 h-24">
+            <div>Mon</div>
+            <div>Wed</div>
+            <div>Fri</div>
           </div>
-        ))}
+
+          {/* Contribution grid */}
+          <div className="grid grid-cols-53 gap-1 flex-1">
+            {Array.from({ length: weeks }).map((_, weekIndex) => (
+              <div key={weekIndex} className="grid grid-rows-7 gap-1">
+                {Array.from({ length: 7 }).map((_, dayIndex) => {
+                  const dataPoint = heatmapData.find(d => d.week === weekIndex && d.day === dayIndex);
+                  return (
+                    <div
+                      key={`${weekIndex}-${dayIndex}`}
+                      className={`w-3 h-3 rounded-sm ${
+                        dataPoint ? getIntensityClass(dataPoint.count) : 'bg-gray-100 border border-gray-200'
+                      } hover:ring-2 hover:ring-green-400 transition-all duration-200 cursor-pointer`}
+                      title={dataPoint ? `${dataPoint.count} contributions on ${dataPoint.date}` : 'No contributions'}
+                    />
+                  );
+                })}
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

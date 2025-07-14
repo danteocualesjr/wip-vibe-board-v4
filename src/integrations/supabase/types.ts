@@ -14,6 +14,132 @@ export type Database = {
   }
   public: {
     Tables: {
+      profiles: {
+        Row: {
+          available_for_hire: boolean | null
+          avatar_url: string | null
+          bio: string | null
+          created_at: string
+          display_name: string | null
+          experience_level: string | null
+          github_url: string | null
+          id: string
+          linkedin_url: string | null
+          location: string | null
+          portfolio_url: string | null
+          skills: string[] | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          available_for_hire?: boolean | null
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          display_name?: string | null
+          experience_level?: string | null
+          github_url?: string | null
+          id?: string
+          linkedin_url?: string | null
+          location?: string | null
+          portfolio_url?: string | null
+          skills?: string[] | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          available_for_hire?: boolean | null
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          display_name?: string | null
+          experience_level?: string | null
+          github_url?: string | null
+          id?: string
+          linkedin_url?: string | null
+          location?: string | null
+          portfolio_url?: string | null
+          skills?: string[] | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      projects: {
+        Row: {
+          created_at: string
+          description: string | null
+          featured: boolean | null
+          github_url: string | null
+          id: string
+          image_url: string | null
+          live_url: string | null
+          status: string | null
+          tech_stack: string[] | null
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          featured?: boolean | null
+          github_url?: string | null
+          id?: string
+          image_url?: string | null
+          live_url?: string | null
+          status?: string | null
+          tech_stack?: string[] | null
+          title: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          featured?: boolean | null
+          github_url?: string | null
+          id?: string
+          image_url?: string | null
+          live_url?: string | null
+          status?: string | null
+          tech_stack?: string[] | null
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_activity: {
+        Row: {
+          activity_count: number | null
+          activity_date: string
+          activity_type: string
+          created_at: string
+          id: string
+          metadata: Json | null
+          user_id: string
+        }
+        Insert: {
+          activity_count?: number | null
+          activity_date?: string
+          activity_type: string
+          created_at?: string
+          id?: string
+          metadata?: Json | null
+          user_id: string
+        }
+        Update: {
+          activity_count?: number | null
+          activity_date?: string
+          activity_type?: string
+          created_at?: string
+          id?: string
+          metadata?: Json | null
+          user_id?: string
+        }
+        Relationships: []
+      }
       waitlist: {
         Row: {
           created_at: string

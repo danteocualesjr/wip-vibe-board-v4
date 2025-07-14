@@ -10,6 +10,7 @@ import VibeCoders from "./pages/VibeCoders";
 import Jobs from "./pages/Jobs";
 import Waitlist from "./pages/Waitlist";
 import Auth from "./pages/Auth";
+import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/jobs" element={<Jobs />} />
           <Route path="/waitlist" element={<Waitlist />} />
           <Route path="/auth" element={<Auth />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

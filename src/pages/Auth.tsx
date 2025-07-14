@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -9,26 +11,113 @@ import { ArrowLeft, Code2 } from 'lucide-react';
 
 const Auth = () => {
   const navigate = useNavigate();
+  const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    firstName: '',
+    lastName: '',
+    confirmPassword: '',
+  });
+
+  useEffect(() => {
+    // Check if user is already authenticated
+    const checkAuth = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session) {
+        navigate('/dashboard');
+      }
+    };
+    checkAuth();
+
+    // Listen for auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (session) {
+        navigate('/dashboard');
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, [navigate]);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    // TODO: Implement authentication logic
-    setTimeout(() => {
+
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email: formData.email,
+        password: formData.password,
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Welcome back!",
+        description: "You've been signed in successfully.",
+      });
+    } catch (error: any) {
+      toast({
+        title: "Sign in failed",
+        description: error.message,
+        variant: "destructive",
+      });
+    } finally {
       setIsLoading(false);
-      navigate('/');
-    }, 1000);
+    }
   };
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    // TODO: Implement authentication logic
-    setTimeout(() => {
+
+    if (formData.password !== formData.confirmPassword) {
+      toast({
+        title: "Passwords don't match",
+        description: "Please make sure your passwords match.",
+        variant: "destructive",
+      });
       setIsLoading(false);
-      navigate('/');
-    }, 1000);
+      return;
+    }
+
+    try {
+      const redirectUrl = `${window.location.origin}/dashboard`;
+      
+      const { error } = await supabase.auth.signUp({
+        email: formData.email,
+        password: formData.password,
+        options: {
+          emailRedirectTo: redirectUrl,
+          data: {
+            display_name: `${formData.firstName} ${formData.lastName}`,
+          }
+        }
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Account created!",
+        description: "Please check your email to confirm your account.",
+      });
+    } catch (error: any) {
+      toast({
+        title: "Sign up failed",
+        description: error.message,
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -77,8 +166,11 @@ const Auth = () => {
                     <Label htmlFor="signin-email">Email</Label>
                     <Input
                       id="signin-email"
+                      name="email"
                       type="email"
                       placeholder="Enter your email"
+                      value={formData.email}
+                      onChange={handleInputChange}
                       required
                     />
                   </div>
@@ -87,8 +179,11 @@ const Auth = () => {
                     <Label htmlFor="signin-password">Password</Label>
                     <Input
                       id="signin-password"
+                      name="password"
                       type="password"
                       placeholder="Enter your password"
+                      value={formData.password}
+                      onChange={handleInputChange}
                       required
                     />
                   </div>
@@ -116,8 +211,11 @@ const Auth = () => {
                       <Label htmlFor="signup-firstname">First Name</Label>
                       <Input
                         id="signup-firstname"
+                        name="firstName"
                         type="text"
                         placeholder="John"
+                        value={formData.firstName}
+                        onChange={handleInputChange}
                         required
                       />
                     </div>
@@ -125,8 +223,11 @@ const Auth = () => {
                       <Label htmlFor="signup-lastname">Last Name</Label>
                       <Input
                         id="signup-lastname"
+                        name="lastName"
                         type="text"
                         placeholder="Doe"
+                        value={formData.lastName}
+                        onChange={handleInputChange}
                         required
                       />
                     </div>
@@ -136,8 +237,11 @@ const Auth = () => {
                     <Label htmlFor="signup-email">Email</Label>
                     <Input
                       id="signup-email"
+                      name="email"
                       type="email"
                       placeholder="Enter your email"
+                      value={formData.email}
+                      onChange={handleInputChange}
                       required
                     />
                   </div>
@@ -146,8 +250,11 @@ const Auth = () => {
                     <Label htmlFor="signup-password">Password</Label>
                     <Input
                       id="signup-password"
+                      name="password"
                       type="password"
                       placeholder="Create a password"
+                      value={formData.password}
+                      onChange={handleInputChange}
                       required
                     />
                   </div>
@@ -156,8 +263,11 @@ const Auth = () => {
                     <Label htmlFor="signup-confirm">Confirm Password</Label>
                     <Input
                       id="signup-confirm"
+                      name="confirmPassword"
                       type="password"
                       placeholder="Confirm your password"
+                      value={formData.confirmPassword}
+                      onChange={handleInputChange}
                       required
                     />
                   </div>

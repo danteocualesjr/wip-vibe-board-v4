@@ -99,53 +99,61 @@ export const StatsCards: React.FC<StatsCardsProps> = ({ userId }) => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-      <Card>
+      <Card className="premium-card interactive-hover stats-gradient animate-slide-up">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium">Total Projects</CardTitle>
-          <Code className="h-4 w-4 text-muted-foreground" />
+          <div className="glow-effect">
+            <Code className="h-4 w-4 text-primary" />
+          </div>
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">{stats.totalProjects}</div>
-          <p className="text-xs text-muted-foreground">
+          <div className="text-3xl font-bold gradient-text">{stats.totalProjects}</div>
+          <p className="text-xs text-muted-foreground mt-1">
             {stats.featuredProjects} featured
           </p>
         </CardContent>
       </Card>
 
-      <Card>
+      <Card className="premium-card interactive-hover stats-gradient animate-slide-up" style={{ animationDelay: '0.1s' }}>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium">Total Activity</CardTitle>
-          <TrendingUp className="h-4 w-4 text-muted-foreground" />
+          <div className="glow-effect">
+            <TrendingUp className="h-4 w-4 text-primary" />
+          </div>
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">{stats.totalActivity}</div>
-          <p className="text-xs text-muted-foreground">
+          <div className="text-3xl font-bold gradient-text">{stats.totalActivity}</div>
+          <p className="text-xs text-muted-foreground mt-1">
             Activities logged
           </p>
         </CardContent>
       </Card>
 
-      <Card>
+      <Card className="premium-card interactive-hover stats-gradient animate-slide-up" style={{ animationDelay: '0.2s' }}>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium">Featured Projects</CardTitle>
-          <Star className="h-4 w-4 text-muted-foreground" />
+          <div className="glow-effect">
+            <Star className="h-4 w-4 text-primary" />
+          </div>
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">{stats.featuredProjects}</div>
-          <p className="text-xs text-muted-foreground">
+          <div className="text-3xl font-bold gradient-text">{stats.featuredProjects}</div>
+          <p className="text-xs text-muted-foreground mt-1">
             Showcased work
           </p>
         </CardContent>
       </Card>
 
-      <Card>
+      <Card className="premium-card interactive-hover stats-gradient animate-slide-up" style={{ animationDelay: '0.3s' }}>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium">Member Since</CardTitle>
-          <Calendar className="h-4 w-4 text-muted-foreground" />
+          <div className="glow-effect">
+            <Calendar className="h-4 w-4 text-primary" />
+          </div>
         </CardHeader>
         <CardContent>
-          <div className="text-lg font-bold">{formatJoinDate(stats.joinDate)}</div>
-          <p className="text-xs text-muted-foreground">
+          <div className="text-lg font-bold gradient-text">{formatJoinDate(stats.joinDate)}</div>
+          <p className="text-xs text-muted-foreground mt-1">
             VibeCode member
           </p>
         </CardContent>

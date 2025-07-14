@@ -94,19 +94,25 @@ export const ActivityHeatmap: React.FC<ActivityHeatmapProps> = ({ userId }) => {
 
   return (
     <div className="w-full overflow-x-auto">
-      <div className="flex items-center space-x-2 mb-4 text-sm text-muted-foreground">
-        <span>Less</span>
-        <div className="flex space-x-1">
-          <div className="w-3 h-3 rounded-sm bg-muted"></div>
-          <div className="w-3 h-3 rounded-sm bg-primary/20"></div>
-          <div className="w-3 h-3 rounded-sm bg-primary/40"></div>
-          <div className="w-3 h-3 rounded-sm bg-primary/60"></div>
-          <div className="w-3 h-3 rounded-sm bg-primary"></div>
+      <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+          <span>Less</span>
+          <div className="flex space-x-1">
+            <div className="w-3 h-3 rounded-sm bg-muted transition-all hover:scale-110"></div>
+            <div className="w-3 h-3 rounded-sm bg-primary/20 transition-all hover:scale-110"></div>
+            <div className="w-3 h-3 rounded-sm bg-primary/40 transition-all hover:scale-110"></div>
+            <div className="w-3 h-3 rounded-sm bg-primary/60 transition-all hover:scale-110"></div>
+            <div className="w-3 h-3 rounded-sm bg-primary glow-effect transition-all hover:scale-110"></div>
+          </div>
+          <span>More</span>
         </div>
-        <span>More</span>
+        
+        <div className="text-sm text-muted-foreground">
+          <span className="gradient-text font-medium">{heatmapData.filter(d => d.count > 0).length}</span> active days
+        </div>
       </div>
       
-      <div className="grid grid-cols-53 gap-1 min-w-[700px]">
+      <div className="grid grid-cols-53 gap-1 min-w-[700px] animate-fade-in">
         {Array.from({ length: weeks }).map((_, weekIndex) => (
           <div key={weekIndex} className="grid grid-rows-7 gap-1">
             {Array.from({ length: 7 }).map((_, dayIndex) => {
@@ -116,8 +122,13 @@ export const ActivityHeatmap: React.FC<ActivityHeatmapProps> = ({ userId }) => {
                   key={`${weekIndex}-${dayIndex}`}
                   className={`w-3 h-3 rounded-sm ${
                     dataPoint ? getIntensityClass(dataPoint.count) : 'bg-muted'
-                  } hover:ring-2 hover:ring-primary/50 transition-all cursor-pointer`}
+                  } hover:ring-2 hover:ring-primary/50 hover:scale-125 transition-all duration-200 cursor-pointer group ${
+                    dataPoint?.count > 6 ? 'animate-glow-pulse' : ''
+                  }`}
                   title={dataPoint ? `${dataPoint.date}: ${dataPoint.count} activities` : ''}
+                  style={{
+                    animationDelay: `${(weekIndex * 7 + dayIndex) * 10}ms`
+                  }}
                 />
               );
             })}

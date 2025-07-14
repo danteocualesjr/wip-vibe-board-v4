@@ -9,33 +9,53 @@
 
 @layer base {
   :root {
-    --background: 0 0% 98%;
-    --foreground: 0 0% 20%;
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 20%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 20%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 262.1 52.9% 58.8%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 262.1 83.3% 57.8%;
+    --primary-foreground: 0 0% 98%;
 
-    --secondary: 262.1 52.9% 96%;
-    --secondary-foreground: 262.1 52.9% 20%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
 
-    --accent: 262.1 52.9% 96%;
-    --accent-foreground: 262.1 52.9% 20%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 90%;
-    --input: 0 0% 96%;
-    --ring: 262.1 52.9% 58.8%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 262.1 83.3% 57.8%;
+
+    --radius: 0.5rem;
+
+    /* Premium color palette */
+    --primary-glow: 262.1 100% 70%;
+    --accent-purple: 280 100% 70%;
+    --accent-blue: 220 100% 70%;
+    --accent-pink: 330 100% 70%;
+    --surface-elevated: 240 10% 6%;
+    --surface-overlay: 240 6% 10%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(262.1 83.3% 57.8%), hsl(280 100% 70%));
+    --gradient-surface: linear-gradient(135deg, hsl(240 10% 6%), hsl(240 6% 10%));
+    --gradient-glow: linear-gradient(135deg, hsl(262.1 100% 70% / 0.3), hsl(280 100% 70% / 0.3));
+    
+    /* Shadows */
+    --shadow-glow: 0 0 40px hsl(262.1 100% 70% / 0.3);
+    --shadow-elevation: 0 25px 50px -12px hsl(240 10% 3.9% / 0.8);
+    --shadow-premium: 0 20px 25px -5px hsl(240 10% 3.9% / 0.5), 0 10px 10px -5px hsl(240 10% 3.9% / 0.3);
 
     --radius: 0.75rem;
 
@@ -74,23 +94,84 @@
 
 @layer components {
   .gradient-text {
-    @apply bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500 bg-clip-text text-transparent;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
   
   .hero-gradient-text {
-    @apply bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 bg-clip-text text-transparent;
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent-purple)), hsl(var(--accent-pink)));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
   
-  .vibe-card {
-    @apply bg-white border-gray-200 hover:border-purple-300 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/10;
+  .premium-card {
+    @apply relative overflow-hidden rounded-xl;
+    background: hsl(var(--surface-elevated));
+    border: 1px solid hsl(var(--border));
+    box-shadow: var(--shadow-premium);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
   
-  .vibe-button {
-    @apply bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 text-white transition-all duration-200;
+  .premium-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-elevation);
+    border-color: hsl(var(--primary) / 0.5);
   }
-
-  .vibe-button-outline {
-    @apply border-2 border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white transition-all duration-200;
+  
+  .premium-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--gradient-primary);
+    opacity: 0.6;
+  }
+  
+  .glow-effect {
+    @apply relative;
+    filter: drop-shadow(var(--shadow-glow));
+  }
+  
+  .surface-elevated {
+    background: hsl(var(--surface-elevated));
+    border: 1px solid hsl(var(--border));
+  }
+  
+  .surface-overlay {
+    background: hsl(var(--surface-overlay));
+    border: 1px solid hsl(var(--border) / 0.5);
+  }
+  
+  .interactive-hover {
+    @apply transition-all duration-300 ease-out;
+  }
+  
+  .interactive-hover:hover {
+    transform: translateY(-1px) scale(1.01);
+    filter: drop-shadow(0 10px 20px hsl(var(--primary) / 0.2));
+  }
+  
+  .stats-gradient {
+    background: var(--gradient-surface);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .stats-gradient::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-glow);
+    opacity: 0.1;
+    pointer-events: none;
   }
 }
 

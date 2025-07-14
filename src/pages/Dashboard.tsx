@@ -11,6 +11,9 @@ import { ProjectsGrid } from '@/components/dashboard/ProjectsGrid';
 import { ProfileCard } from '@/components/dashboard/ProfileCard';
 import { StatsCards } from '@/components/dashboard/StatsCards';
 import { RecentActivity } from '@/components/dashboard/RecentActivity';
+import { InteractiveChart } from '@/components/dashboard/InteractiveChart';
+import { SkillsRadar } from '@/components/dashboard/SkillsRadar';
+import { ProjectInsights } from '@/components/dashboard/ProjectInsights';
 import { useToast } from '@/hooks/use-toast';
 
 const Dashboard = () => {
@@ -76,25 +79,27 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-secondary">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-surface-elevated">
       {/* Header */}
-      <nav className="bg-card/80 backdrop-blur-sm border-b sticky top-0 z-50">
+      <nav className="surface-elevated backdrop-blur-xl border-b border-border/50 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-4">
-              <Code2 className="w-8 h-8 text-primary" />
-              <span className="text-2xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+              <div className="glow-effect">
+                <Code2 className="w-8 h-8 text-primary" />
+              </div>
+              <span className="text-2xl font-bold gradient-text">
                 VibeCode
               </span>
               <span className="text-muted-foreground">Dashboard</span>
             </div>
             
             <div className="flex items-center space-x-4">
-              <Button variant="ghost" size="sm">
+              <Button variant="ghost" size="sm" className="interactive-hover">
                 <Settings className="w-4 h-4 mr-2" />
                 Settings
               </Button>
-              <Button variant="outline" size="sm" onClick={handleSignOut}>
+              <Button variant="outline" size="sm" onClick={handleSignOut} className="interactive-hover">
                 <LogOut className="w-4 h-4 mr-2" />
                 Sign Out
               </Button>
@@ -106,9 +111,10 @@ const Dashboard = () => {
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Left Sidebar - Profile */}
-          <div className="lg:col-span-1">
+          {/* Left Sidebar - Profile & Skills */}
+          <div className="lg:col-span-1 space-y-6">
             <ProfileCard userId={user.id} />
+            <SkillsRadar userId={user.id} />
           </div>
 
           {/* Main Content Area */}
@@ -116,10 +122,16 @@ const Dashboard = () => {
             {/* Stats Cards */}
             <StatsCards userId={user.id} />
 
+            {/* Interactive Chart */}
+            <InteractiveChart userId={user.id} />
+
+            {/* Project Insights */}
+            <ProjectInsights userId={user.id} />
+
             {/* Activity Heatmap */}
-            <Card>
+            <Card className="premium-card">
               <CardHeader>
-                <CardTitle className="flex items-center">
+                <CardTitle className="flex items-center gradient-text">
                   <TrendingUp className="w-5 h-5 mr-2" />
                   Activity Heatmap
                 </CardTitle>
@@ -134,21 +146,21 @@ const Dashboard = () => {
 
             {/* Tabs for Projects and Activity */}
             <Tabs defaultValue="projects" className="w-full">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="projects" className="flex items-center">
+              <TabsList className="grid w-full grid-cols-2 surface-elevated">
+                <TabsTrigger value="projects" className="flex items-center data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
                   <Briefcase className="w-4 h-4 mr-2" />
                   Projects
                 </TabsTrigger>
-                <TabsTrigger value="activity" className="flex items-center">
+                <TabsTrigger value="activity" className="flex items-center data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
                   <Users className="w-4 h-4 mr-2" />
                   Recent Activity
                 </TabsTrigger>
               </TabsList>
               
-              <TabsContent value="projects" className="space-y-4">
+              <TabsContent value="projects" className="space-y-4 mt-6">
                 <div className="flex justify-between items-center">
-                  <h3 className="text-lg font-semibold">Your Projects</h3>
-                  <Button>
+                  <h3 className="text-lg font-semibold gradient-text">Your Projects</h3>
+                  <Button className="glow-effect interactive-hover">
                     <Plus className="w-4 h-4 mr-2" />
                     Add Project
                   </Button>
@@ -156,8 +168,8 @@ const Dashboard = () => {
                 <ProjectsGrid userId={user.id} />
               </TabsContent>
               
-              <TabsContent value="activity" className="space-y-4">
-                <h3 className="text-lg font-semibold">Recent Activity</h3>
+              <TabsContent value="activity" className="space-y-4 mt-6">
+                <h3 className="text-lg font-semibold gradient-text">Recent Activity</h3>
                 <RecentActivity userId={user.id} />
               </TabsContent>
             </Tabs>

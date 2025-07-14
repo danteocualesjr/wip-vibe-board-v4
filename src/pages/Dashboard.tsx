@@ -79,7 +79,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-surface-elevated">
+    <div className="min-h-screen bg-gradient-to-br from-background via-muted/20 to-secondary/30">
       {/* Header */}
       <nav className="surface-elevated backdrop-blur-xl border-b border-border/50 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

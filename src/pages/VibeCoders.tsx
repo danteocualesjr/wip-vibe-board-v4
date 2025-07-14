@@ -258,13 +258,17 @@ const VibeCoders = () => {
             </div>
 
             <div className="flex items-center space-x-3">
-              <Button variant="ghost" className="text-purple-600 hover:text-purple-700">
-                Sign In
-              </Button>
-              <Button className="vibe-button">
-                Join as Vibe Coder
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </Button>
+              <Link to="/auth">
+                <Button variant="ghost" className="text-purple-600 hover:text-purple-700">
+                  Sign In
+                </Button>
+              </Link>
+              <Link to="/auth">
+                <Button className="vibe-button">
+                  Join as Vibe Coder
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

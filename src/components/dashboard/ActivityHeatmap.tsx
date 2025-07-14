@@ -4,6 +4,7 @@ import { supabase } from '@/integrations/supabase/client';
 interface ActivityData {
   date: string;
   count: number;
+  
 }
 
 interface ActivityHeatmapProps {

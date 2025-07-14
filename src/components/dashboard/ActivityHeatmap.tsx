@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 
 interface ActivityData {
-  
+
   date: string;
   count: number;
 
@@ -17,6 +17,7 @@ export const ActivityHeatmap: React.FC<ActivityHeatmapProps> = ({ userId }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    
     fetchActivityData();
   }, [userId]);
 
